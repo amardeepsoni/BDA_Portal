@@ -11,7 +11,11 @@ class Register extends CI_Controller {
 	}
 
 	public function take_data_intern(){
-		$data = array('name'=>$this->input->post('name'), 'gender'=>$this->input->post('gender'), 'mobile_no'=>$this->input->post('mobile'), 'city'=>$this->input->post('city'), 'district'=>$this->input->post('district'), 'college'=>$this->input->post('college'), 'state'=>$this->input->post('state'), 'email'=>$this->input->post('email'), 'domain'=>$this->input->post('domain'));
+		$data = array('name'=>$this->input->post('name'), 'gender'=>$this->input->post('gender'), 'mobile_no'=>$this->input->post('mobile'), 'city'=>$this->input->post('city'), 'district'=>$this->input->post('district'), 'college'=>$this->input->post('college'), 'state'=>$this->input->post('state'), 'email'=>$this->input->post('email'), 'domain'=>$this->input->post('domain'), 'user_id'=>$this->input->post('user_id'));
+		$this->load->helper('string');
+		$data['user_id'] .= random_string('numeric',5);
+		 
+ 
 		$this->load->model('Register_Model', 'rm');
 		$result = $this->rm->data_intern($data);
 		echo $result;
