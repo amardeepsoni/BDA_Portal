@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>intellify_attendance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<style>
+    thead {
+        display: table-header-group;
+    }
+    tfoot {
+        display: table-row-group;
+    }
+    tr {
+        page-break-inside: avoid;
+    }
+    /* @media print {
+        #printPageButton {
+            display: none;
+        }
+    } */
+</style>
+
+<body>
+
+    <div class="container">
+    
+    <a id='printPageButton' href="javascript:window.print()"><i class="fa fa-print" style="font-size:36px"></i></a>
+    
+    <div class="intellify_logo" style="margin-bottom:20px; margin-top:20px; text-align:center;">
+        <img src="assets/img/logo.png" height="150px" width="auto"/>
+    </div>
+
+    <div class="school_description" style="width: 100%;">
+        
+        <div style="width: 60%; float: left;">
+            <h4>School Name: {{ school_name }}</h4>
+            <h4>School ID: {{ school_id }}</h4>
+        </div>
+        
+        <div style="text-align:center; border: solid; width: 20%; float: right; height: 60px; padding-top:10px">
+            <h4>Level: {{ level }}</h4>
+        </div>
+
+    </div>
+    
+    <div style="margin-top: 150px; margin-bottom: 30px; font-size: 19px">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>SNO</th>
+                        <th>Student Name</th>
+                        <th>Registration Number/Username</th>
+                        <th>Class</th>
+                        <th>Present / Absent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in student_list %}
+                    
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ student['firstname'] + student['lastname'] }}</td>
+                        <td>{{ student['username'] }}</td>
+                        <td>{{ student['student_class'] }}</td>
+                        <td></td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="auth_approval_details" style="margin-top: 100px; page-break-after:always;">
+        
+        <div class="invigilator" style="border-top:solid; width: 25%; float: left;">
+            <h5>Invigilator Name:</h5>
+            <h5>Invigilator SIgnature:</h5>
+        </div>
+        
+        <div class="co-ordinator" style="border-top:solid; width: 25%; float: right;">
+            <h5>Coordinator Name:</h5>
+            <h5>Coordinator SIgnature:</h5>
+        </div>
+        
+    </div>
+
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

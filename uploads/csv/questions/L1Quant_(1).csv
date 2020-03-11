@@ -1,0 +1,23 @@
+question_number,question_text,option1,option2,option3,option4,answer
+1,The 3D printer at Central Workshop in IITD prints 24 models in 4 days at a steady rate. The lab assistant decides to buy 2 more of them to increase the production rate. How many 3D models would the Central Workshop be having by the end of 5 days?,60,80,90,120,1
+2,"Say, the average of two numbers is equal to one of them. Then, what can be said about them?",They are equal.,The number that is equal to the average is the Greater number.,The number that is equal to the average is the smaller number,Information Insufficient to decide.,2
+3,"The volume of a right rectangular prism is calculated by multiplying the width of the base by its length and this quantity by the height of the prism. If the volume of a particular right rectangular prism of height 5 units is 30 units, what is the area of the base of the prism? (in units)",6,8,5,Can't say,3
+4,"If x,y,z are three distinct positive numbers each less than 10. What is the smallest possible value of x+y/z3 ?",Jan-27,Jan-81,1/243,Apr-81,4
+5,The elevation at the summit of Mt. Everest is 8848 m above sea level. Climbers generally start climbing at a trailhead of elevation 2550m. How much time do you think they would take to climb the summit if their average speed is 30m/hr. Round the answer to the nearest hour.,210,211,209,198,2
+6,"In a cage, there are rabbits and parrots and the number of heads are 28 and feet are 72. Find the number of parrots and rabbits.","20,8","8,20","14,14","12,16",3
+7,If 10 men take 10 days to build a wall of 10 meters then ___ men will take 2 days to build a wall of 5 meters.,15,50,25,30,1
+8,If ‘a’ is the factor of ‘b’ then HCF and LCM of a and b are ____ and ____.,"a,b","a,a.b","b,a.b","a.b,a.b",4
+9,"If the ratio of ages of three siblings A, B and C is 1:2:4 and sum of the ages of two of them is 54 and their father is 58 year old. How old is C in comparison to A? (Father is at least is 18 years older than any of his sons.)",15,9,18,27,2
+10,"A school has 1000 students out of which 600 are
+from Science stream and 400 from Commerce stream.
+The average of marks secured by 100 students is 68 and
+students from Science stream is 60. What is the average
+of the marks secured by students from Commerce
+stream?",70,75,80,85,1
+11,"Kerosene from a fully filled 750 mL bottle is
+transferred to a half filled 2 litre bottle then what % of
+the 2 litre bottle is empty?",12.5,75,62.5,25,4
+12,"The Mathematics section of JEE Mains contains 30 questions. (Each question carries +4 for correct answer, - 1 for incorrect answer and 0 if unanswered). If the student has secured 112 marks then what is the possible number of correct answers he/she has marked?",27,28,Both a and b,None,3
+13,"From my home, I walked 20 km east. Continuing to face east, I walked 15 km North, and then I walked 10 km after turning around (by 180 degrees). How far away and in which direction am I, from my home?",15 km North and 10 km West,15 km North and 10 km East,10 km North and 15 km West,10 km North and 15 km East,2
+14,The distance from Kanpur to Delhi is 400km and the distance from Delhi to Jaipur is 300km. It follows that distance between Jaipur and Kanpur is necessarily,100km,500km,700km,Can't say,3
+15,"Students are given a degree if they pass all their exams and submit all their assignments. In a batch of 350 students, 235 passed all their exams and 285 submitted all their assignments. So, how many students will be awarded the degree?",Atleast 235,Atleast 285,Atleast 190,Atleast 170,4

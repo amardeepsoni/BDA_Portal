@@ -1,0 +1,13 @@
+question_number,question_text,answer
+1,"Give the number that fits in ‘?’ 7, 15 ,28 , 59, 114, (?)",233
+2,"If encryption is done such that each number in encrypted message is remainder of number divided by 5 if number is more than or equal to 5 & ‘number+5’ if number is less than 5. What is encrypted form of ""28910""?",73465
+3,"If 10 men take 20 days to make a pillar 20 metres long, then ___ men will take 15 days to make  a pillar 15 metres long. What best fits in the blank ?",10
+4,What is the maximum possible no. of points of intersection between a circle and a triangle?,6
+5,"In the IPL ‘19 finals, MI won the toss and chose to bat first. The run-rate of MI at the end of the first   innings was 7.5. After 16 overs, DC had an average   run rate of 6.5. What is the minimum average run-rate that DC can have for the last 4 overs and win?",12
+6,Water from a fully filled 250 ml bottle is transferred to a half-filled 1L bottle. What percentage of the 1L bottle is still empty?,25
+7,"I am the eldest child of my parents. There is a gap of 6 years between the ages of my brother and sister including myself. If my mother was 22 years when I was born, then what was her age at the birth of her youngest child?",28
+8,"A survey was conducted among 200 users of mobile phones of different companies. It was found that 160 use mobile phones of NOKIA, 100 use mobile phones of SIEMENS and 90 use mobile phones of LG. 20 use mobile phones of all three companies and each one uses mobile phones at least one of the three companies. How many use mobile phones of only one company?",70
+9,"A survey was conducted among 200 users of mobile phones of different companies. It was found that 160 use mobile phones of NOKIA, 100 use mobile phones of SIEMENS and 90 use mobile phones of LG. 20 use mobile phones of all three companies and each one uses mobile phones at least one of the three companies. If 40 use only NOKIA, then how many use LG and
+SIEMENS only?",10
+10," How many times do the minute and the hour hands of a clock overlap in
+24 hours?",24
