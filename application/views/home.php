@@ -39,7 +39,7 @@
 		<div style="width: 350px;z-index: 20; position: absolute;top:50%;left: 50%; transform:translate(-50%,-50%);">
 			<p style="width: 100%;text-align: center;color:white; font-family:sans-serif;font-size: 3em;">Join Us</p>
 			<p style="width: 100%;display: flex;justify-content: space-between;">
-			<a class="btn btn-outline-success px-5" href="<?php echo base_url(); ?>Register">Register</a><a class="btn btn-outline-primary px-5">Log In</a>
+			<a class="btn btn-outline-success px-5" href="<?php echo base_url(); ?>index.php/Register">Register</a><a class="btn btn-outline-primary px-5 text-primary">Log In</a>
 			</p>
 		</div>
 </div>
