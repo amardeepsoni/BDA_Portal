@@ -33,7 +33,6 @@
 	  <a class="carousel-control-next" href="#demo" data-slide="next">
 	    <span class="carousel-control-next-icon"></span>
 	  </a>
-
 	</div>
 
 		<div style="width: 350px;z-index: 20; position: absolute;top:50%;left: 50%; transform:translate(-50%,-50%);">

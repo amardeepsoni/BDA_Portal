@@ -49,45 +49,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
-
- */
-
-//mock test route
-$route['MockQuizzes/Quizlist/(:num)'] = 'MockQuizzes/Quizlist/index/$1';
-$route['MockQuizzes/Quiz/(:num)'] = 'MockQuizzes/Quiz/index/$1';
-$route['MockQuizzes/Result/(:num)'] = 'MockQuizzes/Result/index/$1';
-
-// sample quiz
-$route['sampleQuiz/QuizDashboard/(:num)'] = 'sampleQuiz/QuizDashboard/index/$1';
-$route['sampleQuiz/Quiz/(:num)'] = 'sampleQuiz/Quiz/index/$1';
-$route['sampleQuiz/Result/(:num)'] = 'sampleQuiz/Result/index/$1';
-
-//tutorial route
-$route['StudyResource/Tutorial1Resource/(:num)'] = 'StudyResource/Tutorial1Resource/index/$1';
-/*$route['StudyResource/Tutorial1Resource/(:num)'] = 'MockQuizzes/Quiz/index/$1';
-$route['StudyResource/Tutorial1Resource/(:num)'] = 'MockQuizzes/Result/index/$1';*/
-
-$route['WeeklyQuiz/Result/(:num)'] = 'WeeklyQuiz/Result/index/$1';
+/* */
+/*$route['WeeklyQuiz/Result/(:num)'] = 'WeeklyQuiz/Result/index/$1';
 $route['WeeklyQuiz/Quiz/(:num)'] = 'WeeklyQuiz/Quiz/index/$1';
 $route['WeeklyQuiz/Quizlist/(:num)'] = 'WeeklyQuiz/Quizlist/index/$1';
-$route['WeeklyQuiz/Quizlist/top5/(:num)'] = 'WeeklyQuiz/Quizlist/getTop5/$1';
 $route['admin/ManageSkills/delete/(:num)'] = 'admin/ManageSkills/delete/$1';
-$route['NSCP/Round2/Quiz/(:num)'] = 'NSCP/Round2/Quiz/index/$1';
-$route['NSCP/Year/(:num)'] = 'NSCP/Year/index/$1';
-$route['admin/EditExam/(:num)'] = 'admin/EditExam/index/$1';
+$route['ISCO/Round2/Quiz/(:num)'] = 'ISCO/Round2/Quiz/index/$1';
+$route['ISCO/Year/(:num)'] = 'ISCO/Year/index/$1';
+$route['admin/EditExam/(:num)'] = 'admin/EditExam/index/$1';*/
 // $route['admin/Managepopup/delete/(:num)'] = 'admin/Managepopup/delete/$1';
 
-$route['api/school/login'] = 'api/schools/login';
+/* $route['api/school/login'] = 'api/schools/login';
 $route['api/student/login'] = 'api/students/login';
 $route['api/schools/(:num)/students/(:num)/poems/(:num)'] = 'api/poems/$3';
 $route['api/schools/(:num)/students/(:num)/poems'] = 'api/poems';
 $route['api/schools/(:num)/students/(:num)/help'] = 'api/students/$2/help';
 $route['api/schools/(:num)/students/(:num)/changepass'] = 'api/students/$2/changepass';
 $route['api/schools/(:num)/students/(:num)'] = 'api/students/$2';
-$route['api/schools/(:num)/students'] = 'api/students';
-$route['default_controller'] = 'home';
-$route['admin'] = adminpath . '/login';
-$route['NSCP/Round2'] = round2path . '/login';
+$route['api/schools/(:num)/students'] = 'api/students';*/
+$route['default_controller'] = 'Home';
+/*$route['admin'] = adminpath . '/login';
+$route['ISCO/Round2'] = round2path . '/login';
 $route['newsandevent/(:any)'] = 'news/details/$1';
 $route['newsandevent'] = 'news';
 $route['products/(:any)'] = 'products/details/$1';
@@ -96,14 +78,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['Answer/addAns/(:num)'] = 'Answer/addAns/$1';
-$route['Answer/(:num)'] = 'Answer/index/$1';
-$route['admin/Manage_ans/(:num)'] = 'admin/Manage_ans/index/$1';
-$route['admin/Posts/delete/(:num)'] = 'admin/Posts/delete/$1';
-$route['admin/Posts/disable/(:num)'] = 'admin/Posts/disable/$1';
-$route['admin/Manage_ans/disable/(:num)'] = 'admin/Manage_ans/disable/$1';
-$route['StudyMaterial/student/lg/(:num)'] = 'StudyMaterial/student/$1';
-$route['StudyMaterial/studentCritical/lg/(:num)'] = 'StudyMaterial/studentCritical/$1';
-$route['discussionforum/page'] = 'discussionforum/index';
-$route['discussionforum/page/(:num)'] = 'discussionforum/index/$1';
-$route['discussionforum'] = 'Redirectpost/index/';
-/*$route['NSCP/21stcentury/Article'] = 'article_first';*/
+$route['Answer/(:num)'] = 'Answer/index/$1';*/
