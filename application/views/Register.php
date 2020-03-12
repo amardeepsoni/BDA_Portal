@@ -7,14 +7,8 @@
 
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<style type="text/css">
-    span{
-        display: none;
-    }
 
-</style>
-<<<<<<< HEAD
-=======
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <?php
@@ -54,7 +48,7 @@ showConfirmButton: false,
 
 }
 ?>
->>>>>>> 4bfd926a9ea513157f2c318c9401d67fe6d365eb
+
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -108,13 +102,8 @@ showConfirmButton: false,
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
                                 <h3 class="register-heading">Apply as a Intern</h3>
-<<<<<<< HEAD
-                                 <form method="post" action="<?php echo base_url(); ?>/Register/take_data_intern">
 
-=======
-                                 <form method="post" action="<?php echo base_url(); ?>Register/take_data_intern">
->>>>>>> 4bfd926a9ea513157f2c318c9401d67fe6d365eb
-                                <div class="row register-form">
+                                 <form method="post" action="<?php echo base_url(); ?>Register/take_data_intern">                  <div class="row register-form">
                                     <div class="col-md-6">
 
                                         <div class="form-group">
