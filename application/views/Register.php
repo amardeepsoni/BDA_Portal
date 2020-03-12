@@ -17,6 +17,7 @@
 if (isset($this->session->flashdata('register')['flag'])) {
 	if ($this->session->flashdata('register')['flag'] == 1) {
 		echo '<script type="text/javascript"> swal({
+icon : "success",
 title: "Success",
 text: "Check your E-mail...",
 type:"Success",
@@ -27,18 +28,20 @@ showConfirmButton: false,
 
 	} else if ($this->session->flashdata('register')['flag'] == 0) {
 		echo '<script type="text/javascript"> swal({
-title: "Email already exist..",
-type:"Error",
-showConfirmButton: false,
+      icon : "error",
+      title: "Email already exist..",
+      type:"Error",
+      showConfirmButton: false,
 })
 
 </script>';
 
 	} else {
 		echo '<script type="text/javascript"> swal({
-title: "All fields are not specified",
-type:"Error",
-showConfirmButton: false,
+      icon : "error",
+      title: "All fields are not specified",
+      type:"error",
+      showConfirmButton: false,
 })
 
 </script>';
@@ -60,15 +63,17 @@ showConfirmButton: false,
 
       <!-- Modal body -->
       <div class="modal-body form-group">
+        <form method="post" action="<?php echo base_url(); ?>Login/checklogin">
         <div class="form-row">
-            <input type="text" class="form-control" name="" placeholder="Username">
-       </div>
+            <input type="text" class="form-control" name="username" placeholder="Username">
+        </div>
        <br>
        <div class="form-row">
-       <input type="password" class="form-control" name="Password" placeholder="Password">
+       <input type="password" class="form-control" name="password" placeholder="Password">
        </div>
        <br>
        <button class="btn btn-primary">Log In</button>
+       </form>
       </div>
 
       <!-- Modal footer -->
@@ -146,7 +151,6 @@ showConfirmButton: false,
                                           <option>State Coordinator</option>
                                           <option>Operation</option>
                                           <option>Volunteering</option>
-                                          <option>Government Relation</option>
                                           <option>Marketing</option>
                                           <option>Sales</option>
                                         </select>
@@ -164,47 +168,7 @@ showConfirmButton: false,
                                 </div>
                                 </form>
                             </div>
-                            <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <h3  class="register-heading">Apply as a Volunteer</h3>
-                                <div class="row register-form">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="First Name *" value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Last Name *" value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email *" value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" maxlength="10" minlength="10" class="form-control" placeholder="Phone *" value="" />
-                                        </div>
 
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password *" value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option class="hidden"  selected disabled>Please select your Sequrity Question</option>
-                                                <option>What is your Birthdate?</option>
-                                                <option>What is Your old Phone Number</option>
-                                                <option>What is your Pet Name?</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="`Answer *" value="" />
-                                        </div>
-                                        <input type="submit" class="btnRegister"  value="Register"/>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
