@@ -63,7 +63,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <h3 class="register-heading">Apply as a Intern</h3>
-                                 <form method="post" action="<?php echo base_url(); ?>index.php/Register/take_data_intern">
+                                 <form method="post" action="<?php echo base_url(); ?>/Register/take_data_intern">
                                 <div class="row register-form">
                                     <div class="col-md-6">
 
