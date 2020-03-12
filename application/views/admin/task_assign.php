@@ -44,6 +44,7 @@
 					}
 					else{
 						alert('Task Assigned Successfully to '+'<?php echo $user_id; ?>');
+						window.location="<?php echo base_url().adminpath ?>/Dashboard";
 					}
 				}
 				);
