@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/register/style1.css">
 <!-- Include the above in your HEAD tag -->
 
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style type="text/css">
     span{
@@ -56,31 +57,34 @@
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Intern</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Volunteer</a>
-                            </li>
+<!--                             <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Volunteer</a>
+</li> -->
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 class="register-heading">Apply as an Intern</h3>
+
+                                <h3 class="register-heading">Apply as a Intern</h3>
+                                 <form method="post" action="<?php echo base_url(); ?>/Register/take_data_intern">
+
                                 <div class="row register-form">
                                     <div class="col-md-6">
+
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Name *" value="" required id="name" />
-                                            <span class="text-danger" id="ne">Name is Empty</span>
+                                            <input type="text" class="form-control" placeholder="Name *" value="" required name="name" />
+
                                         </div>
-                                       
+
                                         <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="City *" value="" required id="city" />
-                                            <span class="text-danger" id="ce">City is Empty</span>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="District *" value="" required id="district" />
-                                            <span class="text-danger" id="de">District is Empty</span>
+                                            <input type="text" class="form-control"  placeholder="City *" value="" required name="city" />
+
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="State *" value="" required id="state" />
-                                            <span class="text-danger" id="se">State is Empty</span>
+                                            <input type="text" class="form-control"  placeholder="District *" value="" required name="district" />
+                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"  placeholder="State *" value="" required name="state" />
+
                                         </div>
                                         <div class="form-group">
                                             <div class="maxl">
@@ -95,14 +99,15 @@
                                                 <span id="gem" class="text-danger">Select any One</span>
                                             </div>
                                         </div>
+
                                     </div>
                                     <div class="col-md-6">
                                          <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email *" value="" id="email"/>
-                                            <span class="text-danger" id="ee">Email is Empty</span>
+                                            <input type="email" class="form-control" placeholder="Email *" value="" name="email"/>
+
                                         </div>
-                                        <div class="form-group">      
-                                        <select class="form-control" id="domain" required>
+                                        <div class="form-group">
+                                        <select class="form-control" name="domain" required>
                                           <option>Business Development</option>
                                           <option>State Coordinator</option>
                                           <option>Operation</option>
@@ -113,17 +118,20 @@
                                         </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="Mobile Number *" value="" required id="mobile"/>
-                                            <span class="text-danger" id="me">Mobile Number is Empty</span>
+                                            <input type="text" class="form-control"  placeholder="Mobile Number *" value="" required name="mobile"/>
+
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="College *" value="" required id="college"/>
-                                            <span class="text-danger" id="cne">College Name is Empty</span>
+                                            <input type="text" class="form-control"  placeholder="College *" value="" required name="college"/>
+
                                         </div>
-                                        <button type="submit" class="btnRegister"   id="register">Register</button>
+                                        <button type="submit" class="btnRegister"   name="register">Register</button>
                                     </div>
-                                </div><!-- 
- -->                            </div>
+
+                                </div>
+                                </form>
+                            </div>
+
                             <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                 <h3  class="register-heading">Apply as a Volunteer</h3>
                                 <div class="row register-form">
@@ -190,142 +198,3 @@
                     </div>
                 </div>
             </div>
-<script>    
-    $(document).ready(function(){
-        var c = 0;
-        var check_user = "Int";
-        $('#home-tab').click(function(){check_user="Int";});
-        $('#profile-tab').click(function(){check_user="Vol";});
-        $('#register').click(function(){
-            if($('#name').val()==""){
-                $('#ne').css('display', 'block');
-                c--;
-                //return false;
-            }
-            else{
-                $('#ne').css('display', 'none');
-                c++;
-            }
-            if($('#city').val()==""){
-                $('#ce').css('display', 'block');
-                c--;
-                //return false;
-            }
-            else{
-                $('#ce').css('display', 'none');
-                c++;
-            }
-            if($('#district').val()==""){
-                $('#de').css('display', 'block');
-                c--;
-                //return false;
-            }
-            else{
-                $('#de').css('display', 'none');
-                c++;
-            }
-            if($('#mobile').val()==""){
-                $('#me').css('display', 'block');
-                c--;
-                //return false;
-            }
-            else{
-                $('#me').css('display', 'none');
-                c++;
-            }
-            if($('#email').val()==""){
-                $('#ee').css('display', 'block');
-                c--;
-                //return false;
-            }
-            else{
-                $('#ee').css('display', 'none');
-                c++;
-            }
-            if($('#state').val()==""){
-                $('#se').css('display', 'block');
-                c--;
-               // return false;
-            }
-            else{
-                $('#se').css('display', 'none');
-                c++;
-            }
-            if($('#college').val()==""){
-                $('#cne').css('display', 'block');
-                c--;
-                //return false;                                                                                                                                 
-            }
-            else{
-                $('#cne').css('display', 'none');
-                c++;
-            }
-            if($("input[name='gender']:checked").val()){
-                c++;
-                $('#gem').css('display', 'none                                                                                                                                                                                                                                                                                                                                                                                                          ');
-            }
-            else{
-                $('#gem').css('display', 'block');
-                c--;
-            }
-            if(c==8){
-              
-                if(check_user=="Vol"){
-                $.post(
-                    '<?php echo base_url();?>/Register/take_data_intern',
-                    {
-                        name : $('#name').val(),
-                        email : $('#email').val(),
-                        mobile : $('#mobile').val(),
-                        city : $('#city').val(),
-                        district : $('#district').val(),
-                        college : $('#college').val(),
-                        state : $('#state').val(),
-                        domain : $('#domain').val(),
-                        gender : $("input[name='gender']:checked").val(),
-                        user_id : check_user
-                    },
-                    function(result){
-                        if(result=='error'){
-                            alert('Something Wrong !..');
-                        }
-                        else{
-                            alert('Registration Successfully');
-                            $('input').val('');
-                            c = 0;
-                        }
-                    }
-                    );
-                }
-                else{
-                $.post(
-                    '<?php echo base_url();?>/Register/take_data_intern',
-                    {
-                        name : $('#name').val(),
-                        email : $('#email').val(),
-                        mobile : $('#mobile').val(),
-                        city : $('#city').val(),
-                        district : $('#district').val(),
-                        college : $('#college').val(),
-                        state : $('#state').val(),
-                        domain : $('#domain').val(),
-                        gender : $("input[name='gender']:checked").val(),
-                        user_id : check_user
-                    },
-                    function(result){
-                        if(result=='error'){
-                            alert('Something Wrong !..');
-                        }
-                        else{
-                            alert('Registration Successfully');
-                            $('input').val('');
-                            c = 0;
-                        }
-                    }
-                    );
-            }//else
-            }
-
-        });
-    });
-</script>

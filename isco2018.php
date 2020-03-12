@@ -1,2 +1,2 @@
 <?php
-header("location: https://www.intellify.in/NSCP/Year/2018");
+header("location: https://www.intellify.in/ISCO/Year/2018");

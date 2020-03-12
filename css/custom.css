@@ -616,9 +616,9 @@ input:focus, textarea:focus, select:focus {
 	display: table;
 	height: 100%;
 }
-.banner-outer .slide3, .banner-outer .slide1, .banner-outer .slide2, .banner-outer .slidedb {
+.banner-outer .slide1, .banner-outer .slide2, .banner-outer .slide3, .banner-outer .slidedb {
 	display: block;
-	height: 500px;
+	height: 588px;
 }
 .banner-outer .slide1 {
 	background: url(../images/Vision.jpg) no-repeat center top / cover;
@@ -627,35 +627,7 @@ input:focus, textarea:focus, select:focus {
 	background: url(../images/Mission.jpg) no-repeat center top / cover;
 }
 .banner-outer .slide3 {
-	background: url(../images/kejriwal_sir_final_1.jpeg) no-repeat center top / cover;
-}
-.banner-outer .slide3 .knowmore
-{
-	display: flex;
-	margin-top: 160px;
-	margin-left: 50px!important;
-
-}
-.banner-outer .slide3 .knowmore a:nth-child(2)
-{
-	margin-left: 30px;
-
-}
-@media screen and (max-width: 600px)
-{
-.banner-outer .slide3 .knowmore{
-		margin-top: 80px;
-
-}
-.banner-outer .slide3 .knowmore a
-{
-	padding: 5px!important;
-
-}
-.banner-outer .slide3 .knowmore a:nth-child(2)
-{
-	margin-left: 30px;
-}
+	background: url(../images/about_us.png) no-repeat center top / cover;
 }
 .transbox {
 	
