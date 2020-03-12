@@ -8,9 +8,47 @@
     span{
         display: none;
     }
+
 </style>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php
 
+if (isset($this->session->flashdata('register')['flag'])) {
+	if ($this->session->flashdata('register')['flag'] == 1) {
+		echo '<script type="text/javascript"> swal({
+title: "Success",
+text: "Check your E-mail...",
+type:"Success",
+showConfirmButton: false,
+})
+
+</script>';
+
+	} else if ($this->session->flashdata('register')['flag'] == 0) {
+		echo '<script type="text/javascript"> swal({
+title: "Email already exist..",
+type:"Error",
+showConfirmButton: false,
+})
+
+</script>';
+
+	} else {
+		echo '<script type="text/javascript"> swal({
+title: "All fields are not specified",
+type:"Error",
+showConfirmButton: false,
+})
+
+</script>';
+		if ($this->session->userdata('register')['flag']) {
+			$this->session->unset_userdata('register');
+		}
+	}
+
+}
+?>
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -63,7 +101,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <h3 class="register-heading">Apply as a Intern</h3>
-                                 <form method="post" action="<?php echo base_url(); ?>/Register/take_data_intern">
+                                 <form method="post" action="<?php echo base_url(); ?>Register/take_data_intern">
                                 <div class="row register-form">
                                     <div class="col-md-6">
 
