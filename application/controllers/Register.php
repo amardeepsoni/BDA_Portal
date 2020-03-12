@@ -50,7 +50,7 @@ class Register extends CI_Controller {
 			);
 			$this->session->set_flashdata('register', $cdata);
 
-			redirect(base_url() . 'index.php/Register');
+			redirect(base_url() . 'Register');
 		} else {
 			if ($this->rm->read_by_email($data['email'])) {
 				$cdata = array(
@@ -59,7 +59,7 @@ class Register extends CI_Controller {
 				);
 				$this->session->set_flashdata('register', $cdata);
 
-				redirect(base_url() . 'index.php/Register');
+				redirect(base_url() . 'Register');
 				//                    print_r($cdata);
 			} else {
 				require 'vendor/autoload.php';
@@ -105,7 +105,7 @@ body, td {font-size:13px}
 
 						$this->session->set_flashdata('register', $cdata);
 
-						redirect(base_url() . 'index.php/Register');
+						redirect(base_url() . 'Register');
 
 					}
 				} catch (Exception $e) {
