@@ -56,7 +56,7 @@ class Login extends CI_Controller {
 						if ($this->session->userdata('intern')['user_id']) {
 							$this->session->unset_userdata('intern');
 						}
-						redirect('dashboard');
+						redirect('intern/dashboard');
 					}
 				} else {
 					$this->session->set_flashdata('loginnotify', 'Username and Password not Valid.');
