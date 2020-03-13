@@ -122,7 +122,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text],input[type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -143,12 +143,12 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+input[type=text],input[type=password]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
+input[type=text],input[type=password]:placeholder {
   color: #cccccc;
 }
 
@@ -285,9 +285,9 @@ input[type=text]:placeholder {
 
     <!-- Login Form -->
     <form action="<?php echo base_url(); ?>admin/login" method="post">
-      <input type="text" id="login" class="fadeIn second" name="int_admin_login" placeholder="Username" required>
-      <input type="text" id="password" class="fadeIn third" name="int_admin_login" placeholder="Password" required>
-      <input type="submit" class="fadeIn fourth" value="Log_In">
+      <input type="text" id="login" class="fadeIn second" name="int_admin_login_user" placeholder="Username" required>
+      <input type="password" id="password" class="fadeIn third" name="int_admin_login_pass" placeholder="Password" required>
+      <input type="submit" class="fadeIn fourth">
     </form>
 
     <!-- Remind Passowrd -->

@@ -1,17 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Forgot_pass extends CI_Controller {
 	public function index() {
-		if (!$this->session->userdata("intern")['user_id']) {
-			redirect('/');
-		}
-		$this->load->model('Dashboard_Model', 'dm');
-		// session_start();
-		$_SESSION['Quiz'] = 5;
-		$out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
-		$this->load->View('header');
-		$this->load->View('dashboard', $out);
+		$data['page_title'] = 'Forgot Password';
+		$this->load->View('header', $data);
+		$this->load->View('intern/forgotpass', $data);
 		$this->load->View('footer');
 	}
 
