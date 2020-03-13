@@ -21,7 +21,9 @@ class Login extends CI_Controller {
 	}
 
 	public function checklogin() {
-
+		if ($this->session->userdata('intern')['user_id']) {
+			$this->session->unset_userdata('intern');
+		}
 		if ($this->input->server('REQUEST_METHOD') == 'POST') {
 
 			$data['username'] = $this->input->post('username');
@@ -50,12 +52,11 @@ class Login extends CI_Controller {
 							'state' => $result->state,
 							'gender' => $result->gender,
 							'user_id' => $result->user_id,
+							'Quiz' => 5,
 						);
 						// Add user data in session
 						$this->session->set_userdata('intern', $session_data);
-						if ($this->session->userdata('intern')['user_id']) {
-							$this->session->unset_userdata('intern');
-						}
+
 						redirect('intern/dashboard');
 					}
 				} else {
@@ -137,7 +138,7 @@ class Login extends CI_Controller {
 	}
 
 	public function logout() {
-		$this->session->unset_userdata('studentlogged_in');
+		$this->session->unset_userdata('intern');
 
 		redirect('/');
 

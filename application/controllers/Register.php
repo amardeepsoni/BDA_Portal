@@ -5,13 +5,15 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class Register extends CI_Controller {
 	public function index() {
+		if ($this->session->userdata('intern')['user_id']) {
+			redirect('intern/Dashboard');
+		}
 
 		$data['page_title'] = 'Home';
 		$this->load->View('header');
 		$this->load->View('Register');
 		$this->load->View('footer');
 	}
-
 
 	public function take_data_intern() {
 		$this->load->model('Register_Model', 'rm');

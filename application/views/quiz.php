@@ -12,7 +12,7 @@
 
 <body class="modal-open">
     <?php if ($_SESSION['Quiz'] != 0) {
-        foreach ($all_data as $val) { ?>
+	foreach ($all_data as $val) {?>
             <div class="p-3">
                 <h1 class="p-2">
                     <center>Quiz</center>
@@ -69,13 +69,18 @@
                 </div>
             </div>
         <?php }
-    } else { ?>
+} else {
+	?>
         <div class="conatiner p-4 text-center mt-5">
             <h1>Congratulations! Now, you will receive an email !!</h1>
         </div>
     <?php session_unset();
+<<<<<<< HEAD
         session_destroy();
     } ?>
+=======
+	session_destroy();}?>
+>>>>>>> db69c02e2572a3465312c3c280db3a07a6a8cf09
     <!-- Scripts -->
     <script>
         function showhint() {
