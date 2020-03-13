@@ -68,7 +68,13 @@ $route['api/schools/(:num)/students/(:num)/changepass'] = 'api/students/$2/chang
 $route['api/schools/(:num)/students/(:num)'] = 'api/students/$2';
 $route['api/schools/(:num)/students'] = 'api/students';*/
 $route['default_controller'] = 'Home';
+<<<<<<< HEAD
+$route['dashboard'] = 'Dashboard';
+$route['quiz'] = 'Dashboard/quiz';
+$route['admin'] = 'admin/login';
+=======
 $route['dashboard']='Dashboard';
+>>>>>>> bb94866e2b8634092e3adfdaabd45f55ef083da2
 /*$route['admin'] = adminpath . '/login';
 $route['ISCO/Round2'] = round2path . '/login';
 $route['newsandevent/(:any)'] = 'news/details/$1';
