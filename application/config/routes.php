@@ -68,6 +68,10 @@ $route['api/schools/(:num)/students/(:num)/changepass'] = 'api/students/$2/chang
 $route['api/schools/(:num)/students/(:num)'] = 'api/students/$2';
 $route['api/schools/(:num)/students'] = 'api/students';*/
 $route['default_controller'] = 'Home';
+<<<<<<< HEAD
+=======
+
+>>>>>>> f66dfb6583dd0f2e3e6ca73937805521267da751
 $route['dashboard'] = 'Dashboard';
 $route['quiz'] = 'Dashboard/quiz';
 $route['admin'] = 'admin/login';
