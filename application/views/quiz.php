@@ -20,44 +20,49 @@
                 <hr>
                 <div class="container">
                     <div class="alert alert-primary" role="alert">
-                        Questions left: <?php echo $_SESSION['Quiz']; ?>
+                        Questions left: <?php echo $_SESSION['Quiz'];
+                                        // $this->session->userdata("intern")['Quiz']; 
+                                        ?>
                     </div>
-                    <form action="#" id="quizform" method="POST" class="form-horizontal">
+                    <form action="quiz" id="quizform" method="POST" class="form-horizontal">
 
-                        <p class="p-2"> Question 1 : <?php echo $val->Question; ?> </p>
-                        <div class="form-check">
-                            <input class="form-check-input" id="1" type="radio" name="radios" value="1">
+                        <p class="p-2"> Question <?php
+                                                    $qno = 6 - $_SESSION['Quiz'];
+                                                    echo $qno . "  : " . $val->Question; ?> </p>
+                        <div class="form-check p-2">
+                            <input class="form-check-input" onclick="showhint()" id="1" type="radio" name="radios" value="1" required>
                             <label class="form-check-label" for="radios1">
-                                A
+                                <?php echo $val->Option1 ?>
                             </label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" id="2" type="radio" name="radios" value="2">
+                        <div class="form-check p-2">
+                            <input class="form-check-input" onclick="showhint()" id="2" type="radio" name="radios" value="2">
                             <label class="form-check-label" for="radios2">
-                                B
+                                <?php echo $val->Option2 ?>
                             </label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" id="3" type="radio" name="radios" value="3">
+                        <div class="form-check p-2">
+                            <input class="form-check-input" onclick="showhint()" id="3" type="radio" name="radios" value="3">
                             <label class="form-check-label" for="radios3">
-                                C
+                                <?php echo $val->Option3 ?>
                             </label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" id="4" type="radio" name="radios" value="4">
+                        <div class="form-check p-2">
+                            <input class="form-check-input" onclick="showhint()" id="4" type="radio" name="radios" value="4">
                             <label class="form-check-label" for="radios4">
-                                D
+                                <?php echo $val->Option4 ?>
                             </label>
+                        </div>
+
+                        <div id="wrong_ans" style="display: none" class="alert alert-warning" role="alert">
+                            Answer: Option <?php echo $val->Answer . "<br>" . $val->Explanation; ?>
+                        </div>
+                        <div id="right_ans" style="display: none" class="alert alert-success" role="alert">
+                            Your Answer is correct!!
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" id="btSubmit" onclick="clickEvent(this)" class="m-2 btn btn-primary">Save and Next</button>
-                        </div>
-                        <div id="myDIV" class="alert alert-danger" role="alert" style="display: none">
-                            Answer: Option <?php echo $val->Answer; ?>
-                        </div>
-                        <div id="myDiv" style="display: none" class="alert alert-success" role="alert">
-                            Correct Answer!!
+                            <button type="submit" id="btSubmit" class="m-2 btn btn-primary">Save and Next</button>
                         </div>
                     </form>
 
@@ -68,10 +73,14 @@
         <div class="conatiner p-4 text-center mt-5">
             <h1>Congratulations! Now, you will receive an email !!</h1>
         </div>
-    <?php session_unset();session_destroy(); } ?>
+    <?php session_unset();
+        session_destroy();
+    } ?>
     <!-- Scripts -->
     <script>
-        function clickEvent(form) {
+        function showhint() {
+            document.getElementById("right_ans").style.display = "none";
+            document.getElementById("wrong_ans").style.display = "none";
             if (document.getElementById('1').checked) {
                 var x = 1;
             } else if (document.getElementById('2').checked) {
@@ -84,15 +93,13 @@
                 alert("Select one option!!");
             }
             if (x == <?php echo $val->Answer ?>) {
-                form.style.background = "#38c346";
-                console.log("Yes");
-                document.getElementById("myDiv").style.display = "block";
+
+                document.getElementById("right_ans").style.display = "block";
             } else {
-                form.style.background = "#a93a3a";
-                var x = document.getElementById("myDIV");
+
+                var x = document.getElementById("wrong_ans");
                 x.style.display = "block";
             }
-
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
