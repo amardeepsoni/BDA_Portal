@@ -137,7 +137,7 @@ showConfirmButton: false,
                                                     <input type="radio" name="gender" value="female" required>
                                                     <i>Female </i>
                                                 </label>
-                                                <span id="gem" class="text-danger">Select any One</span>
+
                                             </div>
                                         </div>
 
@@ -172,71 +172,7 @@ showConfirmButton: false,
                                 </form>
                             </div>
 
-<<<<<<< HEAD
-                            <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <h3  class="register-heading">Apply as a Volunteer</h3>
-                                <div class="row register-form">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Name *" value="" required id="name" />
-                                            <span class="text-danger" id="ne">Name is Empty</span>
-                                        </div>
-                                       
-                                        <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="City *" value="" required id="city" />
-                                            <span class="text-danger" id="ce">City is Empty</span>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="District *" value="" required id="district" />
-                                            <span class="text-danger" id="de">District is Empty</span>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="State *" value="" required id="state" />
-                                            <span class="text-danger" id="se">State is Empty</span>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="maxl">
-                                                <label class="radio inline">
-                                                    <input type="radio" name="gender" value="male" checked  required>
-                                                    <i> Male </i>
-                                                </label>
-                                                <label class="radio inline">
-                                                    <input type="radio" name="gender" value="female" required>
-                                                    <i>Female </i>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                         <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email *" value="" id="email"/>
-                                            <span class="text-danger" id="ee">Email is Empty</span>
-                                        </div>
-                                        <div class="form-group">      
-                                        <select class="form-control" id="domain" required>
-                                          <option>Business Development</option>
-                                          <option>State Coordinator</option>
-                                          <option>Operation</option>
-                                          <option>Volunteering</option>
-                                          <option>Government Relation</option>
-                                          <option>Marketing</option>
-                                          <option>Sales</option>
-                                        </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="Mobile Number *" value="" required id="mobile"/>
-                                            <span class="text-danger" id="me">Mobile Number is Empty</span>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="College *" value="" required id="college"/>
-                                            <span class="text-danger" id="cne">College Name is Empty</span>
-                                        </div>
-                                        <button type="submit" class="btnRegister"   id="register">Register</button>
-                                    </div>
-                                </div><!-- 
- -->                            </div>
-=======
->>>>>>> 94afcbcc3692a9d9de0c7458ec6c502a72631dd4
+
                         </div>
                     </div>
                 </div>

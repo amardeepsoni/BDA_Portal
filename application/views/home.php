@@ -38,10 +38,42 @@
 		<div style="width: 350px;z-index: 20; position: absolute;top:50%;left: 50%; transform:translate(-50%,-50%);">
 			<p style="width: 100%;text-align: center;color:white; font-family:sans-serif;font-size: 3em;">Join Us</p>
 			<p style="width: 100%;display: flex;justify-content: space-between;">
-			<a class="btn btn-outline-success px-5" href="<?php echo base_url(); ?>Register">Register</a><a class="btn btn-outline-primary px-5 text-primary">Log In</a>
+			<a class="btn btn-outline-success px-5" href="<?php echo base_url(); ?>Register">Register</a><a href="#"  data-toggle="modal" data-target="#myModal" class="btn btn-outline-primary px-5 text-primary">Log In</a>
 			</p>
 		</div>
 
 </div>
 
+</div>
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Log In</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body form-group">
+        <form method="post" action="<?php echo base_url(); ?>Login/checklogin">
+        <div class="form-row">
+            <input type="text" class="form-control" name="username" placeholder="Username">
+        </div>
+       <br>
+       <div class="form-row">
+       <input type="password" class="form-control" name="password" placeholder="Password">
+       </div>
+       <br>
+       <button class="btn btn-primary">Log In</button>
+       </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <a href="#">Forgot password?</a>
+      </div>
+
+    </div>
+  </div>
 </div>

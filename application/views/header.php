@@ -36,7 +36,13 @@
       </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">
-        <a class="nav-link" href="#">Help</a>
+        <a class="btn btn-outline-info nav-link" href="#">Help</a>&nbsp;
+<?php if ($this->session->userdata('intern')) {?>
+
+        <a href="<?php echo base_url(); ?>intern/Dashboard" class="btn btn-outline-info nav-link"><font style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('intern')['name']; ?> </font>Profile</a>&nbsp;
+        <a href="<?php echo base_url(); ?>Login/logout" class="btn btn-outline-danger nav-link">Log Out</a>&nbsp;
+
+<?php }?>
     </div>
   </div>
 </nav>

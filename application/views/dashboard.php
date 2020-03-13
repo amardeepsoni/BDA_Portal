@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container p-4">
+    <div class="container p-4" style="height: 100vh;">
         <h3>To start Quiz click below...</h3>
         <a href="dashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
     </div>
