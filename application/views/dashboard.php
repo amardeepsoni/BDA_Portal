@@ -15,5 +15,4 @@
         <a href="dashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
     </div>
 </body>
-
 </html>
