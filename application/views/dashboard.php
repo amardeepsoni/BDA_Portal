@@ -10,12 +10,22 @@
 </head>
 
 <body>
-    <?php 
+    <?php
     // echo $data['0']->quiz_status;
-    if ($data['0']->quiz_status)
-     { ?>
+    if ($data['0']->quiz_status) { ?>
         <div class="container p-4" style="height: 100vh;">
-            <h3>all set to go...</h3>
+            <h3>Upload your documents, <?php echo $this->session->userdata("intern")['name']; ?></h3>
+            <h5>Instruction:-</h5>
+            <ul>
+                <li>
+                    Ulpoad your Governemnt Id and Offer letter in a single pdf.
+                </li>
+            </ul>
+            <form action="dashboard/upload_id" method="post" enctype="multipart/form-data">
+                Select image to upload:
+                <input class="btn btn-outline-primary" type="file" name="file" id="fileToUpload">
+                <input class="btn btn-info" type="submit" value="Upload Image" name="submit">
+            </form>
         </div>
     <?php } else { ?>
         <div class="container p-4" style="height: 100vh;">

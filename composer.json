@@ -1,6 +1,7 @@
 {
     "require": {
         "aws/aws-sdk-php": "^3.100",
-      "ext-json": "*"
+      "ext-json": "*",
+        "dompdf/dompdf": "^0.8.3"
     }
 }
