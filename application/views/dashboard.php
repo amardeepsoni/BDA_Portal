@@ -10,10 +10,19 @@
 </head>
 
 <body>
-    <div class="container p-4" style="height: 100vh;">
-        <h3>To start Quiz click below...</h3>
-        <a href="dashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
-    </div>
+    <?php 
+    // echo $data['0']->quiz_status;
+    if ($data['0']->quiz_status)
+     { ?>
+        <div class="container p-4" style="height: 100vh;">
+            <h3>all set to go...</h3>
+        </div>
+    <?php } else { ?>
+        <div class="container p-4" style="height: 100vh;">
+            <h3>To start Quiz click below...</h3>
+            <a href="dashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
+        </div>
+    <?php } ?>
 </body>
 
 </html>

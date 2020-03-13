@@ -12,7 +12,8 @@
 
 <body class="modal-open">
     <?php if ($_SESSION['Quiz'] != 0) {
-	foreach ($all_data as $val) {?>
+        $_SESSION['Quiz']--;
+        foreach ($all_data as $val) { ?>
             <div class="p-3">
                 <h1 class="p-2">
                     <center>Quiz</center>
@@ -20,14 +21,12 @@
                 <hr>
                 <div class="container">
                     <div class="alert alert-primary" role="alert">
-                        Questions left: <?php echo $_SESSION['Quiz'];
-                                        // $this->session->userdata("intern")['Quiz']; 
-                                        ?>
+                        Questions left: <?php echo $_SESSION['Quiz']; ?>
                     </div>
                     <form action="quiz" id="quizform" method="POST" class="form-horizontal">
 
                         <p class="p-2"> Question <?php
-                                                    $qno = 6 - $_SESSION['Quiz'];
+                                                    $qno = 5 - $_SESSION['Quiz'];
                                                     echo $qno . "  : " . $val->Question; ?> </p>
                         <div class="form-check p-2">
                             <input class="form-check-input" onclick="showhint()" id="1" type="radio" name="radios" value="1" required>
@@ -68,19 +67,10 @@
 
                 </div>
             </div>
-        <?php }
-} else {
-	?>
-        <div class="conatiner p-4 text-center mt-5">
-            <h1>Congratulations! Now, you will receive an email !!</h1>
-        </div>
-    <?php session_unset();
-<<<<<<< HEAD
-        session_destroy();
+    <?php }
+    }else{
+        redirect('intern/dashboard');
     } ?>
-=======
-	session_destroy();}?>
->>>>>>> db69c02e2572a3465312c3c280db3a07a6a8cf09
     <!-- Scripts -->
     <script>
         function showhint() {
