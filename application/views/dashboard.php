@@ -1,3 +1,8 @@
+<?php
+if (!$this->session->userdata("intern")['user_id']) {
+    redirect('/');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,10 +15,23 @@
 </head>
 
 <body>
-    <?php
-    // echo $data['0']->quiz_status;
-    if ($data['0']->quiz_status) { ?>
-        <div class="container p-4" style="height: 100vh;">
+    <div class="container p-4" style="height: 80vh;">
+        <?php
+        $this->load->model('Dashboard_Model', 'dm');
+        $query_out = $this->dm->check_upload_status($this->session->userdata("intern")['user_id']);
+        if ($query_out['0']->upload_status) { ?>
+
+            <h3>Uploaded Files:</h3>
+            <div class="card" style="width: 18rem;">
+                <img src="https://zapier.cachefly.net/storage/photos/b4a925f6c39483a70247b87031d0f67c.png" height="200px" width="100px" class="card-img-top" alt="https://zapier.cachefly.net/storage/photos/b4a925f6c39483a70247b87031d0f67c.png">
+                <div class="card-body">
+                    <h5 class="card-title">Uploaded Files</h5>
+                    <a href="<?php echo $query_out['0']->profile_link; ?>" class="btn btn-success">Check File Once!!</a>
+                </div>
+            </div>
+
+        <?php } else if ($data['0']->quiz_status) { ?>
+
             <h3>Upload your documents, <?php echo $this->session->userdata("intern")['name']; ?></h3>
             <h5>Instruction:-</h5>
             <ul>
@@ -26,12 +44,14 @@
                 <input class="btn btn-outline-primary" type="file" name="file" id="fileToUpload">
                 <input class="btn btn-info" type="submit" value="Upload Image" name="submit">
             </form>
-        </div>
-    <?php } else { ?>
-        <div class="container p-4" style="height: 100vh;">
-            <h3>To start Quiz click below...</h3>
+
+        <?php } else { ?>
+
+            <h3 class="p-3">To start Quiz click below,</h3>
             <a href="dashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
-        </div>
-    <?php } ?>
+
+        <?php } ?>
+    </div>
 </body>
+
 </html>
