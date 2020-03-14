@@ -46,34 +46,35 @@ class Dashboard extends CI_Controller {
 			redirect('intern/dashboard');
 		}
 	}
+    public function upload_id()
+    {
+        $this->load->model('Dashboard_Model', 'dm');
+        if ($_FILES['file']['size']) {
+            $this->load->library('S3');
+            $ext = pathinfo(basename($_FILES['file']['name']), PATHINFO_EXTENSION);
+            if ($_FILES["file"]["size"] > 5000000) {            //approx 50mb
+                echo "<center><br><br><h1>Sorry, your file is too large!!</h1><br><h4>Try Again with smaller size!!<br>Wait redirecting...</h4></center>";
+                header("Refresh:3; url= " . base_url() . "/intern/dashboard");
+                exit;
+            }
+            if ($ext != "png" && $ext != "jpeg" && $ext != "jpg" && $ext != "PNG" && $ext != "JPEG" && $ext != "JPG" && $ext != "pdf" && $ext != "PDF") {
+                echo "<center><br><br><h1>Sorry, your file type not supported!!</h1><br><h4>Try Again!!<br>Wait redirecting...</h4></center>";
+                header("Refresh:3; url= " . base_url() . "/intern/dashboard");
+                exit;
+            }
+            $target_dir = "application\controllers\Intern\uploads/";
+            $target_file = $target_dir . $this->session->userdata("intern")['user_id'] . '.' . $ext;
+            $url = base_url() . $target_file;
 
-	public function upload_id() {
-		if ($_FILES['file']['size']) {
-			$this->load->library('S3');
-			$ext = pathinfo(basename($_FILES['file']['name']), PATHINFO_EXTENSION);
-			if ($_FILES["file"]["size"] > 5000000) {
-				//approx 50mb
-				echo "<center><br><br><h1>Sorry, your file is too large!!</h1><br><h4>Try Again with smaller size!!<br>Wait redirecting...</h4></center>";
-				header("Refresh:3; url= " . base_url() . "/intern/dashboard");
-				exit;
-			}
-			if ($ext != "png" && $ext != "jpeg" && $ext != "jpg" && $ext != "PNG" && $ext != "JPEG" && $ext != "JPG" && $ext != "pdf" && $ext != "PDF") {
-				echo "<center><br><br><h1>Sorry, your file type not supported!!</h1><br><h4>Try Again!!<br>Wait redirecting...</h4></center>";
-				header("Refresh:3; url= " . base_url() . "/intern/dashboard");
-				exit;
-			}
-			$target_dir = "application\controllers\Intern\uploads/";
-			$target_file = $target_dir . $this->session->userdata("intern")['user_id'] . '.' . $ext;
-
-			if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-				// echo "The file " . basename($_FILES["file"]["name"]) . " has been uploaded.";
-				echo "<center><br><br><h1>Your file uploaded!!</h1><br><h4>Wait redirecting...</h4></center>";
-				header("Refresh:3; url= " . base_url() . "/intern/dashboard");
-			} else {
-				echo "<center><br><br><h1>Sorry, there was an error uploading your file.</h1><br><h4>Try Again after some time!!<br>Wait redirecting...</h4></center>";
-				header("Refresh:3; url= " . base_url() . "/intern/dashboard");
-			}
-		}
-	}
-
-}
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+                // echo "The file " . basename($_FILES["file"]["name"]) . " has been uploaded.";
+                echo "<center><br><br><h1>Your file uploaded!!</h1><br><h4>Wait redirecting...</h4></center>";
+                header("Refresh:3; url= " . base_url() . "/intern/dashboard");
+                $this->dm->upload_status($url, $this->session->userdata("intern")['user_id']);
+            } else {
+                echo "<center><br><br><h1>Sorry, there was an error uploading your file.</h1><br><h4>Try Again after some time!!<br>Wait redirecting...</h4></center>";
+                header("Refresh:3; url= " . base_url() . "/intern/dashboard");
+            }
+        }
+    }
+}   
