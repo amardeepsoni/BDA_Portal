@@ -1,36 +1,32 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+class Dashboard extends CI_Controller {
+	public function index() {
+		$this->load->model('Dashboard_Model', 'dm');
+		// session_start();
+		$_SESSION['Quiz'] = 5;
+		$out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
+		$this->load->View('header');
+		$this->load->View('dashboard', $out);
+		$this->load->View('footer');
+	}
 
-class Dashboard extends CI_Controller
-{
-    public function index()
-    {
-        $this->load->model('Dashboard_Model', 'dm');
-        // session_start();
-        $_SESSION['Quiz'] = 5;
-        $out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
-        $this->load->View('header');
-        $this->load->View('dashboard', $out);
-        $this->load->View('footer');
-    }
+	public function quiz() {
+		$this->load->model('Dashboard_Model', 'dm');
 
-    public function quiz()
-    {
-        $this->load->model('Dashboard_Model', 'dm');
+		$out = $this->dm->check_status($this->session->userdata("intern")['user_id']);
+		if (!$out[0]->quiz_status) {
+			// $_SESSION['Quiz'] = 0;    //change
+			if ($_SESSION['Quiz'] != 0) {
+				$rand = rand(1, 11);
+				$result['all_data'] = $this->dm->fetch_quiz($rand);
 
-        $out = $this->dm->check_status($this->session->userdata("intern")['user_id']);
-        if (!$out[0]->quiz_status) {
-            // $_SESSION['Quiz'] = 0;    //change
-            if ($_SESSION['Quiz'] != 0) {
-                $rand = rand(1, 11);
-                $result['all_data'] = $this->dm->fetch_quiz($rand);
-
-                $this->load->View('quiz', $result);
-            } else {
-                echo "<center><br><br><h1>Quiz Over!!</h1><br></center>";
-                $this->dm->update_status($this->session->userdata("intern")['user_id']);
-?>
+				$this->load->View('quiz', $result);
+			} else {
+				echo "<center><br><br><h1>Quiz Over!!</h1><br></center>";
+				$this->dm->update_status($this->session->userdata("intern")['user_id']);
+				?>
                 <center>
                     <br><Br><br>
                     <a href="http://localhost/BDA_Portal/uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">
@@ -44,13 +40,12 @@ class Dashboard extends CI_Controller
                         </a></button>
                 </center>
 <?php
-                // header("Refresh:5; url= " . base_url() . "/intern/dashboard");    //Add whole part for site
-            }
-        } else {
-            redirect('intern/dashboard');
-        }
-    }
-
+// header("Refresh:5; url= " . base_url() . "/intern/dashboard");    //Add whole part for site
+			}
+		} else {
+			redirect('intern/dashboard');
+		}
+	}
     public function upload_id()
     {
         $this->load->model('Dashboard_Model', 'dm');
@@ -82,4 +77,4 @@ class Dashboard extends CI_Controller
             }
         }
     }
-}
+}   

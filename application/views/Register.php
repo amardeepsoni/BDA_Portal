@@ -78,7 +78,7 @@ showConfirmButton: false,
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <a href="#">Forgot password?</a>
+        <a href="<?php echo base_url(); ?>intern/Forgot_pass">Forgot password?</a>
       </div>
 
     </div>
@@ -164,6 +164,23 @@ showConfirmButton: false,
                                         <div class="form-group">
                                             <input type="text" class="form-control"  placeholder="College *" value="" required name="college"/>
 
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"  placeholder="Referal(Optional)" value="" required name="referal"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                        <label for="">Security Question*</label>
+                                        <select class="form-control" type="" name="security_question" required>
+                                          <option value="What was your childhood nickname?">What was your childhood nickname?</option>
+                                          <option value="What is your pet's name?">What is your pet's name?</option>
+                                          <option value="What was your childhood phone number including area code?">What was your childhood phone number including area code?</option>
+                                          <option value="What was the name of your first stuffed animal?">What was the name of your first stuffed animal?</option>
+                                        </select>
+                                      </div>
+                                      <div class="">
+                                        <label for="">Security Answer*</label>
+                                        <input class="form-control" type="" name="security_answer" required>
                                         </div>
                                         <button type="submit" class="btnRegister"   name="register">Register</button>
                                     </div>

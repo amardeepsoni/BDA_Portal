@@ -71,7 +71,7 @@
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <a href="#">Forgot password?</a>
+        <a href="<?php echo base_url(); ?>intern/Forgot_pass">Forgot password?</a>
       </div>
 
     </div>
