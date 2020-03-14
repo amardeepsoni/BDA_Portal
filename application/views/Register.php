@@ -166,12 +166,12 @@ showConfirmButton: false,
 
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="Referal(Optional)" value="" required name="referal"/>
+                                            <input type="text" class="form-control"  placeholder="Referal(Optional)" value="" required name="referal_by"/>
 
                                         </div>
                                         <div class="form-group">
                                         <label for="">Security Question*</label>
-                                        <select class="form-control" type="" name="security_question" required>
+                                        <select class="form-control" name="security_question" required>
                                           <option value="What was your childhood nickname?">What was your childhood nickname?</option>
                                           <option value="What is your pet's name?">What is your pet's name?</option>
                                           <option value="What was your childhood phone number including area code?">What was your childhood phone number including area code?</option>

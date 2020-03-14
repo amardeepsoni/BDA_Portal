@@ -29,7 +29,7 @@ class Dashboard extends CI_Controller {
 				?>
                 <center>
                     <br><Br><br>
-                    <a href="http://localhost/BDA_Portal/uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">
+                    <a href="<?php echo base_url(); ?>uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">
                         <button alt="Offer Letter">
                             <h3>Download Offer Letter</h3>
                         </button>

@@ -19,6 +19,12 @@ class Register extends CI_Controller {
 		$this->load->model('Register_Model', 'rm');
 		$intern_id = 'INT' . rand(1111, 9999);
 		$str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@#$';
+		$referrals = 'Intellifybda' . $intern_id;
+		if (htmlspecialchars($this->input->post('referal_by'))) {
+			$referred_by = htmlspecialchars($this->input->post('referal_by'));
+		} else {
+			$referred_by = " ";
+		}
 		// Shufle the $str_result and returns substring
 		// of specified length
 		$intern_pass = substr(str_shuffle($str_result), 0, 8);
@@ -35,7 +41,9 @@ class Register extends CI_Controller {
 			'user_id' => htmlspecialchars($intern_id),
 			'password' => md5($intern_pass),
 			'security_question' => htmlspecialchars($this->input->post('security_question')),
-			'security_question' => htmlspecialchars($this->input->post('security_answer')),
+			'security_answer' => htmlspecialchars($this->input->post('security_answer')),
+			'referral_id' => strtoupper($referrals),
+			'referred_by' => strtoupper($referred_by),
 		);
 
 		$flag = 0;

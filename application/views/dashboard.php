@@ -11,10 +11,11 @@
 
 <body>
     <?php
-    // echo $data['0']->quiz_status;
-    if ($data['0']->quiz_status) { ?>
+// echo $data['0']->quiz_status;
+if ($data['0']->quiz_status) {?>
         <div class="container p-4" style="height: 100vh;">
             <h3>Upload your documents, <?php echo $this->session->userdata("intern")['name']; ?></h3>
+            If, You are failed to download please download again your offer letter.<a href="<?php echo base_url(); ?>uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">download</a>
             <h5>Instruction:-</h5>
             <ul>
                 <li>
@@ -27,11 +28,13 @@
                 <input class="btn btn-info" type="submit" value="Upload Image" name="submit">
             </form>
         </div>
-    <?php } else { ?>
+    <?php } else if ($data['0']->quiz_status == 0) {?>
         <div class="container p-4" style="height: 100vh;">
             <h3>To start Quiz click below...</h3>
             <a href="dashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
         </div>
-    <?php } ?>
+    <?php } else {?>
+    thanx
+<?php }?>
 </body>
 </html>
