@@ -6,13 +6,10 @@
    <link rel="shortcut icon" href="<?php echo base_url(); ?>images/favlogo.png" type="image/png" sizes="16x16">
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
  <link href="<?php echo base_url(); ?>assets/style_home/style1.css" rel="stylesheet">
@@ -42,6 +39,9 @@
         <a href="<?php echo base_url(); ?>intern/Dashboard" class="btn btn-outline-info nav-link"><font style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('intern')['name']; ?> </font>Profile</a>&nbsp;
         <a href="<?php echo base_url(); ?>Login/logout" class="btn btn-outline-danger nav-link">Log Out</a>&nbsp;
 
+<?php }if ($this->session->userdata('admin_login')) {?>
+        <a href="<?php echo base_url(); ?>admin/Dashboard" class="btn btn-outline-info nav-link"><font style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('admin_login')['name']; ?> </font>Profile</a>&nbsp;
+        <a href="<?php echo base_url(); ?>admin/Login/logout" class="btn btn-outline-danger nav-link">Log Out</a>&nbsp;
 <?php }?>
     </div>
   </div>

@@ -278,9 +278,16 @@ input[type=text],input[type=password]:placeholder {
   <div id="formContent">
     <!-- Tabs Titles -->
     <h2 class="active"> Sign In </h2>
+
     <!-- Icon -->
     <div class="fadeIn first">
-
+       <?php if ($this->session->flashdata('loginnotify')) {?>
+      <div class="card bg-danger" style="background: #CC5771;color: #ddd;">
+        <div class="card-body">
+            <?php echo $this->session->flashdata('loginnotify'); ?>
+        </div>
+      </div>
+      <?php }?>
     </div>
 
     <!-- Login Form -->
@@ -292,7 +299,7 @@ input[type=text],input[type=password]:placeholder {
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
+      <a class="underlineHover" href="#">Are you admin?</a>
     </div>
 
   </div>

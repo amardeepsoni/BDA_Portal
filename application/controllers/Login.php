@@ -53,6 +53,7 @@ class Login extends CI_Controller {
 							'gender' => $result->gender,
 							'user_id' => $result->user_id,
 							'Quiz' => 5,
+							'register_on' => $result->register_on,
 						);
 						// Add user data in session
 						$this->session->set_userdata('intern', $session_data);

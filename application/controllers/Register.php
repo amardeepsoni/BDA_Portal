@@ -27,6 +27,7 @@ class Register extends CI_Controller {
 		}
 		// Shufle the $str_result and returns substring
 		// of specified length
+		date_default_timezone_set('Asia/Kolkata');
 		$intern_pass = substr(str_shuffle($str_result), 0, 8);
 		$data = array(
 			'name' => htmlspecialchars($this->input->post('name')),
@@ -44,6 +45,7 @@ class Register extends CI_Controller {
 			'security_answer' => htmlspecialchars($this->input->post('security_answer')),
 			'referral_id' => strtoupper($referrals),
 			'referred_by' => strtoupper($referred_by),
+			'register_on' => date('Y-m-d h:i:s', time()),
 		);
 
 		$flag = 0;
