@@ -18,6 +18,7 @@
  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
  <script src="https://kit.fontawesome.com/0a7a557465.js" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

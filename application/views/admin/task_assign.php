@@ -25,8 +25,8 @@
     	</form>
     </div>
     </div>
-  </div> <!-- close of container fluid -->
-</div>
+  </div>
+</div> <!-- close of container fluid -->
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('form').submit(function(e){

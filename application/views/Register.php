@@ -166,7 +166,7 @@ showConfirmButton: false,
 
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control"  placeholder="Referal(Optional)" value="" required name="referal_by"/>
+                                            <input type="text" class="form-control"  placeholder="Referal(Optional)" value=""  name="referal_by"/>
 
                                         </div>
                                         <div class="form-group">
