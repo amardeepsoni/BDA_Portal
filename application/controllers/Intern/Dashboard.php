@@ -9,7 +9,7 @@ class Dashboard extends CI_Controller
         // session_start();
         $_SESSION['Quiz'] = 5;
         $out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
-        $out['tasks']= $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
+        $out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
         $this->load->View('header');
         $this->load->View('dashboard', $out);
         $this->load->View('footer');
@@ -81,10 +81,26 @@ class Dashboard extends CI_Controller
             }
         }
     }
-    function task_completed($id){
+    function task_completed($id)
+    {
         $this->load->model('Dashboard_Model', 'dm');
         $this->dm->task_completed($id);
         echo "<center><br><br><h1>Your Response marked!!</h1><br><h4>Wait redirecting...</h4></center>";
-                header("Refresh:3; url= " . base_url() . "intern/dashboard");
+        header("Refresh:3; url= " . base_url() . "intern/dashboard");
+    }
+    public function upload_task($id)
+    {
+        if ($this->input->server('REQUEST_METHOD') == 'POST') {
+            $data['solution'] = $this->input->post('solution');
+        }
+        echo "Hello";
+        echo $data['solution'];
+        $this->load->model('Dashboard_Model', 'dm');
+        // $out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
+        // $out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
+        if ($this->dm->update_sol($id, $data['solution'])) {
+            // $this->load->View('dashboard', $out);
+            redirect('intern/dashboard');
+        }
     }
 }
