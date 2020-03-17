@@ -30,7 +30,22 @@
           <th scope="row" class="text-primary"><a href="<?php echo base_url().adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></th>
           <td><?php echo $row->name;?></td>
           <td><?php echo $row->domain;?></td>
-          <td><a class="btn text-success" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;<a href="#" role="button" class="btn text-danger b-de" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a>&nbsp;<a href="#myModal" role="button" class="btn m-1 text-warning open-AddBookDialog" data-toggle="modal"  title="Task Assign" data-id="<?php echo $row->user_id;?>"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a></td>
+          <td>
+            <?php if($row->login_status) { ?>
+            <a class="btn text-success active-btn-login" title="Active" id="<?php echo $row->user_id; ?>"><i class="fas fa-user m-1"></i></a>&nbsp;
+          <?php }
+          else {
+            ?>
+              <a class="btn text-success disabled" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;
+            <?php
+          }
+           ?>
+            <?php if(!$row->login_status) {?><a href="#" role="button" class="btn text-danger b-de" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a>
+          <?php } 
+          else{ ?>
+           <a href="#" role="button" class="btn text-danger disabled" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a> 
+          <?php } ?>
+          &nbsp;<a href="#myModal" role="button" class="btn m-1 text-warning open-AddBookDialog" data-toggle="modal"  title="Task Assign" data-id="<?php echo $row->user_id;?>"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a></td>
         </tr>
         <?php
       }
@@ -49,7 +64,7 @@
 </table>
 <div class="row">
 <div class="col-12">
-<p class="text-center font-weight-bold" style="word-spacing: 130px;"><?= $this->pagination->create_links();?></p>
+<p class="text-center font-weight-bold" style="word-spacing: 30px;"><?= $this->pagination->create_links();?></p>
 </div>
 </div>
 </div>
@@ -148,7 +163,7 @@ $(document).on("click", ".open-AddBookDialog", function () {
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
+  confirmButtonText: 'Yes, deactivated it!'
 }).then((result) => {
   if (result.value) { 
     $.post(
@@ -170,6 +185,43 @@ $(document).on("click", ".open-AddBookDialog", function () {
       'Your Intern has been deactivated.',
       'success'
     )
+    location.reload(true);
+  }
+});
+   }); 
+
+   //activate the login status
+   $(document).on('click', '.active-btn-login', function(){
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You will be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, activated it!'
+}).then((result) => {
+  if (result.value) { 
+    $.post(
+        '<?php echo base_url().adminpath;?>/Dashboard/insertStatusActive',
+        {
+          user_id:$(this).attr('id')
+        },
+        function(res){
+          if(res=='error'){
+            alert('Something Wrong');
+          }
+          else{
+           //don't show anything
+          }
+        }
+      );
+    Swal.fire(
+      'Activated!',
+      'Your Intern has been activated.',
+      'success'
+    )
+    location.reload(true);
   }
 });
    }); 
