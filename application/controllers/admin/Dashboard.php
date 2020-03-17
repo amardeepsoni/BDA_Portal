@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller {
 		}
 		//$data['page_title'] = 'Dashboard';
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
-		$data['fetch_data'] = $this->dm->getData();
+		$data['row'] = $this->dm->getRow();
 		$this->load->View('header');
 		$this->load->view(adminpath . '/dashboard.php', $data);
 		$this->load->View('footer');
@@ -38,7 +38,7 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function insertStatus(){
-		$data_Status['login_status'] = $this->input->post('user_id');
+		$data_Status = $this->input->post('user_id');
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
 		$res = $this->dm->getStatus();
 		echo $res;

@@ -135,7 +135,7 @@ $(document).on("click", ".open-AddBookDialog", function () {
 
    //deactive
 
-   /*$(document).on('click', '.b-de', function(){
+   $(document).on('click', '.b-de', function(){
     alert($(this).attr('id'));
     Swal.fire({
   title: 'Are you sure?',
@@ -165,7 +165,7 @@ $(document).on("click", ".open-AddBookDialog", function () {
     )
   }
 });
-   }); */
+   }); 
 });
 
 </script>

@@ -19,7 +19,7 @@ a{
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-muted mb-0">Hi Admin</h5>
-                      <span class="h2 font-weight-bold mt-5">8989<span class="font-weight-normal ml-3">Intern</span></span>
+                      <span class="h2 font-weight-bold mt-5"><?php echo $row->num_rows(); ?><span class="font-weight-normal ml-3">Intern</span></span>
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">

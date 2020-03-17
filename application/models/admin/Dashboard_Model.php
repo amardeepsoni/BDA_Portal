@@ -19,17 +19,19 @@ class Dashboard_Model extends CI_Model {
 		}
 	}
 
-	/*public function getStatus($data_status){
-		$st = array('status'=>1);
-		$this->db->where('user_id', $data['user_id']);
-		$this->db->update('intern_register', $st);
+	public function getStatus($data_status){
+		/*$ap = 1;
+		$st = array('login_status'=>$ap);
+		$this->db->where('user_id', $data_status);
+		$this->db->update('intern_register', $st);*/
+		$result = $this->db->set('login_status','1')->where('user_id', $data_status)->update('intern_register');
 		if($result){
 
 		}
 		else{
 			return 'error';
 		}
-	}*/
+	}
 
 	public function getDetails_Intern($data){
 		return $this->db->where('user_id', $data['id'])->get('intern_task');
@@ -41,5 +43,9 @@ class Dashboard_Model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update('intern_task', $st); 
 		return $id;
+	}
+
+	public function getRow(){
+		return ($this->db->get('intern_register'));
 	}
 }
