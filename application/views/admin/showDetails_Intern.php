@@ -44,6 +44,7 @@ $diff = abs(strtotime($date2) - strtotime($date1));
   $diff = 0;
   ?>
    <td>Not Completed</td>
+
    <?php
 }
           ?>
@@ -51,16 +52,17 @@ $diff = abs(strtotime($date2) - strtotime($date1));
           <?php 
             if($row->approved_task==1){
               ?>
-              <td><button class="btn btn-primary disabled" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->id; ?>"class="description-btn" ><i class="fab fa-readme"></i></span></td>
+              <td><button class="btn btn-primary disabled" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" ><i class="fab fa-readme" class="sr-only" value="<?php echo $row->response; ?>"></span></td>
             <?php
             }
             else{
           ?>
-          <td><button class="btn btn-primary" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->id; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span></td>
+          <td><button class="btn btn-primary" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span></td>
           <?php 
             }
           ?>
         </tr>
+       
         <?php
       }
     }
@@ -90,14 +92,14 @@ $diff = abs(strtotime($date2) - strtotime($date1));
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php echo $_GET['id'];?></u></p>Task Description </h5>
         <i type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <i aria-hidden="true">&times;</i>
+          <i aria-hidden="true" class="remove-modal-body-content">&times;</i>
         </i>
       </div>
       <div class="modal-body">
-        ...
+        
       </div>
       <div class="modal-footer">
-        <i type="button" class="btn btn-secondary" data-dismiss="modal">Close</i>
+        <i type="button" class="btn btn-secondary remove-modal-body-content" data-dismiss="modal">Close</i>
       </div>
     </div>
   </div>
@@ -113,7 +115,9 @@ $diff = abs(strtotime($date2) - strtotime($date1));
     });*/
     $('span').on('click', function(){
       //alert($(this).attr('id'));
+      $('.modal-body').append($(this).attr('id'));
       $('#modal-desc').trigger('click');
+
     });
     //to approved
       $('button').on('click', function(){
@@ -151,5 +155,10 @@ $diff = abs(strtotime($date2) - strtotime($date1));
   }
 });
    }); 
+
+      //remove modal body text after close
+      $('.remove-modal-body-content').click(function(){
+        $('.modal-body').html('');
+      });
       });
 </script>
