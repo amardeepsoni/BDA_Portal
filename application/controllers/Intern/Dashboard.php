@@ -99,7 +99,26 @@ class Dashboard extends CI_Controller
         // $out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
         // $out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
         if ($this->dm->update_sol($id, $data['solution'])) {
-            // $this->load->View('dashboard', $out);
+            redirect('intern/dashboard');
+        }
+    }
+    public function upload_school()
+    {
+        $this->load->View('header');
+        $this->load->View('intern/upload_school');
+        $this->load->View('footer');
+    }
+    function uploaded_school()
+    {
+        $data = array(
+            'sName' => htmlspecialchars($this->input->post('name')),
+            'sAddress' => htmlspecialchars($this->input->post('address')),
+            'sContact' => htmlspecialchars($this->input->post('contact')),
+            'sPerson' => htmlspecialchars($this->input->post('cPerson')),
+            'user_id' => $this->session->userdata("intern")['user_id'],
+        );
+        $this->load->model('Dashboard_Model', 'dm');
+        if ($this->dm->upload_schools($data)) {
             redirect('intern/dashboard');
         }
     }

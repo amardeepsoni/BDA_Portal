@@ -83,11 +83,24 @@ class Dashboard_Model extends CI_Model
 		$this->db->set('response', $message);
 		$this->db->set('completed', '1');
 		$this->load->helper('date');
-		$now = unix_to_human(gmt_to_local(now(), 'UP55', False));
-		$this->db->set('complete_time', $now);
+		date_default_timezone_set('Asia/Kolkata');
+		$this->db->set('complete_time', date("Y-m-d H:i:s"));
 		$this->db->where('id', $id);
 		if ($this->db->update('intern_task')) {
 			return true;
 		}
+	}
+	public function upload_schools($data)
+	{
+
+		print_r($data);
+		if ($this->db->insert('inter_school', $data)) {
+			return true;
+		}
+	}
+	public function return_school($id)
+	{
+		$count = $this->db->select('*')->from('inter_school')->where('user_id', $id)->get()->num_rows();
+		return $count;
 	}
 }
