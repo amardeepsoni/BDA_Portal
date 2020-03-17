@@ -54,6 +54,7 @@ class Login extends CI_Controller {
 							'user_id' => $result->user_id,
 							'Quiz' => 5,
 							'register_on' => $result->register_on,
+							'referral_id' => $result->referral_id,
 						);
 						// Add user data in session
 						$this->session->set_userdata('intern', $session_data);
@@ -62,75 +63,6 @@ class Login extends CI_Controller {
 					}
 				} else {
 					$this->session->set_flashdata('loginnotify', 'Username and Password not Valid.');
-					redirect('login');
-				}
-			}
-
-		}
-	}
-
-	public function forgotpassword() {
-
-		if ($this->input->server('REQUEST_METHOD') == 'POST') {
-
-			$data['email'] = $this->input->post('email');
-			$this->form_validation->set_rules('email', 'email', 'required');
-			if ($this->form_validation->run() == FALSE) {
-				$this->session->set_flashdata('forgotnotify', 'Email not Valid.');
-				redirect('forgotpassword');
-			} else {
-				$this->load->model('student_model');
-				$result = $this->student_model->checkmail($data['email']);
-				if ($result == TRUE) {
-					$email = $this->input->post('email');
-					$result = $this->student_model->customerinfo($email);
-					if ($result != false) {
-
-						$message = "<div style='width:600px; border:solid 1px #40383b'>";
-
-						$message = $message . "<table width='100%' border='0' cellspacing='0' cellpadding='20'>";
-
-						$message = $message . " <tr>";
-
-						$message = $message . "<td bgcolor='#ffffff' style='border-bottom: solid 6px #40383b'>";
-
-						$message = $message . "Dear " . $result[0]->firstname . " " . $result[0]->surname;
-
-						$message = $message . ",<br />
-
-						<br />";
-
-						$message = $message . "<b>Your new password is:</b> " . $result[0]->mpassword . " <br /><br />";
-
-						$message = $message . "
-
-						You can change your password at any time by logging into your account.<br />
-
-						<br />
-
-						Regards,<br />
-
-						Team NCHHW 2018 <br />";
-
-						$message = $message . "</td>";
-
-						$message = $message . " </tr>";
-
-						$message = $message . "  </table>";
-
-						$subject = "New password for " . $result[0]->firstname . "";
-
-						$this->email->set_mailtype("html");
-						$this->email->from($data['email'], "New password for " . $result[0]->firstname);
-						$this->email->to($data['email']);
-						$this->email->subject($subject);
-						$this->email->message($message);
-						$this->email->send();
-						$this->session->set_flashdata('forgotnotify', 'Pssword send to your email.');
-						redirect('login');
-					}
-				} else {
-					$this->session->set_flashdata('forgotnotify', 'Email not Valid.');
 					redirect('login');
 				}
 			}
