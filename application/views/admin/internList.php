@@ -47,6 +47,11 @@
     </tr>
   </tbody>
 </table>
+<div class="row">
+<div class="col-12">
+<p class="text-center font-weight-bold" style="word-spacing: 130px;"><?= $this->pagination->create_links();?></p>
+</div>
+</div>
 </div>
 </div>
 </div>

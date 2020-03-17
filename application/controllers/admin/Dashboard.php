@@ -31,7 +31,15 @@ class Dashboard extends CI_Controller {
 
 	public function intern_list(){
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
-		$data['fetch_data'] = $this->dm->getData();
+		$this->load->library('pagination');
+		$config = [
+			'base_url' => base_url('admin/Dashboard/intern_list'),
+			'per_page' => 10,
+			'total_rows' => $this->dm->getRows()
+		];
+		$this->pagination->initialize($config);
+		
+		$data['fetch_data'] = $this->dm->getData($config['per_page'], $this->uri->segment(4));
 		$this->load->View('header');
 		$this->load->view(adminpath . '/internList.php', $data);
 		$this->load->View('footer');
@@ -58,6 +66,6 @@ class Dashboard extends CI_Controller {
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
 		$res = $this->dm->approved_task($id);
 		echo $id;
-	}
+	}	
 
 }

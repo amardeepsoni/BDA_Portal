@@ -5,8 +5,8 @@ class Dashboard_Model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function getData(){
-		$sql = $this->db->get('intern_register');
+	public function getData($limit, $offset){
+		$sql = $this->db->limit($limit, $offset)->get('intern_register');
 		return $sql;
 	}
 
@@ -42,6 +42,9 @@ class Dashboard_Model extends CI_Model {
 		return $id;
 	}
 
+	public function getRows(){
+		return ($this->db->get('intern_register')->num_rows());
+	}
 	public function getRow(){
 		return ($this->db->get('intern_register'));
 	}
