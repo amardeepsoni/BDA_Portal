@@ -1,4 +1,9 @@
-<div class="container-fluid mt-5">
+<div class="row">
+  <div class="col-12">
+    <p class="display-4 text-success text-center">Intern_Id -><u class="text-primary"> <?php echo $_GET['id'];?></u></p>
+  </div>
+</div>
+<div class="container-fluid mt-0">
 
   <!-- table -->
 <div class="row">
@@ -8,7 +13,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">Inter_ID</th>
+      <th scope="col">Task_ID</th>
       <th scope="col">Topic</th>
       <th scope="col">Description</th>
       <th scope="col">Add-time</th>
@@ -24,7 +29,7 @@
        foreach($detail->result() as $row){
         ?>
         <tr>
-          <th scope="row" class="text-primary"><a href="<?php echo base_url().adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></th>
+          <th scope="row" class="text-primary"><a href="<?php echo base_url().adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->id; ?></a></th>
           <td><?php echo $row->topic;?></td>
           <td><?php echo $row->description;?></td>
           <td><?php echo $row->add_time;?></td>

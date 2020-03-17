@@ -136,7 +136,6 @@ $(document).on("click", ".open-AddBookDialog", function () {
    //deactive
 
    $(document).on('click', '.b-de', function(){
-    alert($(this).attr('id'));
     Swal.fire({
   title: 'Are you sure?',
   text: "You won't be able to revert this!",
@@ -146,9 +145,9 @@ $(document).on("click", ".open-AddBookDialog", function () {
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
-  if (result.value) {
+  if (result.value) { 
     $.post(
-        '<?php //echo base_url().adminpath;?>/Dashboard/insertStatus',
+        '<?php echo base_url().adminpath;?>/Dashboard/insertStatus',
         {
           user_id:$(this).attr('id')
         },
@@ -156,11 +155,14 @@ $(document).on("click", ".open-AddBookDialog", function () {
           if(res=='error'){
             alert('Something Wrong');
           }
+          else{
+           //don't show anything
+          }
         }
       );
     Swal.fire(
-      'Deleted!',
-      'Your file has been deleted.',
+      'Deactivated!',
+      'Your Intern has been deactivated.',
       'success'
     )
   }

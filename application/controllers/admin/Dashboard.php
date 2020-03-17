@@ -40,7 +40,7 @@ class Dashboard extends CI_Controller {
 	public function insertStatus(){
 		$data_Status = $this->input->post('user_id');
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
-		$res = $this->dm->getStatus();
+		$res = $this->dm->getStatus($data_Status);
 		echo $res;
 	}
 

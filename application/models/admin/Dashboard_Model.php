@@ -20,10 +20,7 @@ class Dashboard_Model extends CI_Model {
 	}
 
 	public function getStatus($data_status){
-		/*$ap = 1;
-		$st = array('login_status'=>$ap);
-		$this->db->where('user_id', $data_status);
-		$this->db->update('intern_register', $st);*/
+		//insert login_status value 1
 		$result = $this->db->set('login_status','1')->where('user_id', $data_status)->update('intern_register');
 		if($result){
 
