@@ -20,7 +20,7 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function insertTask() {
-		$task = array('user_id' => $this->input->post('user_id'), 'topic' => $this->input->post('topic'), 'description' => $this->input->post('description'));
+		$task = array('user_id' => htmlspecialchars($this->input->post('user_id')), 'topic' => htmlspecialchars($this->input->post('topic')), 'description' => htmlspecialchars($this->input->post('description')));
 		$this->load->helper('date');
 		date_default_timezone_set('Asia/Kolkata');
 		$task['add_time'] = date("Y-m-d H:i:s");
@@ -46,9 +46,16 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function insertStatus(){
-		$data_Status = $this->input->post('user_id');
+		$data_Status = htmlspecialchars($this->input->post('user_id'));
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
 		$res = $this->dm->getStatus($data_Status);
+		echo $res;
+	}
+
+	public function insertStatusActive(){
+		$data_Status = htmlspecialchars($this->input->post('user_id'));
+		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
+		$res = $this->dm->getStatusActive($data_Status);
 		echo $res;
 	}
 

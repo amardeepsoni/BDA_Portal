@@ -30,6 +30,17 @@ class Dashboard_Model extends CI_Model {
 		}
 	}
 
+	public function getStatusActive($data_status){
+		//insert login_status value 1
+		$result = $this->db->set('login_status','0')->where('user_id', $data_status)->update('intern_register');
+		if($result){
+
+		}
+		else{
+			return 'error';
+		}
+	}
+
 	public function getDetails_Intern($data){
 		return $this->db->where('user_id', $data['id'])->get('intern_task');
 	}
