@@ -64,12 +64,12 @@
           <?php 
             if($row->approved_task==1){
               ?>
-              <td><button class="btn btn-primary disabled" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" ><i class="fab fa-readme" class="sr-only" value="<?php echo $row->response; ?>"></span></td>
+              <td><button class="btn btn-primary disabled" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" ><i class="fab fa-readme" class="sr-only" value="<?php echo $row->response; ?>"></i></span> <a role="button" class="btn btn-danger disapproved" title="Disapproved" id="<?php echo $row->id;?>"><i class="far fa-thumbs-down"  ></i></a></td>
             <?php
             }
             else{
           ?>
-          <td><button class="btn btn-primary" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span>  <a  role="button" class="btn btn-danger disapproved" title="Disapproved" id="<?php echo $row->id;?>"><i class="far fa-thumbs-down"  ></i></a></td>
+          <td><button class="btn btn-primary" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span>  <a role="button" class="btn btn-danger disapproved" title="Disapproved" id="<?php echo $row->id;?>"><i class="far fa-thumbs-down"  ></i></a></td>
           <?php 
             }
           ?>
