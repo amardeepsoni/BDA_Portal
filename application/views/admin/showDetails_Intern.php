@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <p class="display-4 text-success text-center">Intern_Id -><u class="text-primary"> <?php echo $_GET['id'];?></u></p>
+    <p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php echo $_GET['id'];?></u></p>
   </div>
 </div>
 <div class="container-fluid mt-0">
@@ -51,12 +51,12 @@ $diff = abs(strtotime($date2) - strtotime($date1));
           <?php 
             if($row->approved_task==1){
               ?>
-              <td><button class="btn btn-primary disabled" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button></td>
+              <td><button class="btn btn-primary disabled" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->id; ?>"class="description-btn" ><i class="fab fa-readme"></i></span></td>
             <?php
             }
             else{
           ?>
-          <td><button class="btn btn-primary" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button></td>
+          <td><button class="btn btn-primary" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->id; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span></td>
           <?php 
             }
           ?>
@@ -78,9 +78,44 @@ $diff = abs(strtotime($date2) - strtotime($date1));
 </table>
 </div>
 </div>
+</div>
+<!-- Modal body -->
+<!-- Modal -->
+<i type="button" class="btn btn-primary sr-only" data-toggle="modal" data-target="#descriptionModal" id="modal-desc">
+  Launch Description Modal
+</i >
+<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">  
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php echo $_GET['id'];?></u></p>Task Description </h5>
+        <i type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i aria-hidden="true">&times;</i>
+        </i>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <i type="button" class="btn btn-secondary" data-dismiss="modal">Close</i>
+      </div>
+    </div>
+  </div>
+</div>
+      <!-- Modal footer -->
 
+      <!-- modal end -->
 <script>
   $(document).ready(function(){
+    //to show intern description.
+    /*$(document).on('click', '.description-btn', function(){
+      alert($(this).attr('id'));
+    });*/
+    $('span').on('click', function(){
+      //alert($(this).attr('id'));
+      $('#modal-desc').trigger('click');
+    });
+    //to approved
       $('button').on('click', function(){
         /*alert($(this).attr('id'));*/
   Swal.fire({
