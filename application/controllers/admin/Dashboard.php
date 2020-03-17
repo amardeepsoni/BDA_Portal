@@ -65,7 +65,14 @@ class Dashboard extends CI_Controller {
 		$id = $this->input->post('id');
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
 		$res = $this->dm->approved_task($id);
-		echo $id;
+		echo $res;
+	}	
+
+	public function disapprovedTask(){
+		$id = $this->input->post('id');
+		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
+		$res = $this->dm->disapproved_task($id);
+		echo $res;
 	}	
 
 }

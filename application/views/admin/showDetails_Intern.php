@@ -1,3 +1,14 @@
+<!-- 
+
+
+
+
+  Dont't use button and span and also i tag in this webpage 
+
+
+
+
+ -->
 <div class="row">
   <div class="col-12">
     <p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php echo $_GET['id'];?></u></p>
@@ -50,7 +61,6 @@
    <?php
 }
           ?>
-         
           <?php 
             if($row->approved_task==1){
               ?>
@@ -59,7 +69,7 @@
             }
             else{
           ?>
-          <td><button class="btn btn-primary" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span></td>
+          <td><button class="btn btn-primary" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span>  <a  role="button" class="btn btn-danger disapproved" title="Disapproved" id="<?php echo $row->id;?>"><i class="far fa-thumbs-down"  ></i></a></td>
           <?php 
             }
           ?>
@@ -75,7 +85,6 @@
       </tr>
     <?php
   } 
-
       ?>
     </tr>
   </tbody>
@@ -111,6 +120,42 @@
       <!-- modal end -->
 <script>
   $(document).ready(function(){
+    //to deapproved
+    $(document).on('click', '.disapproved', function(){
+      alert($(this).attr('id'));
+      Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Disapproved it!'
+}).then((result) => {
+  if (result.value) {
+    $.post(
+         '<?php echo base_url().adminpath;?>/Dashboard/disapprovedTask',
+         {
+          id:$(this).attr('id')
+         },
+         function(res){
+          if(res=='error'){
+            alert('Something Wrong!..');
+          }
+          else{
+          //dont show anything
+          }
+         }
+      );
+    Swal.fire(
+      'Disapproved!',
+      'Task has been disapproved.',
+      'success'
+    )
+    location.reload(true);
+  }
+});
+    });
     //to show intern description.
     /*$(document).on('click', '.description-btn', function(){
       alert($(this).attr('id'));
