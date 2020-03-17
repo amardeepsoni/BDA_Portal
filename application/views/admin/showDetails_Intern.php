@@ -35,11 +35,13 @@
           <td><?php echo $row->add_time;?></td>
           <td><?php echo $row->complete_time;?></td>
           <?php 
-          if($row->complete_time){
-          $date1 = date("Y-m-d",strtotime($row->add_time));
-$date2 = date("Y-m-d",strtotime($row->complete_time));
-$diff = abs(strtotime($date2) - strtotime($date1));
- ?><td><?php echo $diff;?> Days</td><?php
+          if($row->complete_time!='0000-00-00 00:00:00'){
+           $start = new DateTime($row->add_time);
+  $end = new DateTime($row->complete_time);
+  $diff = $start->diff($end);
+  
+
+ ?><td><?php echo $diff->format('%d days %h hours %i minutes %S seconds');?> </td><?php
 }else{
   $diff = 0;
   ?>
@@ -62,7 +64,7 @@ $diff = abs(strtotime($date2) - strtotime($date1));
             }
           ?>
         </tr>
-       
+
         <?php
       }
     }
