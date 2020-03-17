@@ -51,12 +51,12 @@ $diff = abs(strtotime($date2) - strtotime($date1));
           <?php 
             if($row->approved_task==1){
               ?>
-              <td><button class="btn btn-primary disabled" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" >Approved</button></td>
+              <td><button class="btn btn-primary disabled" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button></td>
             <?php
             }
             else{
           ?>
-          <td><button class="btn btn-primary" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" >Approved</button></td>
+          <td><button class="btn btn-primary" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button></td>
           <?php 
             }
           ?>
