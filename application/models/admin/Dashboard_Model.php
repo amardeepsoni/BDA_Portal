@@ -10,6 +10,11 @@ class Dashboard_Model extends CI_Model {
 		return $sql;
 	}
 
+	public function getDataSchool($limit, $offset){
+		$sql = $this->db->limit($limit, $offset)->get('intern_school');
+		return $sql;
+	}
+
 	public function takeTask($task){
 		if($this->db->insert('intern_task', $task)){
 			return 'success';
@@ -67,5 +72,23 @@ class Dashboard_Model extends CI_Model {
 	}
 	public function getRow(){
 		return ($this->db->get('intern_register'));
+	}
+	public function getRowSchool(){
+		return ($this->db->get('intern_school'));
+	}
+
+	public function getNotification(){
+		 $date = new DateTime("now");
+
+		 $curr_date = $date->format('Y-m-d ');
+		 $ap = 0;
+		 $cp = 1;
+		 $this->db->select('*');
+		 $this->db->from('intern_task'); 
+		 $this->db->where('approved_task', $ap);
+		 $this->db->where('completed', $cp);
+		 $this->db->where('DATE(add_time)',$curr_date);//use date function
+		 $query = $this->db->get();
+		 return $query;
 	}
 }
