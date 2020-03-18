@@ -28,7 +28,8 @@ if (!$this->session->userdata("intern")['user_id']) {
     <?php
     $this->load->model('Dashboard_Model', 'dm');
     $query_out = $this->dm->check_upload_status($this->session->userdata("intern")['user_id']);
-    if ($query_out['0']->upload_status) { ?>
+    if ($query_out['0']->upload_status) {
+    ?>
         <div class="container-fluid" style="margin: 0;padding: 0;">
             <div style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);position: absolute;width: 100%;height: 350px;">
                 <div class="">
@@ -69,9 +70,6 @@ if (!$this->session->userdata("intern")['user_id']) {
                                                         echo $this->dm->return_school($this->session->userdata('intern')['user_id'])['number'];
                                                         ?>
                                         </div>
-                                        <!-- <div class="" style="width: 100%;">
-                                        3.48% Since last month
-                                    </div> -->
                                     </a>
                                 </div>
                             </div>
@@ -155,22 +153,33 @@ if (!$this->session->userdata("intern")['user_id']) {
                                 <div class="card-body p-0" style="background: #eee;">
                                     <div class="list-group-flush list-group" id="list-tab" role="tablist">
                                         <?php if ($tasks) {
-                                            foreach ($tasks as $list) { ?>
+                                            foreach ($tasks as $list) {
+                                        ?>
                                                 <a class="list-group-item  list-group-item-action list-group-item-info" id="list-<?php echo $list->id ?>" data-toggle="list" href="#list-<?php echo $list->id ?>" role="tab" aria-controls="<?php echo $list->id ?>">
                                                     <div class="d-flex w-100 justify-content-between">
-                                                        <div id="task_topic<?php echo $list->id ?>" <?php if ($list->completed) echo 'style="text-decoration: line-through; " '; ?>>
+                                                        <div id="task_topic<?php echo $list->id ?>" <?php if ($list->completed) {
+                                                                                                        echo 'style="text-decoration: line-through; " ';
+                                                                                                    }
+                                                                                                    ?>>
                                                             <?php echo $list->topic; ?>
 
                                                         </div>
                                                         <?php if ($list->approved_task) { ?>
                                                             <button type="button" class="btn btn-success" disabled>Approved</button>
-                                                        <?php } else { ?>
-                                                            <button type="button" class="btn btn-info" <?php if ($list->completed) echo 'disabled'; ?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
+                                                        <?php } else {
+                                                        ?>
+                                                            <button type="button" class="btn btn-info" <?php if ($list->completed) {
+                                                                                                            echo 'disabled';
+                                                                                                        }
+                                                                                                        ?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
                                                                 Check here to submit task
                                                             </button>
                                                         <?php } ?>
                                                     </div>
-                                                    <small <?php if ($list->completed) echo 'style="text-decoration: line-through; " '; ?>><?php echo $list->add_time; ?></small>
+                                                    <small <?php if ($list->completed) {
+                                                                echo 'style="text-decoration: line-through; " ';
+                                                            }
+                                                            ?>><?php echo $list->add_time; ?></small>
                                                     <div id="task_description<?php echo $list->id ?>" class="p-2 border" style="display: none; background-color:#fff; ">
                                                         <?php echo $list->description; ?>
                                                     </div>
@@ -215,7 +224,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                                     <div>No referals</div>
                                     <!--  <div class="tab-content" id="nav-tabContent">
 
-                                         
+
                                        </div> -->
                                 </div>
                             </div>
@@ -224,7 +233,9 @@ if (!$this->session->userdata("intern")['user_id']) {
                 </div>
             </div>
         </div>
+
     <?php } else if ($data['0']->quiz_status) { ?>
+
         <div class="container p-3">
             <h3>Upload your documents, <?php echo $this->session->userdata("intern")['name']; ?></h3>
             If, You are failed to download please download again your offer letter.<a href="<?php echo base_url(); ?>uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">download</a>
@@ -240,7 +251,9 @@ if (!$this->session->userdata("intern")['user_id']) {
                 <input class="btn btn-info" type="submit" value="Upload Image" name="submit">
             </form>
         </div>
+
     <?php } else { ?>
+
         <div class="container p-3">
             <h3 class="p-3">To start Quiz click below,</h3>
             <a href="dashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
