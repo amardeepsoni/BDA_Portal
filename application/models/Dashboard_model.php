@@ -30,6 +30,9 @@ class Dashboard_Model extends CI_Model
 	{
 		return $this->db->select('upload_status,profile_link')->from('intern_register')->where('user_id', $id)->get()->result();
 	}
+	public function takeTask($task){
+		$this->db->insert('intern_task', $task);		
+	}
 	public function fetch_tasks($u_id)
 	{
 		return $this->db->select('*')->from('intern_task')->where('user_id', $u_id)->get()->result();
@@ -94,13 +97,14 @@ class Dashboard_Model extends CI_Model
 	{
 
 		print_r($data);
-		if ($this->db->insert('inter_school', $data)) {
+		if ($this->db->insert('intern_school', $data)) {
 			return true;
 		}
 	}
 	public function return_school($id)
 	{
-		$count = $this->db->select('*')->from('inter_school')->where('user_id', $id)->get()->num_rows();
+		$count['number'] = $this->db->select('*')->from('intern_school')->where('user_id', $id)->get()->num_rows();
+		$count['info'] = $this->db->select('*')->from('intern_school')->where('user_id', $id)->get()->result();
 		return $count;
 	}
 }
