@@ -62,7 +62,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                                         <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-user' style='font-size:24px; color: white;'></i></div>
                                     </div>
                                     <div class="" style="width: 100%;">
-                                   Schools:  <?php
+                                   Schools:      <?php
                                         $this->load->model('Dashboard_Model', 'dm');
                                          echo $this->dm->return_school($this->session->userdata('intern')['user_id']);
                                         ?>
