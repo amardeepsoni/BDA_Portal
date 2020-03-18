@@ -64,15 +64,11 @@ if ($query_out['0']->upload_status) {
                                     </div>
                                     <div class="" style="width: 100%;">
                                         Schools: <?php
-<<<<<<< HEAD
-$this->load->model('Dashboard_Model', 'dm');
+
+	$this->load->model('Dashboard_Model', 'dm');
 	echo $this->dm->return_school($this->session->userdata('intern')['user_id']);
 	?>
-=======
-                                                    $this->load->model('Dashboard_Model', 'dm');
-                                                    echo $this->dm->return_school($this->session->userdata('intern')['user_id']);
-                                                    ?>
->>>>>>> 232567c25353d8ed28b5accaba0bb2cb9af0aa48
+
                                     </div>
                                     <!-- <div class="" style="width: 100%;">
                                         3.48% Since last month
@@ -203,11 +199,9 @@ $this->load->model('Dashboard_Model', 'dm');
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
+
     <?php } else if ($data['0']->quiz_status) {?>
-=======
-    <?php } else if ($data['0']->quiz_status) { ?>
->>>>>>> 232567c25353d8ed28b5accaba0bb2cb9af0aa48
+
         <div class="container p-3">
             <h3>Upload your documents, <?php echo $this->session->userdata("intern")['name']; ?></h3>
             If, You are failed to download please download again your offer letter.<a href="<?php echo base_url(); ?>uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">download</a>
@@ -223,11 +217,9 @@ $this->load->model('Dashboard_Model', 'dm');
                 <input class="btn btn-info" type="submit" value="Upload Image" name="submit">
             </form>
         </div>
-<<<<<<< HEAD
+
     <?php } else {?>
-=======
-    <?php } else { ?>
->>>>>>> 232567c25353d8ed28b5accaba0bb2cb9af0aa48
+
         <div class="container p-3">
             <h3 class="p-3">To start Quiz click below,</h3>
             <a href="dashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
