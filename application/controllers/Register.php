@@ -72,6 +72,7 @@ class Register extends CI_Controller {
 					'message' => 'Email already exists',
 					'flag' => 0,
 				);
+
 				$this->session->set_flashdata('register', $cdata);
 
 				redirect(base_url() . 'Register');
@@ -123,6 +124,10 @@ body, td {font-size:13px}
 						redirect(base_url() . 'Register');
 
 					}
+
+					//whatsapp
+
+					//whatsapp
 				} catch (Exception $e) {
 					echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 				}
