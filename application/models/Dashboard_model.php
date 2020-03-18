@@ -94,13 +94,13 @@ class Dashboard_Model extends CI_Model
 	{
 
 		print_r($data);
-		if ($this->db->insert('inter_school', $data)) {
+		if ($this->db->insert('intern_school', $data)) {
 			return true;
 		}
 	}
 	public function return_school($id)
 	{
-		$count = $this->db->select('*')->from('inter_school')->where('user_id', $id)->get()->num_rows();
+		$count = $this->db->select('*')->from('intern_school')->where('user_id', $id)->get()->num_rows();
 		return $count;
 	}
 }

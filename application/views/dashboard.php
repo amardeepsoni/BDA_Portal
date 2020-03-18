@@ -62,10 +62,10 @@ if (!$this->session->userdata("intern")['user_id']) {
                                         <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-user' style='font-size:24px; color: white;'></i></div>
                                     </div>
                                     <div class="" style="width: 100%;">
-                                   Schools:      <?php
-                                        $this->load->model('Dashboard_Model', 'dm');
-                                         echo $this->dm->return_school($this->session->userdata('intern')['user_id']);
-                                        ?>
+                                        Schools: <?php
+                                                    $this->load->model('Dashboard_Model', 'dm');
+                                                    echo $this->dm->return_school($this->session->userdata('intern')['user_id']);
+                                                    ?>
                                     </div>
                                     <!-- <div class="" style="width: 100%;">
                                         3.48% Since last month
@@ -185,20 +185,22 @@ if (!$this->session->userdata("intern")['user_id']) {
                 </div>
             </div>
         </div>
-    <?php } else if ($data['0']->quiz_status) { ?> <h3>Upload your documents, <?php echo $this->session->userdata("intern")['name']; ?></h3>
-        If, You are failed to download please download again your offer letter.<a href="<?php echo base_url(); ?>uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">download</a>
-        <h5>Instruction:-</h5>
-        <ul>
-            <li>
-                Ulpoad your Governemnt Id and Offer letter in a single pdf.
-            </li>
-        </ul>
-        <form action="dashboard/upload_id" method="post" enctype="multipart/form-data">
-            Select image to upload:
-            <input class="btn btn-outline-primary" type="file" name="file" id="fileToUpload">
-            <input class="btn btn-info" type="submit" value="Upload Image" name="submit">
-        </form>
-
+    <?php } else if ($data['0']->quiz_status) { ?>
+        <div class="container p-3">
+            <h3>Upload your documents, <?php echo $this->session->userdata("intern")['name']; ?></h3>
+            If, You are failed to download please download again your offer letter.<a href="<?php echo base_url(); ?>uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">download</a>
+            <h5>Instruction:-</h5>
+            <ul>
+                <li>
+                    Ulpoad your Governemnt Id and Offer letter in a single pdf.
+                </li>
+            </ul>
+            <form action="dashboard/upload_id" method="post" enctype="multipart/form-data">
+                Select image to upload:
+                <input class="btn btn-outline-primary" type="file" name="file" id="fileToUpload">
+                <input class="btn btn-info" type="submit" value="Upload Image" name="submit">
+            </form>
+        </div>
     <?php } else { ?>
         <div class="container p-3">
             <h3 class="p-3">To start Quiz click below,</h3>
