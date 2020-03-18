@@ -1,6 +1,6 @@
 <?php
 if (!$this->session->userdata("intern")['user_id']) {
-    redirect('/');
+	redirect('/');
 }
 ?>
 
@@ -26,9 +26,10 @@ if (!$this->session->userdata("intern")['user_id']) {
 </head>
 <div class="container-fluid" style="margin: 0;padding: 0;">
     <?php
-    $this->load->model('Dashboard_Model', 'dm');
-    $query_out = $this->dm->check_upload_status($this->session->userdata("intern")['user_id']);
-    if ($query_out['0']->upload_status) { ?>
+$this->load->model('Dashboard_Model', 'dm');
+$query_out = $this->dm->check_upload_status($this->session->userdata("intern")['user_id']);
+if ($query_out['0']->upload_status) {
+	?>
         <div class="container-fluid" style="margin: 0;padding: 0;">
             <div style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);position: absolute;width: 100%;height: 350px;"></div>
             <div class="row">
@@ -62,10 +63,10 @@ if (!$this->session->userdata("intern")['user_id']) {
                                         <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-user' style='font-size:24px; color: white;'></i></div>
                                     </div>
                                     <div class="" style="width: 100%;">
-                                   Schools:      <?php
-                                        $this->load->model('Dashboard_Model', 'dm');
-                                         echo $this->dm->return_school($this->session->userdata('intern')['user_id']);
-                                        ?>
+                                        Schools: <?php
+$this->load->model('Dashboard_Model', 'dm');
+	echo $this->dm->return_school($this->session->userdata('intern')['user_id']);
+	?>
                                     </div>
                                     <!-- <div class="" style="width: 100%;">
                                         3.48% Since last month
@@ -116,36 +117,47 @@ if (!$this->session->userdata("intern")['user_id']) {
                                 <div class="card-body p-0" style="background: #eee;">
                                     <div class="list-group-flush list-group" id="list-tab" role="tablist">
                                         <?php if ($tasks) {
-                                            foreach ($tasks as $list) { ?>
+		foreach ($tasks as $list) {
+			?>
                                                 <a class="list-group-item  list-group-item-action list-group-item-info" id="list-<?php echo $list->id ?>" data-toggle="list" href="#list-<?php echo $list->id ?>" role="tab" aria-controls="<?php echo $list->id ?>">
                                                     <div class="d-flex w-100 justify-content-between">
-                                                        <div id="task_topic<?php echo $list->id ?>" <?php if ($list->completed) echo 'style="text-decoration: line-through; " '; ?>>
+                                                        <div id="task_topic<?php echo $list->id ?>" <?php if ($list->completed) {
+				echo 'style="text-decoration: line-through; " ';
+			}
+			?>>
                                                             <?php echo $list->topic; ?>
 
                                                         </div>
-                                                        <?php if ($list->approved_task) { ?>
+                                                        <?php if ($list->approved_task) {?>
                                                             <button type="button" class="btn btn-success" disabled>Approved</button>
-                                                        <?php } else { ?>
-                                                            <button type="button" class="btn btn-info" <?php if ($list->completed) echo 'disabled'; ?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
+                                                        <?php } else {
+				?>
+                                                            <button type="button" class="btn btn-info" <?php if ($list->completed) {
+					echo 'disabled';
+				}
+				?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
                                                                 Check here to submit task
                                                             </button>
-                                                        <?php } ?>
+                                                        <?php }?>
                                                     </div>
-                                                    <small <?php if ($list->completed) echo 'style="text-decoration: line-through; " '; ?>><?php echo $list->add_time; ?></small>
+                                                    <small <?php if ($list->completed) {
+				echo 'style="text-decoration: line-through; " ';
+			}
+			?>><?php echo $list->add_time; ?></small>
                                                     <div id="task_description<?php echo $list->id ?>" class="p-2 border" style="display: none; background-color:#fff; ">
                                                         <?php echo $list->description; ?>
                                                     </div>
                                                 </a>
                                             <?php }
-                                        } else { ?>
+	} else {?>
                                             <a href="#" class="list-group-item  list-group-item-action list-group-item-info">No task available</a>
-                                        <?php } ?>
+                                        <?php }?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Modal -->
-                        <?php foreach ($tasks as $list) { ?>
+                        <?php foreach ($tasks as $list) {?>
                             <div class="modal fade" id="modalCenter<?php echo $list->id ?>" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -165,7 +177,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                                     </div>
                                 </div>
                             </div>
-                        <?php } ?>
+                        <?php }?>
                         <!-- modal closed -->
                         <div class="col-sm-4 p-3" style="">
                             <div class="card list-group-item-info" style="width: 100%; height: 400px;background: #fff;">
@@ -176,7 +188,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                                     <div>No referals</div>
                                     <!--  <div class="tab-content" id="nav-tabContent">
 
-                                         
+
                                        </div> -->
                                 </div>
                             </div>
@@ -185,36 +197,38 @@ if (!$this->session->userdata("intern")['user_id']) {
                 </div>
             </div>
         </div>
-    <?php } else if ($data['0']->quiz_status) { ?> <h3>Upload your documents, <?php echo $this->session->userdata("intern")['name']; ?></h3>
-        If, You are failed to download please download again your offer letter.<a href="<?php echo base_url(); ?>uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">download</a>
-        <h5>Instruction:-</h5>
-        <ul>
-            <li>
-                Ulpoad your Governemnt Id and Offer letter in a single pdf.
-            </li>
-        </ul>
-        <form action="dashboard/upload_id" method="post" enctype="multipart/form-data">
-            Select image to upload:
-            <input class="btn btn-outline-primary" type="file" name="file" id="fileToUpload">
-            <input class="btn btn-info" type="submit" value="Upload Image" name="submit">
-        </form>
-
-    <?php } else { ?>
+    <?php } else if ($data['0']->quiz_status) {?>
+        <div class="container p-3">
+            <h3>Upload your documents, <?php echo $this->session->userdata("intern")['name']; ?></h3>
+            If, You are failed to download please download again your offer letter.<a href="<?php echo base_url(); ?>uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">download</a>
+            <h5>Instruction:-</h5>
+            <ul>
+                <li>
+                    Ulpoad your Governemnt Id and Offer letter in a single pdf.
+                </li>
+            </ul>
+            <form action="dashboard/upload_id" method="post" enctype="multipart/form-data">
+                Select image to upload:
+                <input class="btn btn-outline-primary" type="file" name="file" id="fileToUpload">
+                <input class="btn btn-info" type="submit" value="Upload Image" name="submit">
+            </form>
+        </div>
+    <?php } else {?>
         <div class="container p-3">
             <h3 class="p-3">To start Quiz click below,</h3>
             <a href="dashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
         </div>
-    <?php } ?>
+    <?php }?>
 </div>
 
 <!-- scripts -->
 <script>
     $(document).ready(function() {
-        <?php foreach ($tasks as $list) { ?>
+        <?php foreach ($tasks as $list) {?>
             $("#list-<?php echo $list->id ?>").click(function() {
                 $("#task_description<?php echo $list->id ?>").toggle();
             });
-        <?php } ?>
+        <?php }?>
     });
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

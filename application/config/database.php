@@ -75,13 +75,8 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-<<<<<<< HEAD
-	'dsn' => 'sql12.freemysqlhosting.net',
-	'hostname' => 'sql12328541@ec2-52-8-112-233.us-west-1.compute.amazonaws.com',
-=======
 	'dsn' => 'sql12328541@ec2-52-8-112-233.us-west-1.compute.amazonaws.com',
 	'hostname' => 'sql12.freemysqlhosting.net',
->>>>>>> a78082f4a6bcdba7cfb9d967e8f638b69e1f06d0
 	'username' => 'sql12328541',
 	'password' => '4bqVfZGvZx',
 	'database' => 'sql12328541',
