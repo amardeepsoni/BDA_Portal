@@ -30,82 +30,121 @@ if (!$this->session->userdata("intern")['user_id']) {
     $query_out = $this->dm->check_upload_status($this->session->userdata("intern")['user_id']);
     if ($query_out['0']->upload_status) { ?>
         <div class="container-fluid" style="margin: 0;padding: 0;">
-            <div style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);position: absolute;width: 100%;height: 350px;"></div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="row p-3">
-                        <div class="col-sm-3 p-3" style=" ">
-                            <div class="card" style="background: #eee;">
-                                <div class="card-body">
+            <div style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);position: absolute;width: 100%;height: 350px;">
+                <div class="">
+                    <div class="col-sm-12">
+                        <div class="row p-3">
+                            <div class="col-sm-3 p-3" style=" ">
+                                <div class="card" style="background: #eee;">
+                                    <div class="card-body">
 
-                                    <div style="width: 100%;display: flex;justify-content: space-between;">
-                                        <div class="text-secondary font-weight-bold" style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('intern')['name']; ?></div>
-                                        <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-user' style='font-size:24px; color: white;'></i>
+                                        <div style="width: 100%;display: flex;justify-content: space-between;">
+                                            <div class="text-secondary font-weight-bold" style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('intern')['name']; ?></div>
+                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-user' style='font-size:24px; color: white;'></i>
+                                            </div>
+                                        </div>
+                                        <div class="text-primary" style="width: 100%;">
+
+                                            <font style="font-size: 1.5em;">Intern ID : <?php echo $this->session->userdata('intern')['user_id']; ?></font><br>
+                                            <font style="font-size: 1em;"><?php echo $this->session->userdata('intern')['domain']; ?></font>,
+                                        </div>
+                                        <div class="" style="width: 100%;">
+                                            Joining Date : <?php echo $this->session->userdata('intern')['register_on']; ?>
                                         </div>
                                     </div>
-                                    <div class="text-primary" style="width: 100%;">
-
-                                        <font style="font-size: 1.5em;">Intern ID : <?php echo $this->session->userdata('intern')['user_id']; ?></font><br>
-                                        <font style="font-size: 1em;"><?php echo $this->session->userdata('intern')['domain']; ?></font>,
-                                    </div>
-                                    <div class="" style="width: 100%;">
-                                        Joining Date : <?php echo $this->session->userdata('intern')['register_on']; ?>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-3 p-3" style="">
-                            <div class="card" style="background: #eee; height:150px;">
-                                <a class="card-body" href="dashboard/upload_school" style="text-decoration: none;">
-                                    <div style="width: 100%;display: flex;justify-content: space-between;">
-                                        <div class="text-secondary font-weight-bold">Users</div>
-                                        <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-user' style='font-size:24px; color: white;'></i></div>
-                                    </div>
-                                    <div class="" style="width: 100%;">
-                                        Schools: <?php
-                                                    $this->load->model('Dashboard_Model', 'dm');
-                                                    echo $this->dm->return_school($this->session->userdata('intern')['user_id']);
-                                                    ?>
-                                    </div>
-                                    <!-- <div class="" style="width: 100%;">
+                            <div class="col-sm-3 p-3" style="">
+                                <div class="card" style="background: #eee; height:150px;">
+                                    <a class="card-body" style="text-decoration: none;">
+                                        <div style="width: 100%;display: flex;justify-content: space-between;">
+                                            <div class="text-secondary font-weight-bold">Users</div>
+                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-user' style='font-size:24px; color: white;'></i></div>
+                                        </div>
+                                        <button type="button" data-toggle="modal" data-target="#schoolModal" class="btn-success">Add School</button>
+                                        <button type="button" onclick="window.location.href='dashboard/viewSchool'" class="btn-info">View School</button>
+                                        <div class="p-2" style="width: 100%;">
+                                            Schools: <?php
+                                                        $this->load->model('Dashboard_Model', 'dm');
+                                                        echo $this->dm->return_school($this->session->userdata('intern')['user_id'])['number'];
+                                                        ?>
+                                        </div>
+                                        <!-- <div class="" style="width: 100%;">
                                         3.48% Since last month
                                     </div> -->
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-3 p-3">
-                            <div class="card" style="background: #eee;">
-                                <div class="card-body">
-                                    <div style="width: 100%;display: flex;justify-content: space-between;">
-                                        <div class="text-secondary font-weight-bold">Referral Id</div>
-                                        <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fa fa-share-alt' style='font-size:24px; color: white;'></i></div>
-                                    </div>
-                                    <div class="text-primary" style="font-size: 1.5em; width: 100%;">
-                                        <?php echo $this->session->userdata('intern')['referral_id']; ?>
-                                    </div>
 
-                                    <div class="" style="width: 100%;">
+                            <div class="col-sm-3 p-3">
+                                <div class="card" style="background: #eee;">
+                                    <div class="card-body">
+                                        <div style="width: 100%;display: flex;justify-content: space-between;">
+                                            <div class="text-secondary font-weight-bold">Referral Id</div>
+                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fa fa-share-alt' style='font-size:24px; color: white;'></i></div>
+                                        </div>
+                                        <div class="text-primary" style="font-size: 1.5em; width: 100%;">
+                                            <?php echo $this->session->userdata('intern')['referral_id']; ?>
+                                        </div>
+
+                                        <div class="" style="width: 100%;">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-3 p-3" style="">
-                            <div class="card" style="background: #eee;height:150px;">
-                                <div class="card-body">
-                                    <div style="width: 100%;display: flex;justify-content: space-between;">
-                                        <div class="text-secondary font-weight-bold">Your Signed Doc</div>
-                                        <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-file-pdf' style='font-size:24px;color:white;'></i></i></div>
-                                    </div>
-                                    <div>
+                            <div class="col-sm-3 p-3" style="">
+                                <div class="card" style="background: #eee;height:150px;">
+                                    <div class="card-body">
+                                        <div style="width: 100%;display: flex;justify-content: space-between;">
+                                            <div class="text-secondary font-weight-bold">Your Signed Doc</div>
+                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-file-pdf' style='font-size:24px;color:white;'></i></i></div>
+                                        </div>
+                                        <div>
 
-                                        <a href="<?php echo $query_out['0']->profile_link; ?>" target="_blank" class="btn btn-success">Check File Once!!</a>
+                                            <a href="<?php echo $query_out['0']->profile_link; ?>" target="_blank" class="btn btn-success">Check File Once!!</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
+                <!-- schhol modal-->
+                <div class="modal fade" id="schoolModal" tabindex="-1" role="dialog" aria-labelledby="schoolModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="schoolModalLabel">Enter School Details:</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="dashboard/uploaded_school" method="POST">
+                                    <div class="form-group">
+                                        <label for="name">School Name</label>
+                                        <input required type="text" class="form-control" id="name" name="name" aria-describedby="Help" placeholder="Enter School Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="school address"> School Address</label>
+                                        <input required type="text" class="form-control" id="school address" name="address" aria-describedby="Help" placeholder="Enter school address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contact">Contact</label>
+                                        <input required type="phone number" class="form-control" id="contact" name="contact" aria-describedby="Help" placeholder="Enter conatct details">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cPerson">Contact Person Name</label>
+                                        <input required type="text" class="form-control" id="cPerson" name="cPerson" aria-describedby="Help" placeholder="Enter contact person's name">
+                                    </div>
+                                    <button class="btn btn-primary btn-block btn-lg" type="submit">Submit Details</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- school modal ends -->
                 <div class="col-sm-12" style="">
                     <div class="row p-3">
                         <div class="col-sm-8 p-3" style="">
