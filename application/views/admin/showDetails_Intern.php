@@ -59,6 +59,7 @@ if ($row->complete_time != '0000-00-00 00:00:00') {
 
    <?php
 }
+<<<<<<< HEAD
 		?>
           <?php
 if ($row->approved_task == 1) {
@@ -73,6 +74,23 @@ if ($row->approved_task == 1) {
           <?php
 }
 		?>
+=======
+          ?>
+          <?php 
+            if($row->approved_task==1){
+              ?>
+              <td><button class="btn btn-primary disabled mb-1" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up "></i></button>
+                <?php if($row->completed){ ?>
+                <span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" ><i class="fab fa-readme" class="sr-only" value="<?php echo $row->response; ?>"></i></span> <?php } ?><a role="button" class="btn btn-danger disapproved" title="Disapproved" id="<?php echo $row->id;?>"><i class="far fa-thumbs-down"  ></i></a></td>
+            <?php
+            }
+            else{
+          ?>
+          <td><button class="btn btn-primary mb-1" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><?php if($row->completed){ ?><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span><?php } ?> <a role="button" class="btn btn-danger disapproved" title="Disapproved" id="<?php echo $row->id;?>"><i class="far fa-thumbs-down"  ></i></a></td>
+          <?php 
+            }
+          ?>
+>>>>>>> a49aaee2d6fb362bbe6271ebf15aeed915d57df5
         </tr>
 
         <?php
