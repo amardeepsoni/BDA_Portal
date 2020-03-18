@@ -8,7 +8,9 @@ class Dashboard extends CI_Controller {
 		}
 		//$data['page_title'] = 'Dashboard';
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
-		$data['row'] = $this->dm->getRow();
+		$data['row'] = $this->dm->getRow();//intern rows
+		$data['rows'] = $this->dm->getRowSchool();//school rows
+		$data['notification'] = $this->dm->getNotification();//notification rows
 		$this->load->View('header');
 		$this->load->view(adminpath . '/dashboard.php', $data);
 		$this->load->View('footer');
@@ -42,6 +44,22 @@ class Dashboard extends CI_Controller {
 		$data['fetch_data'] = $this->dm->getData($config['per_page'], $this->uri->segment(4));
 		$this->load->View('header');
 		$this->load->view(adminpath . '/internList.php', $data);
+		$this->load->View('footer');
+	}
+
+	public function intern_school(){
+		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
+		$this->load->library('pagination');
+		$config = [
+			'base_url' => base_url('admin/Dashboard/intern_school'),
+			'per_page' => 10,
+			'total_rows' => $this->dm->getRowSchool()
+		];
+		$this->pagination->initialize($config);
+		
+		$data['fetch_data'] = $this->dm->getDataSchool($config['per_page'], $this->uri->segment(4));
+		$this->load->View('header');
+		$this->load->view(adminpath . '/internSchoolList.php', $data);
 		$this->load->View('footer');
 	}
 

@@ -14,7 +14,7 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th scope="col">Inter_ID</th>
+      <th scope="col">Intern_ID</th>
       <th scope="col">Name</th>
       <th scope="col">Domain</th>
       <th scope="col">Actions</th>
@@ -125,6 +125,7 @@
 
 
 $(document).ready(function(){
+  //task assign
   var myBookId;
 $(document).on("click", ".open-AddBookDialog", function () {
      myBookId = $(this).data('id');

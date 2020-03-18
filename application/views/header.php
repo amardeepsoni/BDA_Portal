@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?php echo $page_title; ?></title>
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/favlogo.png" type="image/png" sizes="16x16">
   <!-- Latest compiled and minified CSS -->
@@ -48,7 +49,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
+
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a>
@@ -60,23 +61,23 @@
 
       <div class="form-inline my-2 my-lg-0">
         <!-- <a class="btn btn-outline-info nav-link" href="#">Help</a>&nbsp; -->
-        <?php if ($this->session->userdata('intern')) { ?>
+        <?php if ($this->session->userdata('intern')) {?>
           <div class="dropdown" style=" margin-right: 90px;">
-            <span class="btn btn-outline-info nav-link"><?php echo 'Welcome, ' . $this->session->userdata('intern')['name']; ?></span>
+            <span class="btn btn-outline-info nav-link" style="border-radius: 50px;"><img src="https://cdn.iconscout.com/icon/free/png-512/avatar-380-456332.png" class="rounded-circle" style="width: 30px; height: 30px;"> <?php echo 'Welcome, ' . $this->session->userdata('intern')['name']; ?></span>
 
-            <div class="dropdown-content" aria-labelledby="dropdownMenuLink" style="background:#fff;">
+            <div class="dropdown-content" aria-labelledby="dropdownMenuLink" style="background:#fff;z-index: 9999;">
               <a class="dropdown-item" href="<?php echo base_url(); ?>intern/Dashboard">My Profile</a>
               <a class="dropdown-item" href="#">Support</a><hr>
               <a class="dropdown-item" href="<?php echo base_url(); ?>Login/logout">Logout</a>
             </div>
           </div>
         <?php }
-        if ($this->session->userdata('admin_login')) { ?>
+if ($this->session->userdata('admin_login')) {?>
           <a href="<?php echo base_url(); ?>admin/Dashboard" class="btn btn-outline-info nav-link">
             <font style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('admin_login')['name']; ?> </font>Profile
           </a>&nbsp;
           <a href="<?php echo base_url(); ?>admin/Login/logout" class="btn btn-outline-danger nav-link">Log Out</a>&nbsp;
-        <?php } ?>
+        <?php }?>
       </div>
     </div>
   </nav>
