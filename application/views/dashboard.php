@@ -130,11 +130,15 @@ if (!$this->session->userdata("intern")['user_id']) {
                                     </div>
                                     <div class="form-group">
                                         <label for="contact">Contact</label>
-                                        <input required type="phone number" class="form-control" id="contact" name="contact" aria-describedby="Help" placeholder="Enter conatct details">
+                                        <input required type="tel" pattern="[0-9]{10}" class="form-control" id="contact" name="contact" aria-describedby="Help" placeholder="Enter conatct details">
                                     </div>
                                     <div class="form-group">
                                         <label for="cPerson">Contact Person Name</label>
                                         <input required type="text" class="form-control" id="cPerson" name="cPerson" aria-describedby="Help" placeholder="Enter contact person's name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="number">Number of students regitered:</label>
+                                        <input required type="number" class="form-control" id="number" name="number" aria-describedby="Help" placeholder="Enter Number of students regitered">
                                     </div>
                                     <button class="btn btn-primary btn-block btn-lg" type="submit">Submit Details</button>
                                 </form>

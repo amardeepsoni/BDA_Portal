@@ -1,33 +1,36 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
-	public function index() {
-		$this->load->model('Dashboard_Model', 'dm');
-		// session_start();
-		$_SESSION['Quiz'] = 5;
-		$out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
-		$out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
-		$this->load->View('header');
-		$this->load->View('dashboard', $out);
-		$this->load->View('footer');
-	}
+class Dashboard extends CI_Controller
+{
+    public function index()
+    {
+        $this->load->model('Dashboard_Model', 'dm');
+        // session_start();
+        $_SESSION['Quiz'] = 5;
+        $out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
+        $out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
+        $this->load->View('header');
+        $this->load->View('dashboard', $out);
+        $this->load->View('footer');
+    }
 
-	public function quiz() {
-		$this->load->model('Dashboard_Model', 'dm');
+    public function quiz()
+    {
+        $this->load->model('Dashboard_Model', 'dm');
 
-		$out = $this->dm->check_status($this->session->userdata("intern")['user_id']);
-		if (!$out[0]->quiz_status) {
-			// $_SESSION['Quiz'] = 0;    //change
-			if ($_SESSION['Quiz'] != 0) {
-				$rand = rand(1, 11);
-				$result['all_data'] = $this->dm->fetch_quiz($rand);
+        $out = $this->dm->check_status($this->session->userdata("intern")['user_id']);
+        if (!$out[0]->quiz_status) {
+            // $_SESSION['Quiz'] = 0;    //change
+            if ($_SESSION['Quiz'] != 0) {
+                $rand = rand(1, 11);
+                $result['all_data'] = $this->dm->fetch_quiz($rand);
 
-				$this->load->View('quiz', $result);
-			} else {
-				echo "<center><br><br><h1>Quiz Over!!</h1><br></center>";
-				$this->dm->update_status($this->session->userdata("intern")['user_id']);
-				?>
+                $this->load->View('quiz', $result);
+            } else {
+                echo "<center><br><br><h1>Quiz Over!!</h1><br></center>";
+                $this->dm->update_status($this->session->userdata("intern")['user_id']);
+?>
                 <center>
                     <br><Br><br>
                     <a href="<?php echo base_url(); ?>uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">
@@ -77,8 +80,8 @@ class Dashboard extends CI_Controller {
                     date_default_timezone_set('Asia/Kolkata');
                     $task['add_time'] = date("Y-m-d H:i:s");
                     $this->dm->takeTask($task);
-                    header("Refresh:3; url= " . base_url() . "intern/dashboard");
                     $this->dm->upload_status($url, $this->session->userdata("intern")['user_id']);
+                    header("Refresh:3; url= " . base_url() . "intern/dashboard");
                 } else {
                     echo "<center><br><br><h1>Sorry, there was an error uploading your file.</h1><br><h4>Try Again after some time!!<br>Wait redirecting...</h4></center>";
                     header("Refresh:3; url= " . base_url() . "intern/dashboard");
@@ -86,7 +89,7 @@ class Dashboard extends CI_Controller {
             }
         } else {
             echo "<center><br><br><h1>File already Uploaded!!</h1><br>Wait redirecting...</h4></center>";
-            header("Refresh:3; url= " . base_url() . "intern/dashboard");            
+            header("Refresh:3; url= " . base_url() . "intern/dashboard");
         }
     }
     function task_completed($id)
@@ -130,11 +133,12 @@ class Dashboard extends CI_Controller {
             redirect('intern/dashboard');
         }
     }
-    public function viewSchool(){
+    public function viewSchool()
+    {
         $this->load->model('Dashboard_Model', 'dm');
         $result['data'] =  $this->dm->return_school($this->session->userdata('intern')['user_id']);
         $this->load->View('header');
-        $this->load->View('intern/view_school',$result);
+        $this->load->View('intern/view_school', $result);
         $this->load->View('footer');
     }
 }
