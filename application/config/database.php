@@ -75,8 +75,8 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn' => 'sql12328541@ec2-52-8-112-233.us-west-1.compute.amazonaws.com',
-	'hostname' => 'localhost',
+	'dsn' => 'sql12.freemysqlhosting.net',
+	'hostname' => 'sql12328541@ec2-52-8-112-233.us-west-1.compute.amazonaws.com',
 	'username' => 'sql12328541',
 	'password' => '4bqVfZGvZx',
 	'database' => 'sql12328541',
