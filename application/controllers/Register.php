@@ -107,13 +107,13 @@ class Register extends CI_Controller {
 					$mail->isHTML(true); // Set email format to HTML
 					$mail->Subject = 'Registration for Internship | Intellify | An initiative of IIT Delhi students and alumni';
 					$message = '<html lang="en-GB"><head>
-	<style >
-body,td,div,p,a,input {font-family: arial, sans-serif;}
-</style><style type="text/css">
-body, td {font-size:13px}
-</style></head><body><div class="bodycontainer"><div class="maincontent"><table width=100% cellpadding=0 cellspacing=0 border=0 class="message"><div dir="ltr">Dear Candidate, <br><br><b>Your username and password to login on the portal are:<br>Username: ' . $to . '<br>Password: ' . $intern_pass . '<br></b><br>Please click on the following link to directly go on the portal: <a href="http://intellify.in/Career/login">intellify.in/Career/login</a><br>Intellify along with <b>NSS IIT Delhi</b> and <b>CCL IIT Gandhinagar </b>recently launched National Science &amp; Creativity Program 2020 under <b>iSAFE </b>with the support of <b>5 Union Ministries</b>. <br><br><b>Please go through the following website before clicking on the above link:<br></b><a href="https://sites.google.com/view/teamintellify" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en-GB&amp;q=https://sites.google.com/view/teamintellify&amp;source=gmail&amp;ust=1584084510334000&amp;usg=AFQjCNE3Hea8bwEqpeMwRwaA90YVfaLIUg">https://sites.google.com/view/<wbr>teamintellify</a>  <br> <br><div><div><div><div ><div><div><span>If you think you received this email by mistake, feel free to ignore it.
-</span><font color="#000000" style="background-color:rgb(255,255,255)"><br>Regards,</font></div><div><font color="#000000"><b>Team Intellify</b><br><b>Solve Foundation</b><br></font></div></div></div></div></div></div></div>
-</font></div></table></table></div></div></body></html>';
+								<style >
+							body,td,div,p,a,input {font-family: arial, sans-serif;}
+							</style><style type="text/css">
+							body, td {font-size:13px}
+							</style></head><body><div class="bodycontainer"><div class="maincontent"><table width=100% cellpadding=0 cellspacing=0 border=0 class="message"><div dir="ltr">Dear Candidate, <br><br><b>Your username and password to login on the portal are:<br>Username: ' . $to . '<br>Password: ' . $intern_pass . '<br></b><br>Please click on the following link to directly go on the portal: <a href="http://intellify.in/Career/login">intellify.in/Career/login</a><br>Intellify along with <b>NSS IIT Delhi</b> and <b>CCL IIT Gandhinagar </b>recently launched National Science &amp; Creativity Program 2020 under <b>iSAFE </b>with the support of <b>5 Union Ministries</b>. <br><br><b>Please go through the following website before clicking on the above link:<br></b><a href="https://sites.google.com/view/teamintellify" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en-GB&amp;q=https://sites.google.com/view/teamintellify&amp;source=gmail&amp;ust=1584084510334000&amp;usg=AFQjCNE3Hea8bwEqpeMwRwaA90YVfaLIUg">https://sites.google.com/view/<wbr>teamintellify</a>  <br> <br><div><div><div><div ><div><div><span>If you think you received this email by mistake, feel free to ignore it.
+							</span><font color="#000000" style="background-color:rgb(255,255,255)"><br>Regards,</font></div><div><font color="#000000"><b>Team Intellify</b><br><b>Solve Foundation</b><br></font></div></div></div></div></div></div></div>
+							</font></div></table></table></div></div></body></html>';
 					$mail->Body = $message;
 					$mail->AltBody = strip_tags($message);
 
