@@ -52,7 +52,8 @@ class Dashboard_Model extends CI_Model {
 
 	public function approved_task($id){
 		$ap = 1;
-		$st = array('approved_task'=>$ap);
+		$zero = 0;
+		$st = array('approved_task'=>$ap, 'disapproved'=>$zero);
 		$this->db->where('id', $id);
 		$this->db->update('intern_task', $st); 
 		return $id; //not used
