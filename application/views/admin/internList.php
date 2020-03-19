@@ -170,7 +170,14 @@ function myFunction() {
 $('#myIntern').focus(function(){
   $(this).val('INT');
 });
-
+$('#myIntern').blur(function(){
+  $(this).val('');
+});
+$('#myInput').focus(function(){
+});
+$('#myInput').blur(function(){
+  $(this).val('');
+});
 $('#myDomain').blur(function(){
   $(this).val('');
   if($(this).val()==''){
