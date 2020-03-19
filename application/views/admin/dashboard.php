@@ -15,15 +15,21 @@ a{
         max-width:none !important;
 
     }
+#notific{
+  position: absolute;
+  top: 6.2%;
+  left: 78%;
+}
 </Style>
+<i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"><span class="h-6 text-danger"><?php echo $notification->num_rows(); ?> </span></i>
 <div class="container mt-1">
-  <div class="row">
+<!--   <div class="row">
      <div class="col-12 text-right">
-        <i class="fas fa-bell btn btn-link" title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"></i>
+        <i class="fas fa-bell btn btn-link" title="<?php //echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"></i>
       </div>    
-  </div>
+  </div> -->
 <div class="row">
-            <div class="col-xl-3 col-md-6 bg-muted">
+            <div class="col-xl-3 col-md-6 bg-muted mb-2">
               <a href="<?php echo base_url().adminpath ?>/Dashboard/intern_list" class="custom-card">
               <div class="card card-stats">
                 <!-- Card body -->
@@ -40,7 +46,7 @@ a{
               </div>
             </a>
             </div>
-            <div class="col-xl-3 col-md-6 bg-muted">
+            <div class="col-xl-3 col-md-6 bg-muted mb-2">
               <a href="<?php echo base_url().adminpath ?>/Dashboard/intern_school" class="custom-card">
               <div class="card card-stats">
                 <!-- Card body -->
@@ -117,7 +123,7 @@ a{
     else{
     ?>
       <tr>
-        <td colspan="4">No data found</td>
+        <td colspan="4">Today Completed Task not found</td>
       </tr>
     <?php
   } 
