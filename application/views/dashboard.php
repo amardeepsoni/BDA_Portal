@@ -209,7 +209,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                                         <form action="dashboard/upload_task/<?php echo $list->id ?>" method="POST">
                                             <div id="task_sol" class="modal-body">
                                                 <label for="task_sol">Enter your message below:</label>
-                                                <textarea id="task_sol" rows="6" cols="45" name="solution" required></textarea>
+                                                <textarea pattern="[A-Za-z. ]{5,20}" id="task_sol" rows="6" cols="45" name="solution" required></textarea>
                                             </div>
                                             <button type="submit" class="m-0 btn-block p-3 btn-success">Submit Task</button>
                                         </form>
