@@ -121,11 +121,11 @@ if (!$this->session->userdata("intern")['user_id']) {
                                 <form action="dashboard/uploaded_school" method="POST">
                                     <div class="form-group">
                                         <label for="name">School Name</label>
-                                        <input required type="text" class="form-control" id="name" name="name" aria-describedby="Help" placeholder="Enter School Name">
+                                        <input required type="text" class="form-control" id="name" pattern="[A-Za-z ]{5,20}" name="name" aria-describedby="Help" placeholder="Enter School Name">
                                     </div>
                                     <div class="form-group">
                                         <label for="school address"> School Address</label>
-                                        <input required type="text" class="form-control" id="school address" name="address" aria-describedby="Help" placeholder="Enter school address">
+                                        <input required type="text" class="form-control" id="school address" pattern="[A-Za-z-0-9, ]{5,30}" name="address" aria-describedby="Help" placeholder="Enter school address">
                                     </div>
                                     <div class="form-group">
                                         <label for="contact">Contact</label>
@@ -133,7 +133,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                                     </div>
                                     <div class="form-group">
                                         <label for="cPerson">Contact Person Name</label>
-                                        <input required type="text" class="form-control" id="cPerson" name="cPerson" aria-describedby="Help" placeholder="Enter contact person's name">
+                                        <input required type="text" class="form-control" id="cPerson" pattern="[A-Za-z ]{5,20}" name="cPerson" aria-describedby="Help" placeholder="Enter contact person's name">
                                     </div>
                                     <div class="form-group">
                                         <label for="number">Number of students regitered:</label>
