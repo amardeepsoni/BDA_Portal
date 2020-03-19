@@ -18,12 +18,14 @@ class Dashboard extends CI_Controller
         $this->load->View('footer');
     }
 
+
     public function quiz()
     {
-        if(!$this->session->userdata('intern')['user_id']){
+        if (!$this->session->userdata('intern')['user_id']) {
             redirect(base_url());
         }
         $this->load->model('Dashboard_Model', 'dm');
+
 
         $out = $this->dm->check_status($this->session->userdata("intern")['user_id']);
         if (!$out[0]->quiz_status) {
@@ -50,7 +52,6 @@ class Dashboard extends CI_Controller
                         </a></button>
                 </center>
 <?php
-
                 // header("Refresh:5; url= " . base_url() . "intern/dashboard");    //Add whole part for site
             }
         } else {
@@ -59,7 +60,7 @@ class Dashboard extends CI_Controller
     }
     public function upload_id()
     {
-        if(!$this->session->userdata('intern')['user_id']){
+        if (!$this->session->userdata('intern')['user_id']) {
             redirect(base_url());
         }
         $this->load->model('Dashboard_Model', 'dm');
@@ -103,7 +104,7 @@ class Dashboard extends CI_Controller
     }
     function task_completed($id)
     {
-        if(!$this->session->userdata('intern')['user_id']){
+        if (!$this->session->userdata('intern')['user_id']) {
             redirect(base_url());
         }
         $this->load->model('Dashboard_Model', 'dm');
@@ -113,9 +114,9 @@ class Dashboard extends CI_Controller
     }
     public function upload_task($id)
     {
-        if(!$this->session->userdata('intern')['user_id']){
+        if (!$this->session->userdata('intern')['user_id']) {
             redirect(base_url());
-        } 
+        }
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
             $data['solution'] = $this->input->post('solution');
         }
@@ -130,7 +131,7 @@ class Dashboard extends CI_Controller
     }
     function uploaded_school()
     {
-        if(!$this->session->userdata('intern')['user_id']){
+        if (!$this->session->userdata('intern')['user_id']) {
             redirect(base_url());
         }
         $data = array(
@@ -147,7 +148,7 @@ class Dashboard extends CI_Controller
     }
     public function viewSchool()
     {
-        if(!$this->session->userdata('intern')['user_id']){
+        if (!$this->session->userdata('intern')['user_id']) {
             redirect(base_url());
         }
         $this->load->model('Dashboard_Model', 'dm');
@@ -158,7 +159,7 @@ class Dashboard extends CI_Controller
     }
     public function id()
     {
-        if(!$this->session->userdata('intern')['user_id']){
+        if (!$this->session->userdata('intern')['user_id']) {
             redirect(base_url());
         }
         $this->load->model('Dashboard_Model', 'dm');
@@ -167,7 +168,7 @@ class Dashboard extends CI_Controller
     }
     function sendMail()
     {
-        if(!$this->session->userdata('intern')['user_id']){
+        if (!$this->session->userdata('intern')['user_id']) {
             redirect(base_url());
         }
         $this->load->model('Dashboard_Model', 'dm');
@@ -254,7 +255,7 @@ class Dashboard extends CI_Controller
     }
     function downloadData()
     {
-        if(!$this->session->userdata('intern')['user_id']){
+        if (!$this->session->userdata('intern')['user_id']) {
             redirect(base_url());
         }
         // get data 
@@ -272,7 +273,7 @@ class Dashboard extends CI_Controller
         // file creation 
         $file = fopen('php://output', 'w');
 
-        $header = array("Name of the School     ", "School Address   ", "Contact Details     ","Contact Person   ","Number of Registered Students", "Schhol Added on     ");
+        $header = array("Name of the School     ", "School Address   ", "Contact Details     ", "Contact Person   ", "Number of Registered Students", "Schhol Added on     ");
         fputcsv($file, $header);
         foreach ($usersData as $line) {
             fputcsv($file, $line);
