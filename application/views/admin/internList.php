@@ -4,14 +4,34 @@
         border : 1px solid red;
     }
 </style>
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-1">
+<!-- filter -->
+<!-- <form class="form-inline" action="<?php //echo base_url() .adminpath .'/Dashboard/filterData'; ?>" method="post">
+        <select class="form-control" name="field">
+            <option selected="selected" disabled="disabled" value="">Filter By</option>
+            <option value="Intern_Id<">Intern_Id</option>
+            <option value="Name">Name</option>
+            <option value="Domain">Domain</option>
+        </select>
+        <input class="form-control" type="text" name="search" value="" placeholder="Search...">
+        <input class="btn btn-default" type="submit" name="filter" value="Go">
+</form> -->
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseInternList" aria-expanded="false" aria-controls="collapseInternList" id="filter-data">
+    Filter Intern List
+  </button>
+</p>
+<div class="collapse fade" id="collapseInternList">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Names..">
+    <input type="text" id="myIntern" onkeyup="myFunctionIntern()" placeholder="Search for Intern_ID..">
+    <input type="text" id="myDomain" onkeyup="myFunctionDomain()" placeholder="Search for Domains.."><br>
+</div>
 
   <!-- table -->
-<div class="row">
+<div class="row mt-2">
   <div class="col-12">
     
   
-<table class="table table-bordered">
+<table class="table table-bordered" id="myTable">
   <thead>
     <tr>
       <th scope="col">Intern_ID</th>
@@ -27,7 +47,7 @@
        foreach($fetch_data->result() as $row){
         ?>
         <tr>
-          <th scope="row" class="text-primary"><a href="<?php echo base_url().adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></th>
+          <td scope="row" class="text-primary"><a href="<?php echo base_url().adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></td>
           <td><?php echo $row->name;?></td>
           <td><?php echo $row->domain;?></td>
           <td>
@@ -122,8 +142,111 @@
 </div>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script>
+  var countDomain = 0;
+  var ref = 0;
+/*filter*/
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value;
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
 
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
 
+//intern
+$('#myIntern').focus(function(){
+  $(this).val('INT');
+});
+$('#myIntern').blur(function(){
+  $(this).val('');
+});
+$('#myInput').focus(function(){
+});
+$('#myInput').blur(function(){
+  $(this).val('');
+});
+$('#myDomain').blur(function(){
+  $(this).val('');
+  if($(this).val()==''){
+    countDomain = 0;
+  }
+});
+$('#myDomain').focus(function(){
+  
+});
+$('#myIntern').blur(function(){
+  if($(this).val()=='INT'){
+    $(this).val('');
+  }
+});
+$('#myDomain').keyup(function(){
+  if(countDomain==0){
+  $(this).val($(this).val().toUpperCase());
+  myFunctionDomain();
+  countDomain++;
+}
+});
+function myFunctionIntern() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myIntern");
+  filter = input.value;
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+//Domain
+function myFunctionDomain() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myDomain");
+  filter = input.value;
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+$('#filter-data').click(function(){if(ref!=0){location.reload(true);}else{ref = 1;}});
+/*filter end*/
 $(document).ready(function(){
   //task assign
   var myBookId;
