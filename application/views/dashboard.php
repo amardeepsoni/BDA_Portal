@@ -1,6 +1,6 @@
 <?php
 if (!$this->session->userdata("intern")['user_id']) {
-    redirect('/');
+	redirect('/');
 }
 ?>
 
@@ -22,20 +22,32 @@ if (!$this->session->userdata("intern")['user_id']) {
             background-color: #bee5eb;
         }
     </style>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php foreach ($tasks as $task) {
+	$task_disapprove = $task->disapproved;
+
+	if ($task_disapprove == 1) {?>
+
+    <script type="text/javascript">
+       swal("Disapproved by admin", "Please check your message...", "warning");
+    </script>
+    <?php }
+	break;}?>
+
 </head>
 <div class="container-fluid" style="margin: 0;padding: 0;">
     <?php
-    $this->load->model('Dashboard_Model', 'dm');
-    $query_out = $this->dm->check_upload_status($this->session->userdata("intern")['user_id']);
-    if ($query_out['0']->upload_status) {
-    ?>
+$this->load->model('Dashboard_Model', 'dm');
+$query_out = $this->dm->check_upload_status($this->session->userdata("intern")['user_id']);
+if ($query_out['0']->upload_status) {
+	?>
         <div class="container-fluid" style="margin: 0;padding: 0;">
             <div style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);position: absolute;width: 100%;height: 350px;">
                 <div class="">
                     <div class="col-sm-12">
                         <div class="row p-3">
                             <div class="col-sm-3 p-3" style=" ">
-                                <div class="card" style="background: #eee;">
+                                <div class="card" style="background: #eee;height: 200px;">
                                     <div class="card-body bg-white">
 
                                         <div style="width: 100%;display: flex;justify-content: space-between;">
@@ -55,26 +67,26 @@ if (!$this->session->userdata("intern")['user_id']) {
                                 </div>
                             </div>
                             <div class="col-sm-3 p-3" style="">
-                                <div class="card" style="background: #eee; height:150px;">
+                                <div class="card" style="background: #eee; height: 200px;">
                                     <a class="card-body  bg-white" style="text-decoration: none;">
                                         <div style="width: 100%;display: flex;justify-content: space-between;">
                                             <div class="text-secondary font-weight-bold">List your registered school!</div>
-                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-user' style='font-size:24px; color: white;'></i></div>
+                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-list-alt' style='font-size:24px; color: white;'></i></div>
                                         </div>
                                         <button type="button" data-toggle="modal" data-target="#schoolModal" class="btn-success">Add School</button>
                                         <button type="button" onclick="window.location.href='dashboard/viewSchool'" class="btn-info">View School</button>
                                         <div class="p-2" style="width: 100%;">
                                             Schools: <?php
-                                                        $this->load->model('Dashboard_Model', 'dm');
-                                                        echo $this->dm->return_school($this->session->userdata('intern')['user_id'])['number'];
-                                                        ?>
+$this->load->model('Dashboard_Model', 'dm');
+	echo $this->dm->return_school($this->session->userdata('intern')['user_id'])['number'];
+	?>
                                         </div>
                                     </a>
                                 </div>
                             </div>
 
                             <div class="col-sm-3 p-3">
-                                <div class="card" style="background: #eee;">
+                                <div class="card" style="background: #eee;height: 200px;">
                                     <div class="card-body  bg-white">
                                         <div style="width: 100%;display: flex;justify-content: space-between;">
                                             <div class="text-secondary font-weight-bold">Referral Id</div>
@@ -85,12 +97,13 @@ if (!$this->session->userdata("intern")['user_id']) {
                                         </div>
 
                                         <div class="" style="width: 100%;">
+                                            <a class="btn btn-success"  href="https://api.whatsapp.com/send?phone=+91<?php echo $this->session->userdata('intern')['mobile_no']; ?>&text=Intellify career referal : <?php echo $this->session->userdata('intern')['referral_id']; ?>" target="_blank"><i class='fab fa-whatsapp' style='font-size:20px'></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-3 p-3" style="">
-                                <div class="card" style="background: #eee;height:150px;">
+                                <div class="card" style="background: #eee;height: 200px;">
                                     <div class="card-body  bg-white">
                                         <div style="width: 100%;display: flex;justify-content: space-between;">
                                             <div class="text-secondary font-weight-bold">Your Signed Doc</div>
@@ -156,41 +169,41 @@ if (!$this->session->userdata("intern")['user_id']) {
                                 <div class="card-body p-0" style="background: #eee;">
                                     <div class="list-group-flush list-group" id="list-tab" role="tablist">
                                         <?php if ($tasks) {
-                                            foreach ($tasks as $list) {
-                                        ?>
+		foreach ($tasks as $list) {
+			?>
                                                 <a class="list-group-item  list-group-item-action list-group-item-info" id="list-<?php echo $list->id ?>" data-toggle="list" href="#list-<?php echo $list->id ?>" role="tab" aria-controls="<?php echo $list->id ?>">
                                                     <div class="d-flex w-100 justify-content-between">
                                                         <div id="task_topic<?php echo $list->id ?>" <?php if ($list->completed) {
-                                                                                                        echo 'style="text-decoration: line-through; " ';
-                                                                                                    }
-                                                                                                    ?>>
+				echo 'style="text-decoration: line-through; " ';
+			}
+			?>>
                                                             <?php echo $list->topic; ?>
 
                                                         </div>
-                                                        <?php if ($list->approved_task) { ?>
+                                                        <?php if ($list->approved_task) {?>
                                                             <button type="button" class="btn btn-success" disabled>Approved</button>
                                                         <?php } else {
-                                                        ?>
+				?>
                                                             <button type="button" class="btn btn-info" <?php if ($list->completed) {
-                                                                                                            echo 'disabled';
-                                                                                                        }
-                                                                                                        ?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
+					echo 'disabled';
+				}
+				?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
                                                                 Check here to submit task
                                                             </button>
-                                                        <?php } ?>
+                                                        <?php }?>
                                                     </div>
                                                     <small <?php if ($list->completed) {
-                                                                echo 'style="text-decoration: line-through; " ';
-                                                            }
-                                                            ?>><?php echo $list->add_time; ?></small>
+				echo 'style="text-decoration: line-through; " ';
+			}
+			?>><?php echo $list->add_time; ?></small>
                                                     <div id="task_description<?php echo $list->id ?>" class="p-2 border" style="display: none; background-color:#fff; ">
                                                         <?php echo $list->description; ?>
                                                     </div>
                                                 </a>
                                             <?php }
-                                        } else { ?>
+	} else {?>
                                             <a href="#" class="list-group-item  list-group-item-action list-group-item-info">No task available</a>
-                                        <?php } ?>
+                                        <?php }?>
                                     </div>
                                 </div>
                                 <div class="card-footer text-right px-4">
@@ -199,7 +212,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                             </div>
                         </div>
                         <!-- Modal -->
-                        <?php foreach ($tasks as $list) { ?>
+                        <?php foreach ($tasks as $list) {?>
                             <div class="modal fade" id="modalCenter<?php echo $list->id ?>" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -219,7 +232,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                                     </div>
                                 </div>
                             </div>
-                        <?php } ?>
+                        <?php }?>
                         <!-- modal closed -->
                         <div class="col-sm-4 p-3" style="">
                             <div class="card list-group-item-info" style="width: 100%; height: 400px;background: #fff;">
@@ -240,7 +253,7 @@ if (!$this->session->userdata("intern")['user_id']) {
             </div>
         </div>
 
-    <?php } else if ($data['0']->quiz_status) { ?>
+    <?php } else if ($data['0']->quiz_status) {?>
 
         <div class="container p-3">
             <h3>Upload your documents, <?php echo $this->session->userdata("intern")['name']; ?></h3>
@@ -258,23 +271,23 @@ if (!$this->session->userdata("intern")['user_id']) {
             </form>
         </div>
 
-    <?php } else { ?>
+    <?php } else {?>
 
         <div class="container p-3">
             <h3 class="p-3">To start Quiz click below,</h3>
             <a href="dashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
         </div>
-    <?php } ?>
+    <?php }?>
 </div>
 
 <!-- scripts -->
 <script>
     $(document).ready(function() {
-        <?php foreach ($tasks as $list) { ?>
+        <?php foreach ($tasks as $list) {?>
             $("#list-<?php echo $list->id ?>").click(function() {
                 $("#task_description<?php echo $list->id ?>").toggle();
             });
-        <?php } ?>
+        <?php }?>
     });
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

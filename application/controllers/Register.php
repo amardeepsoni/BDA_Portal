@@ -9,8 +9,8 @@ class Register extends CI_Controller {
 			redirect('intern/Dashboard');
 		}
 
-		$data['page_title'] = 'Home';
-		$this->load->View('header');
+		$data['page_title'] = 'Career | Register';
+		$this->load->View('header', $data);
 		$this->load->View('Register');
 		$this->load->View('footer');
 	}
