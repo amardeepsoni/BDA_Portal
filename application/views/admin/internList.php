@@ -16,7 +16,7 @@
         <input class="form-control" type="text" name="search" value="" placeholder="Search...">
         <input class="btn btn-default" type="submit" name="filter" value="Go">
 </form> -->
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseInternList" aria-expanded="false" aria-controls="collapseInternList">
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseInternList" aria-expanded="false" aria-controls="collapseInternList" id="filter-data">
     Filter Intern List
   </button>
 </p>
@@ -143,6 +143,7 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script>
   var countDomain = 0;
+  var ref = 0;
 /*filter*/
 function myFunction() {
   // Declare variables
@@ -244,6 +245,7 @@ function myFunctionDomain() {
   }
 }
 
+$('#filter-data').click(function(){if(ref!=0){location.reload(true);}else{ref = 1;}});
 /*filter end*/
 $(document).ready(function(){
   //task assign
