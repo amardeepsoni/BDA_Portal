@@ -65,7 +65,7 @@
           else{ ?>
            <a href="#" role="button" class="btn text-danger disabled" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a> 
           <?php } ?>
-          &nbsp;<a href="#myModal" role="button" class="btn m-1 text-warning open-AddBookDialog" data-toggle="modal"  title="Task Assign" data-id="<?php echo $row->user_id;?>"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a></td>
+          &nbsp;<a href="#myModal" role="button" class="btn m-1 text-warning open-AddBookDialog" data-toggle="modal"  title="Task Assign" data-id="<?php echo $row->user_id;?>"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 show-documents-intern" title="Intern Documents" id="<?php echo $row->user_id;  ?>"><i class="fas fa-info-circle"></i></a></td>
         </tr>
         <?php
       }
@@ -349,6 +349,55 @@ $(document).on("click", ".open-AddBookDialog", function () {
   }
 });
    }); 
+
+   //show intern doucments pdf
 });
 
+/*$(document).on('click', '.show-documents-intern', function(){
+    
+   });*/
 </script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(document).on('click', '.show-documents-intern', function() {
+        var fileName = '<?php echo base_url(); ?>'+'application/controllers/Intern/uploads/'+$(this).attr('id')+'.pdf';
+        var tit = $(this).attr('id');
+            $("#dialog").dialog({
+                modal: true,
+                title: tit,
+              width:540,
+              height:450,
+              position: {my:"center", at: "center", of: window},
+              resizable: false,
+              show: {
+                effect: "blind",
+                duration: 1000
+              },
+              hide: {
+                effect: "blind",
+                duration: 1000
+              },
+                buttons: {
+                    Close: function () {
+                        $(this).dialog('close');
+                    }
+                 /*  BigScreen :function(){
+                    '<a href = '"+fileName+"'>here</a>';
+                   }*/
+                },
+                open: function () {
+                    var object = "<object data='"+fileName+"' type=\"application/pdf\" width=\"500px\" height=\"300px\">";
+                    object += "If you are unable to view file, you can download from <a href = '"+fileName+"'>here</a>";
+                    object += " or download <a target = \"_blank\" href = \"http://get.adobe.com/reader/\">Adobe PDF Reader</a> to view the file.";
+                    object += "</object>";
+                    object = object.replace(/{FileName}/g, "Files/" + fileName);
+                    $("#dialog").html(object);
+                }
+            });
+    });
+</script>
+<div id="dialog" style="display: none">
+</div>

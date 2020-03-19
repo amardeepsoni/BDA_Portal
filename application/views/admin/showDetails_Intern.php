@@ -66,11 +66,11 @@ if ($row->approved_task == 1) {
 			?>
               <td style="display: flex;"><button class="btn btn-primary disabled mb-1" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up "></i></button>
                 <?php if ($row->completed) {?>
-                <span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" ><i class="fab fa-readme" class="sr-only" value="<?php echo $row->response; ?>"></i></span> <?php }?><a role="button" class="btn btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a></td>
+                <span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" ><i class="fab fa-readme" class="sr-only" value="<?php echo $row->response; ?>"></i></span> <?php }?><a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a></td>
             <?php
 } else {
 			?>
-          <td style="display: flex;"><button class="btn btn-primary mb-1" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><?php if ($row->completed) {?><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span><?php }?> <a role="button" class="btn btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a></td>
+          <td style="display: flex;"><button class="btn btn-primary mb-1" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><?php if ($row->completed) {?><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span><?php }?> <a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a></td>
           <?php
 }
 		?>
@@ -119,6 +119,32 @@ if ($row->approved_task == 1) {
       <!-- Modal footer -->
 
       <!-- modal end -->
+
+      <!-- Button trigger modal -->
+<i type="button" class="btn btn-primary sr-only" data-toggle="modal" data-target="#suggestion-task" id="suggestion-task-modal">
+  Launch modal
+</i>
+
+<!-- Modal -->
+<div class="modal fade" id="suggestion-task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <i type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </i>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <i type="button" class="btn btn-secondary" data-dismiss="modal">Close</i>
+        <i type="button" class="btn btn-primary" id="save-changes">Save changes</i>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
   $(document).ready(function(){
     //to deapproved
@@ -168,8 +194,7 @@ if ($row->approved_task == 1) {
     });
     //to approved
       $('button').on('click', function(){
-        /*alert($(this).attr('id'));*/
-  Swal.fire({
+        Swal.fire({
   title: 'Are you sure?',
   text: "You won't be able to revert this!",
   icon: 'warning',
@@ -202,6 +227,7 @@ if ($row->approved_task == 1) {
   }
 });
    });
+
 
       //remove modal body text after close
       $('.remove-modal-body-content').click(function(){
