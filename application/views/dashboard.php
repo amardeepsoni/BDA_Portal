@@ -206,6 +206,9 @@ $this->load->model('Dashboard_Model', 'dm');
                                         <?php }?>
                                     </div>
                                 </div>
+                                <div class="card-footer text-right px-4">
+                                    <a href="dashboard/taskHistory" class="btn btn-outline-dark"> History</a>
+                                </div>
                             </div>
                         </div>
                         <!-- Modal -->
@@ -222,7 +225,7 @@ $this->load->model('Dashboard_Model', 'dm');
                                         <form action="dashboard/upload_task/<?php echo $list->id ?>" method="POST">
                                             <div id="task_sol" class="modal-body">
                                                 <label for="task_sol">Enter your message below:</label>
-                                                <textarea id="task_sol" rows="6" cols="45" name="solution" required></textarea>
+                                                <textarea pattern="[A-Za-z. ]{5,20}" id="task_sol" rows="6" cols="45" name="solution" required></textarea>
                                             </div>
                                             <button type="submit" class="m-0 btn-block p-3 btn-success">Submit Task</button>
                                         </form>

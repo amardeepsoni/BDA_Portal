@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
+<<<<<<< HEAD
 class Dashboard extends CI_Controller {
 	public function index() {
 		$this->load->model('Dashboard_Model', 'dm');
@@ -16,6 +17,22 @@ class Dashboard extends CI_Controller {
 		$this->load->View('dashboard', $out);
 		$this->load->View('footer');
 	}
+=======
+class Dashboard extends CI_Controller
+{
+    public function index()
+    {
+        $this->load->model('Dashboard_Model', 'dm');
+        // session_start();
+        $_SESSION['Quiz'] = 5;
+        $this->dm->updateTasks($this->session->userdata("intern")['user_id']);
+        $out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
+        $out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
+        $this->load->View('header');
+        $this->load->View('dashboard', $out);
+        $this->load->View('footer');
+    }
+>>>>>>> 2ff229a7dc588b60a0912639fd17c0612617d8e8
 
 	public function quiz() {
 		if (!$this->session->userdata('intern')['user_id']) {
@@ -183,6 +200,7 @@ class Dashboard extends CI_Controller {
 
 					//mail
 
+<<<<<<< HEAD
 					$task = array('user_id' => $this->session->userdata("intern")['user_id'], 'topic' => "First Task to do", 'description' => "Contact and register details for 3 schhool. Click above add school to add details.");
 					$this->load->helper('date');
 					date_default_timezone_set('Asia/Kolkata');
@@ -277,6 +295,108 @@ class Dashboard extends CI_Controller {
 		$users = $this->dm->return_school($this->session->userdata('intern')['user_id']);
 		// print_r($users);
 		$usersData = $users['info'];
+=======
+                    $task = array('user_id' => $this->session->userdata("intern")['user_id'], 'topic' => "First Task to do", 'description' => "Contact and register details for 3 schhool. Click above add school to add details.");
+                    $this->load->helper('date');
+                    date_default_timezone_set('Asia/Kolkata');
+                    $task['add_time'] = date("Y-m-d H:i:s");
+                    $this->dm->takeTask($task);
+                    $this->dm->upload_status($url, $this->session->userdata("intern")['user_id']);
+                    header("Refresh:3; url= " . base_url() . "intern/dashboard");
+                } else {
+                    echo "<center><br><br><h1>Sorry, there was an error uploading your file.</h1><br><h4>Try Again after some time!!<br>Wait redirecting...</h4></center>";
+                    header("Refresh:3; url= " . base_url() . "intern/dashboard");
+                }
+            }
+        } else {
+            echo "<center><br><br><h1>File already Uploaded!!</h1><br>Wait redirecting...</h4></center>";
+            header("Refresh:3; url= " . base_url() . "intern/dashboard");
+        }
+    }
+    function task_completed($id)
+    {
+        if (!$this->session->userdata('intern')['user_id']) {
+            redirect(base_url());
+        }
+        $this->load->model('Dashboard_Model', 'dm');
+        $this->dm->task_completed($id);
+        echo "<center><br><br><h1>Your Response marked!!</h1><br><h4>Wait redirecting...</h4></center>";
+        header("Refresh:3; url= " . base_url() . "intern/dashboard");
+    }
+    public function upload_task($id)
+    {
+        if (!$this->session->userdata('intern')['user_id']) {
+            redirect(base_url());
+        }
+        if ($this->input->server('REQUEST_METHOD') == 'POST') {
+            $data['solution'] = stripslashes(strip_tags($this->input->post('solution')));
+        }
+        // echo "Hello";
+        // echo $data['solution'];
+        $this->load->model('Dashboard_Model', 'dm');
+        // $out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
+        // $out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
+        if ($this->dm->update_sol($id, $data['solution'])) {
+            redirect('intern/dashboard');
+        }
+    }
+    public function upload_school()
+    {
+        if (!$this->session->userdata('intern')['user_id']) {
+            redirect(base_url());
+        }
+        $this->load->View('header');
+        $this->load->View('intern/upload_school');
+        $this->load->View('footer');
+    }
+    function uploaded_school()
+    {
+        if (!$this->session->userdata('intern')['user_id']) {
+            redirect(base_url());
+        }
+        $data = array(
+            'sName' => stripslashes(strip_tags($this->input->post('name'))),
+            'sAddress' => stripslashes(strip_tags($this->input->post('address'))),
+            'sContact' => stripslashes(strip_tags($this->input->post('contact'))),
+            'sPerson' => stripslashes(strip_tags($this->input->post('cPerson'))),
+            'user_id' => $this->session->userdata("intern")['user_id'],
+        );
+        $this->load->model('Dashboard_Model', 'dm');
+        if ($this->dm->upload_schools($data)) {
+            redirect('intern/dashboard');
+        }
+    }
+    public function viewSchool()
+    {
+        if (!$this->session->userdata('intern')['user_id']) {
+            redirect(base_url());
+        }
+        $this->load->model('Dashboard_Model', 'dm');
+        $result['data'] = $this->dm->return_school($this->session->userdata('intern')['user_id']);
+        $this->load->View('header');
+        $this->load->View('intern/view_school', $result);
+        $this->load->View('footer');
+    }
+    public function id()
+    {
+        if (!$this->session->userdata('intern')['user_id']) {
+            redirect(base_url());
+        }
+        $this->load->model('Dashboard_Model', 'dm');
+        $result['data'] = $this->dm->return_intern($this->session->userdata('intern')['user_id']);
+        $this->load->View('intern/id', $result);
+    }
+    function downloadData()
+    {
+        if (!$this->session->userdata('intern')['user_id']) {
+            redirect(base_url());
+        }
+        // get data 
+        $this->load->model('Dashboard_Model', 'dm');
+        $users =  $this->dm->return_school($this->session->userdata('intern')['user_id']);
+        // print_r($users);
+        $usersData = $users['info'];
+>>>>>>> 2ff229a7dc588b60a0912639fd17c0612617d8e8
 
 		// file name
 		$filename = 'SchoolList' . $this->session->userdata('intern')['user_id'] . '.csv';
@@ -287,6 +407,7 @@ class Dashboard extends CI_Controller {
 		// file creation
 		$file = fopen('php://output', 'w');
 
+<<<<<<< HEAD
 		$header = array("Name of the School     ", "School Address   ", "Contact Details     ", "Contact Person   ", "Number of Registered Students", "Schhol Added on     ");
 		fputcsv($file, $header);
 		foreach ($usersData as $line) {
@@ -295,4 +416,25 @@ class Dashboard extends CI_Controller {
 		fclose($file);
 		exit;
 	}
+=======
+        $header = array("Name of the School     ", "School Address   ", "Contact Details     ", "Contact Person   ", "Number of Registered Students", "Schhol Added on     ");
+        fputcsv($file, $header);
+        foreach ($usersData as $line) {
+            fputcsv($file, $line);
+        }
+        fclose($file);
+        exit;
+    }
+    public function taskHistory()
+    {
+        if (!$this->session->userdata('intern')['user_id']) {
+            redirect(base_url());
+        }
+        $this->load->model('Dashboard_Model', 'dm');
+        $result['data'] = $this->dm->task_history($this->session->userdata("intern")['user_id']);
+        $this->load->View('header');
+        $this->load->View('intern/task_history', $result);
+        $this->load->View('footer');
+    }
+>>>>>>> 2ff229a7dc588b60a0912639fd17c0612617d8e8
 }
