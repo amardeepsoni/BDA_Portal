@@ -58,11 +58,11 @@ class Dashboard_Model extends CI_Model {
 		return $id; //not used
 	}
 
-	public function disapproved_task($id){
+	public function disapproved_task($data){
 		$comp = 0;
 		$app = 0;
-		$st = array('approved_task'=>$app, 'complete_time'=>$comp, 'completed'=>$comp);
-		$this->db->where('id', $id);
+		$st = array('approved_task'=>$app, 'complete_time'=>$comp, 'completed'=>$comp, 'suggestion'=>$data['suggestion']);
+		$this->db->where('id', $data['id']);
 		$this->db->update('intern_task', $st); 
 		return $id; //not used
 	}

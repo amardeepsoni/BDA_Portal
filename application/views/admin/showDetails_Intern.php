@@ -9,6 +9,12 @@
 
 
  -->
+ <style>
+  #not-empty-admin-suggestion{
+    display: none;
+    color:red;
+  }
+</style>
 <div class="row">
   <div class="col-12">
     <p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php echo $_GET['id']; ?></u></p>
@@ -43,10 +49,13 @@ if ($detail->num_rows() > 0) {
           <th scope="row" class="text-primary"><a href="<?php echo base_url() . adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->id; ?></a></th>
           <td><?php echo $row->topic; ?></td>
           <td><?php echo $row->description; ?></td>
-          <td><?php echo $row->add_time; ?></td>
-          <td><?php echo $row->complete_time; ?></td>
+          <td><?php echo date("d-m-Y, h:m:i a", strtotime($row->add_time)); ?></td>
+          
           <?php
 if ($row->complete_time != '0000-00-00 00:00:00') {
+  ?>
+  <td><?php echo date("d-m-Y, h:m:i a", strtotime($row->complete_time));  ?></td>
+  <?php
 			$start = new DateTime($row->add_time);
 			$end = new DateTime($row->complete_time);
 			$diff = $start->diff($end);
@@ -55,6 +64,7 @@ if ($row->complete_time != '0000-00-00 00:00:00') {
 } else {
 			$diff = 0;
 			?>
+      <td><?php echo $row->complete_time; ?></td>
    <td>Not Completed</td>
 
    <?php
@@ -129,18 +139,18 @@ if ($row->approved_task == 1) {
 <div class="modal fade" id="suggestion-task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
+   
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <i type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </i>
+        <h5 class="modal-title" id="exampleModalLongTitle">Suggestion</h5>
+
       </div>
       <div class="modal-body">
-        ...
+        <textarea class="form-control" required id="suggestion-admin"></textarea>
+        <i id="not-empty-admin-suggestion">Please Eneter the suggestion</i>
       </div>
       <div class="modal-footer">
-        <i type="button" class="btn btn-secondary" data-dismiss="modal">Close</i>
-        <i type="button" class="btn btn-primary" id="save-changes">Save changes</i>
+        <i type="button" class="btn btn-secondary" data-dismiss="modal" id="close-modal-save">Close</i>
+        <i type="submit" class="btn btn-primary" id="save-changes" role="button">Submit Suggestion</i>
       </div>
     </div>
   </div>
@@ -148,7 +158,23 @@ if ($row->approved_task == 1) {
 <script>
   $(document).ready(function(){
     //to deapproved
+    var idi;
     $(document).on('click', '.disapproved', function(){
+     // alert($(this).attr('id'));
+     idi = $(this).attr('id');
+      $('#suggestion-task-modal').trigger('click');
+    });
+    $('#save-changes').click(function(){
+      if($('#suggestion-admin').val()!=''){
+        $('#not-empty-admin-suggestion').css('display', 'none');
+      myswalfunction(idi);
+      $('#close-modal-save').trigger('click');
+    }
+    else{
+      $('#not-empty-admin-suggestion').css('display', 'block');
+    }
+    });
+    function myswalfunction(id){
       Swal.fire({
   title: 'Are you sure?',
   text: "You won't be able to revert this!",
@@ -162,7 +188,8 @@ if ($row->approved_task == 1) {
     $.post(
          '<?php echo base_url() . adminpath; ?>/Dashboard/disapprovedTask',
          {
-          id:$(this).attr('id')
+          id:id,
+          sugg:$('#suggestion-admin').val()
          },
          function(res){
           if(res=='error'){
@@ -181,7 +208,7 @@ if ($row->approved_task == 1) {
     location.reload(true);
   }
 });
-    });
+    }
     //to show intern description.
     /*$(document).on('click', '.description-btn', function(){
       alert($(this).attr('id'));
