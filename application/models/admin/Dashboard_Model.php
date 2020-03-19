@@ -91,4 +91,11 @@ class Dashboard_Model extends CI_Model {
 		 $query = $this->db->get();
 		 return $query;
 	}
+
+	
+	/*public function getDataWhereLike($field, $search)
+	{
+	    $query = $this->db->like($field, $search)->orderBy('id', 'asc')->get('intern_register');
+	    return $query->result();
+	}*/
 }
