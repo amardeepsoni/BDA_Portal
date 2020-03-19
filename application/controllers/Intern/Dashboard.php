@@ -20,6 +20,9 @@ class Dashboard extends CI_Controller
 
     public function quiz()
     {
+        if(!$this->session->userdata('intern')['user_id']){
+            redirect(base_url());
+        }
         $this->load->model('Dashboard_Model', 'dm');
 
         $out = $this->dm->check_status($this->session->userdata("intern")['user_id']);
@@ -56,6 +59,9 @@ class Dashboard extends CI_Controller
     }
     public function upload_id()
     {
+        if(!$this->session->userdata('intern')['user_id']){
+            redirect(base_url());
+        }
         $this->load->model('Dashboard_Model', 'dm');
         if (!$this->dm->check_upload_status($this->session->userdata("intern")['user_id'])['0']->upload_status) {
             if ($_FILES['file']['size']) {
@@ -97,6 +103,9 @@ class Dashboard extends CI_Controller
     }
     function task_completed($id)
     {
+        if(!$this->session->userdata('intern')['user_id']){
+            redirect(base_url());
+        }
         $this->load->model('Dashboard_Model', 'dm');
         $this->dm->task_completed($id);
         echo "<center><br><br><h1>Your Response marked!!</h1><br><h4>Wait redirecting...</h4></center>";
@@ -104,6 +113,9 @@ class Dashboard extends CI_Controller
     }
     public function upload_task($id)
     {
+        if(!$this->session->userdata('intern')['user_id']){
+            redirect(base_url());
+        } 
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
             $data['solution'] = $this->input->post('solution');
         }
@@ -116,14 +128,11 @@ class Dashboard extends CI_Controller
             redirect('intern/dashboard');
         }
     }
-    public function upload_school()
-    {
-        $this->load->View('header');
-        $this->load->View('intern/upload_school');
-        $this->load->View('footer');
-    }
     function uploaded_school()
     {
+        if(!$this->session->userdata('intern')['user_id']){
+            redirect(base_url());
+        }
         $data = array(
             'sName' => htmlspecialchars($this->input->post('name')),
             'sAddress' => htmlspecialchars($this->input->post('address')),
@@ -138,6 +147,9 @@ class Dashboard extends CI_Controller
     }
     public function viewSchool()
     {
+        if(!$this->session->userdata('intern')['user_id']){
+            redirect(base_url());
+        }
         $this->load->model('Dashboard_Model', 'dm');
         $result['data'] =  $this->dm->return_school($this->session->userdata('intern')['user_id']);
         $this->load->View('header');
@@ -146,12 +158,18 @@ class Dashboard extends CI_Controller
     }
     public function id()
     {
+        if(!$this->session->userdata('intern')['user_id']){
+            redirect(base_url());
+        }
         $this->load->model('Dashboard_Model', 'dm');
         $result['data'] =  $this->dm->return_intern($this->session->userdata('intern')['user_id']);
         $this->load->View('intern/id', $result);
     }
     function sendMail()
     {
+        if(!$this->session->userdata('intern')['user_id']){
+            redirect(base_url());
+        }
         $this->load->model('Dashboard_Model', 'dm');
         $result =  $this->dm->return_intern($this->session->userdata('intern')['user_id']);
         require 'vendor/autoload.php';
@@ -234,17 +252,19 @@ class Dashboard extends CI_Controller
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
     }
-    function downloadData($id)
+    function downloadData()
     {
+        if(!$this->session->userdata('intern')['user_id']){
+            redirect(base_url());
+        }
         // get data 
         $this->load->model('Dashboard_Model', 'dm');
-        // $users =  $this->dm->return_school($this->session->userdata('intern')['user_id']);
-        $users =  $this->dm->return_school($id);
+        $users =  $this->dm->return_school($this->session->userdata('intern')['user_id']);
         // print_r($users);
         $usersData = $users['info'];
 
         // file name 
-        $filename = 'SchoolList' . $id . '.csv';
+        $filename = 'SchoolList' . $this->session->userdata('intern')['user_id'] . '.csv';
         header("Content-Description: File Transfer");
         header("Content-Disposition: attachment; filename=$filename");
         header("Content-Type: application/csv; ");

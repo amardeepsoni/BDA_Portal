@@ -3,7 +3,7 @@
     $count = 1;
     ?>
     <div class="p-4 text-right">
-        <button onclick="window.location.href = 'downloadData/INT3976'" class="btn btn-success" <?php if (!$data['number']) echo "disabled"; ?>>Download Detials Table</button>
+        <button onclick="window.location.href = 'downloadData'" class="btn btn-success" <?php if (!$data['number']) echo "disabled"; ?>>Download Detials Table</button>
     </div>
     <table class="table">
         <thead>
