@@ -11,6 +11,7 @@ class Dashboard extends CI_Controller
         $this->load->model('Dashboard_Model', 'dm');
         // session_start();
         $_SESSION['Quiz'] = 5;
+        $this->dm->updateTasks($this->session->userdata("intern")['user_id']);
         $out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
         $out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
         $this->load->View('header');
@@ -221,10 +222,10 @@ class Dashboard extends CI_Controller
             redirect(base_url());
         }
         if ($this->input->server('REQUEST_METHOD') == 'POST') {
-            $data['solution'] = $this->input->post('solution');
+            $data['solution'] = stripslashes(strip_tags($this->input->post('solution')));
         }
-        echo "Hello";
-        echo $data['solution'];
+        // echo "Hello";
+        // echo $data['solution'];
         $this->load->model('Dashboard_Model', 'dm');
         // $out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
         // $out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
@@ -305,5 +306,16 @@ class Dashboard extends CI_Controller
         }
         fclose($file);
         exit;
+    }
+    public function taskHistory()
+    {
+        if (!$this->session->userdata('intern')['user_id']) {
+            redirect(base_url());
+        }
+        $this->load->model('Dashboard_Model', 'dm');
+        $result['data'] = $this->dm->task_history($this->session->userdata("intern")['user_id']);
+        $this->load->View('header');
+        $this->load->View('intern/task_history', $result);
+        $this->load->View('footer');
     }
 }
