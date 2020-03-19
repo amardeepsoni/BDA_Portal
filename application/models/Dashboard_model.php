@@ -30,8 +30,9 @@ class Dashboard_Model extends CI_Model
 	{
 		return $this->db->select('upload_status,profile_link')->from('intern_register')->where('user_id', $id)->get()->result();
 	}
-	public function takeTask($task){
-		$this->db->insert('intern_task', $task);		
+	public function takeTask($task)
+	{
+		$this->db->insert('intern_task', $task);
 	}
 	public function fetch_tasks($u_id)
 	{
@@ -106,5 +107,16 @@ class Dashboard_Model extends CI_Model
 		$count['number'] = $this->db->select('*')->from('intern_school')->where('user_id', $id)->get()->num_rows();
 		$count['info'] = $this->db->select('*')->from('intern_school')->where('user_id', $id)->get()->result();
 		return $count;
+	}
+	public function return_intern($id)
+	{
+		$this->db->select('id');
+		$this->db->select('name');
+		$this->db->select('college');
+		$this->db->select('city');
+		$this->db->select('state');
+		$this->db->select('email');
+		$this->db->select('domain');
+		return $this->db->from('intern_register')->where('user_id', $id)->get()->result();
 	}
 }

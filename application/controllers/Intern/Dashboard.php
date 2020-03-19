@@ -141,4 +141,52 @@ class Dashboard extends CI_Controller
         $this->load->View('intern/view_school', $result);
         $this->load->View('footer');
     }
+    public function id()
+    {
+        $this->load->model('Dashboard_Model', 'dm');
+        $result['data'] =  $this->dm->return_intern($this->session->userdata('intern')['user_id']);
+        $this->load->View('intern/id', $result);
+    }
+    // function sendMail()
+    // {
+    //     $this->load->model('Dashboard_Model', 'dm');
+    //     $result =  $this->dm->return_intern($this->session->userdata('intern')['user_id']);
+    //     require 'vendor/autoload.php';
+    //     $info = $result['0'];
+    //     $to = $info->email;
+    //     echo $to;
+    //     $subject = "Intern Id Card of" . $info->name;
+    //     $message;
+
+    //     // Instantiation and passing `true` enables exceptions
+    //     $mail = new PHPMailer(true);
+    //     try {
+    //         //Server settings
+    //         $mail->SMTPDebug = 0; // Enable verbose debug output
+    //         $mail->isSMTP(); // Send using SMTP
+    //         $mail->Host = 'smtp.zoho.com'; // Set the SMTP server to send through
+    //         $mail->SMTPAuth = true; // Enable SMTP authentication
+    //         $mail->Username = 'info@intellify.in'; // SMTP username
+    //         $mail->Password = 'Solve@2020'; // SMTP password
+    //         $mail->SMTPSecure = 'ssl'; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+    //         $mail->Port = 465; // TCP port to connect to
+    //         //Recipients
+    //         $mail->setFrom('info@intellify.in', 'Intellify');
+    //         $mail->addAddress($to); // Add a recipient
+    //         $mail->addCC('amardeep.irsc@gmial.com');
+    //         // Content
+    //         $mail->isHTML(true); // Set email format to HTML
+    //         $mail->Subject = $subject;
+
+    //         $mail->Body = $message;
+    //         $mail->AltBody = strip_tags($message);
+
+    //         // if ($mail->send()) {
+    //         // echo "Mail Sent!!";
+    //         //     // redirect(base_url() . 'Register');
+    //         // }
+    //     } catch (Exception $e) {
+    //         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    //     }
+    // }
 }
