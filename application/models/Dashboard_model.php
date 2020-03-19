@@ -105,7 +105,14 @@ class Dashboard_Model extends CI_Model
 	public function return_school($id)
 	{
 		$count['number'] = $this->db->select('*')->from('intern_school')->where('user_id', $id)->get()->num_rows();
-		$count['info'] = $this->db->select('*')->from('intern_school')->where('user_id', $id)->get()->result();
+		
+		$this->db->select('sName');
+		$this->db->select('sAddress');
+		$this->db->select('sContact');
+		$this->db->select('sPerson');
+		$this->db->select('no_of_students');
+		$this->db->select('add_time');
+		$count['info'] = $this->db->from('intern_school')->where('user_id', $id)->get()->result_array();
 		return $count;
 	}
 	public function return_intern($id)

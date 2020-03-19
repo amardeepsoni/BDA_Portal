@@ -1,6 +1,10 @@
 <div class="container p-2">
     <?php $school = $data['info'];
-    $count = 1; ?>
+    $count = 1;
+    ?>
+    <div class="p-4 text-right">
+        <button onclick="window.location.href = 'downloadData/INT3976'" class="btn btn-success" <?php if (!$data['number']) echo "disabled"; ?>>Download Detials Table</button>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -15,16 +19,16 @@
         </thead>
         <tbody>
             <?php
-            foreach ($school as $value) {
+            foreach ($school as $key => $value) {
             ?>
                 <tr>
                     <th scope="row"><?php echo $count++; ?></th>
-                    <td><?php echo $value->sName; ?></td>
-                    <td><?php echo $value->sAddress; ?></td>
-                    <td><?php echo $value->sContact; ?></td>
-                    <td><?php echo $value->sPerson; ?></td>
-                    <td><?php echo $value->no_of_students; ?></td>
-                    <td><?php echo $value->add_time; ?></td>
+                    <td><?php echo $value['sName']; ?></td>
+                    <td><?php echo $value['sAddress']; ?></td>
+                    <td><?php echo $value['sContact']; ?></td>
+                    <td><?php echo $value['sPerson']; ?></td>
+                    <td><?php echo $value['no_of_students']; ?></td>
+                    <td><?php echo $value['add_time']; ?></td>
                 </tr>
             <?php } ?>
         </tbody>
