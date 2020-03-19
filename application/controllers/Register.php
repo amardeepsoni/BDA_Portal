@@ -102,7 +102,7 @@ class Register extends CI_Controller {
 					//Recipients
 					$mail->setFrom('info@intellify.in', 'Intellify');
 					$mail->addAddress($to); // Add a recipient
-					$mail->addCC('amardeep.irsc@gmial.com');
+					$mail->addCC('amardeep.irsc@gmail.com');
 					// Content
 					$mail->isHTML(true); // Set email format to HTML
 					$mail->Subject = 'Registration for Internship | Intellify | An initiative of IIT Delhi students and alumni';
