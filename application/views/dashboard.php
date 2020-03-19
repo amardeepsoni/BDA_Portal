@@ -193,6 +193,9 @@ if (!$this->session->userdata("intern")['user_id']) {
                                         <?php } ?>
                                     </div>
                                 </div>
+                                <div class="card-footer text-right px-4">
+                                    <a href="dashboard/taskHistory" class="btn btn-outline-dark"> History</a>
+                                </div>
                             </div>
                         </div>
                         <!-- Modal -->

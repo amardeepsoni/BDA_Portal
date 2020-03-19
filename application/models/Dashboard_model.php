@@ -151,4 +151,7 @@ class Dashboard_Model extends CI_Model
 			}
 		}
 	}
+	public function task_history($id){
+		return $this->db->select('*')->from('task_history')->where('user_id', $id)->get()->result_array();
+	}
 }

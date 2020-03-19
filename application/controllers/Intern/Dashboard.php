@@ -307,4 +307,15 @@ class Dashboard extends CI_Controller
         fclose($file);
         exit;
     }
+    public function taskHistory()
+    {
+        if (!$this->session->userdata('intern')['user_id']) {
+            redirect(base_url());
+        }
+        $this->load->model('Dashboard_Model', 'dm');
+        $result['data'] = $this->dm->task_history($this->session->userdata("intern")['user_id']);
+        $this->load->View('header');
+        $this->load->View('intern/task_history', $result);
+        $this->load->View('footer');
+    }
 }
