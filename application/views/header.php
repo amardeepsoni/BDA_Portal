@@ -105,7 +105,7 @@ if ($this->session->userdata('admin_login')) {?>
 </Style>
 <?php if(isset($notification)){
   ?>
-<i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal-header" type="button"><span class="h-6 text-danger"><?php echo $notification->num_rows(); ?> </span></i>
+<i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal-header" type=""><i class="h-6 text-danger"><?php echo $notification->num_rows(); ?> </i></i>
 <?php
 ?>
 <!-- modal for notifications -->
@@ -119,7 +119,6 @@ if ($this->session->userdata('admin_login')) {?>
       <div class="modal-header">
         
         <h4 class="modal-title">Today Task</h4>
-        <i type="button" class="close" data-dismiss="modal">&times;</i>
       </div>
       <div class="modal-body">
         <div class="container-fluid mt-5">

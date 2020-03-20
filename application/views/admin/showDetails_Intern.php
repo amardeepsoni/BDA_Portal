@@ -233,7 +233,7 @@ if ($row->approved_task == 1) {
     });*/
     $('span').on('click', function(){
       //alert($(this).attr('id'));
-      $('.modal-body').append($(this).attr('id'));
+      $('#descriptionModal .modal-body').append($(this).attr('id'));
       $('#modal-desc').trigger('click');
 
     });
@@ -276,7 +276,7 @@ if ($row->approved_task == 1) {
 
       //remove modal body text after close
       $('.remove-modal-body-content').click(function(){
-        $('.modal-body').html('');
+        $('#descriptionModal .modal-body').html('');
       });
       });
 </script>
