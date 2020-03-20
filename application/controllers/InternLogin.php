@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class InternLogin extends CI_Controller {
 
 	public function index() {
 		if ($this->session->userdata('intern')['user_id']) {
@@ -59,7 +59,7 @@ class Login extends CI_Controller {
 						// Add user data in session
 						$this->session->set_userdata('intern', $session_data);
 
-						redirect('intern/dashboard');
+						redirect('intern/interndashboard');
 					}
 				} else {
 					$this->session->set_flashdata('loginnotify', 'Username and Password not Valid.');
