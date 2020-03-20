@@ -9,16 +9,70 @@
 
 
  -->
+
  <style>
+  
+  /*counter css start*/
+.counter {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: #666;
+    line-height: 28px
+}
+/*counter css end*/
   #not-empty-admin-suggestion{
     display: none;
     color:red;
   }
 </style>
 <div class="row">
-  <div class="col-12">
+  <div class="col-2">
     <p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php echo $_GET['id']; ?></u></p>
   </div>
+ </div>
+
+     
+     <?php if($detail->num_rows()>0){
+        $comp = 0;
+        $appr = 0;
+        foreach ($detail->result() as $value) {
+          if($value->completed==1){
+            $comp++;
+          }
+          if($value->approved_task==1){
+            $appr++;
+          }
+        }
+     } 
+     else{
+      $comp = 0;
+      $appr = 0;
+     }
+
+      ?>
+ 
+
+
+<!-- counter -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class=""> <i class="counter"><?php  echo $detail->num_rows(); ?></i>
+                <p>Total Tasks</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class=""> <i class="counter"><?php echo $appr; ?></i>
+                <p>Approved Tasks</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class=""><i class="counter"><?php echo $comp; ?></i>
+                <p>Completed Tasks</p>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container-fluid mt-0">
 
@@ -79,9 +133,23 @@ if ($row->approved_task == 1) {
                 <span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" ><i class="fab fa-readme" class="sr-only" value="<?php echo $row->response; ?>"></i></span> <?php } if($row->completed==1){?><a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a><?php } ?></td>
             <?php
 } else {
-			?>
+			 if($row->completed==1){
+      ?>
           <td style="display: flex;"> <?php if($row->completed==1){ ?><button class="btn btn-primary mb-1" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><?php } if ($row->completed==1) {?><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span><?php }if($row->completed==1){?><a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a><?php } ?> </td>
           <?php
+        }
+          else{
+            if($row->seen==1){
+              ?>
+              <td><p class="text-success">Task Seen</p></td>
+            <?php
+            }
+            else{
+            ?>
+              <td><p class="text-danger">Task Not Seen</p></td>
+            <?php
+          }
+          }
 }
 		?>
 
@@ -108,8 +176,8 @@ if ($row->approved_task == 1) {
 <i type="button" class="btn btn-primary sr-only" data-toggle="modal" data-target="#descriptionModal" id="modal-desc">
   Launch Description Modal
 </i >
-<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel" aria-hidden="true" style="position: absolute;top: 50%;left: 50%;  transform: translate(-50%, -50%); width: 50%;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php echo $_GET['id']; ?></u></p>Task Description </h5>
@@ -136,15 +204,15 @@ if ($row->approved_task == 1) {
 </i>
 
 <!-- Modal -->
-<div class="modal fade" id="suggestion-task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade" id="suggestion-task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"  style="position: absolute;top: 50%;left: 50%;  transform: translate(-50%, -50%); width: 50%;">
+  <div class="modal-dialog modal-dialog-centered" role="">
     <div class="modal-content">
    
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Suggestion</h5>
 
       </div>
-      <div class="modal-body">
+      <div class="">
         <textarea class="form-control" required id="suggestion-admin"></textarea>
         <i id="not-empty-admin-suggestion">Please Eneter the suggestion</i>
       </div>
@@ -155,6 +223,7 @@ if ($row->approved_task == 1) {
     </div>
   </div>
 </div>
+
 <script>
   $(document).ready(function(){
     //to deapproved
@@ -162,17 +231,21 @@ if ($row->approved_task == 1) {
     $(document).on('click', '.disapproved', function(){
      // alert($(this).attr('id'));
      idi = $(this).attr('id');
+     $('#suggestion-admin').val(null);
       $('#suggestion-task-modal').trigger('click');
     });
     $('#save-changes').click(function(){
+
       if($('#suggestion-admin').val()!=''){
-        $('#not-empty-admin-suggestion').css('display', 'none');
-      myswalfunction(idi);
-      $('#close-modal-save').trigger('click');
+            $('#not-empty-admin-suggestion').css('display', 'none');
+            myswalfunction(idi);
+            $('#close-modal-save').trigger('click');
     }
     else{
       $('#not-empty-admin-suggestion').css('display', 'block');
+      $('#suggestion-admin').val(null);
     }
+
     });
     function myswalfunction(id){
       Swal.fire({
@@ -215,7 +288,7 @@ if ($row->approved_task == 1) {
     });*/
     $('span').on('click', function(){
       //alert($(this).attr('id'));
-      $('.modal-body').append($(this).attr('id'));
+      $('#descriptionModal .modal-body').append($(this).attr('id'));
       $('#modal-desc').trigger('click');
 
     });
@@ -258,7 +331,26 @@ if ($row->approved_task == 1) {
 
       //remove modal body text after close
       $('.remove-modal-body-content').click(function(){
-        $('.modal-body').html('');
+        $('#descriptionModal .modal-body').html('');
       });
       });
+
+  /*conter js*/
+
+  $(document).ready(function() {
+
+$('.counter').each(function () {
+$(this).prop('Counter',0).animate({
+Counter: $(this).text()
+}, {
+duration: 500,
+easing: 'swing',
+step: function (now) {
+$(this).text(Math.ceil(now));
+}
+});
+});
+
+});
+  /*end counter js*/
 </script>

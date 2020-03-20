@@ -5,47 +5,13 @@
     }
 </style>
 <div class="container-fluid mt-1">
-<!-- filter -->
-<!-- <form class="form-inline" action="<?php //echo base_url() .adminpath .'/Dashboard/filterData'; ?>" method="post">
-        <select class="form-control" name="field">
-            <option selected="selected" disabled="disabled" value="">Filter By</option>
-            <option value="Intern_Id<">Intern_Id</option>
-            <option value="Name">Name</option>
-            <option value="Domain">Domain</option>
-        </select>
-        <input class="form-control" type="text" name="search" value="" placeholder="Search...">
-        <input class="btn btn-default" type="submit" name="filter" value="Go">
-</form> -->
-
-<div class="container">  
-<h1 align="right"><button type="button";  class="btn btn-warning"><i class='fas fa-download'>Generate Report</i>
- </h1></button>         
-  </div>  
-
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-filter-new-data" aria-expanded="false" aria-controls="collapse-filter-new-data" id="filter-data-new">
-    Filter Intern List
-  </button>
-<div class="collapse fade" id="collapse-filter-new-data">
-<form method="post" class="form-inline" action="<?php echo base_url() .adminpath .'/Dashboard/filter_data_intern'; ?>">
-  <label for="typeFilter">Choose Type of Filter: </label>
-
-<select  name="typeFilter">
-  <option value="user_id">Intern_Id</option>
-  <option value="name">Name</option>
-  <option value="domain">Domain</option>
-</select> &nbsp;&nbsp;
-<input type="text" name="FilterData" placeholder="Enter the filter data" id="filter-input" required="">&nbsp;&nbsp;
-<button type="submit" class="btn btn-danger">Search</button>
-</form>
-</div>
-
-
+  <a href="<?php echo base_url().adminpath ?>/Dashboard/intern_list" class="btn btn-primary" role="button">Show All</a>
   <!-- table -->
 <div class="row mt-2">
   <div class="col-12">
     
   
-<table class="table text-center table-bordered table-hover"; id="myTable">
+<table class="table table-bordered" id="myTable">
   <thead>
     <tr>
       <th scope="col">Intern_ID</th>
@@ -116,25 +82,30 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">TASK ASSIGN</h4>
+        <h4 class="modal-title">Task Assign</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
+        <div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <p class="h4 text-primary text-center">Intern Id <span class="text-danger"> <input type="text" name="" value="" id="modal-user-id" readonly class=" border text-danger "></span> </p>
+    </div>
     <div class="container">
     <div class="row mt-2 mb-5">
-      <div class="col ml-2 text-right"> 
-     <input value="" id="modal-user-id" readonly class="text-danger"></p>
-    </div>
        <form class="container">
-        <div class="col-12 ml-2 text-left">
-          <label class="text-primary  font-weight-bold h4">Task Heading</label>
+        <div class="col-12 ml-2 text-center">
+          <label class="text-primary  font-weight-bold h4">Topic</label>
           <input type="text" name="" class="form-control" placeholder="Enter the Topic"  required id="topic">
         </div>
-        <div class="col-12 ml-2 text-left">
-          <label class="text-primary font-weight-bold h3">Task Description</label>
+        <div class="col-12 ml-2 text-center">
+          <label class="text-danger font-weight-bold h3">Description</label>
           <textarea class="form-control" placeholder="Enter the Description" required id="description"></textarea>
+        </div>
+        <div class="col-12 text-center">
+          <button class="btn btn-outline-primary mt-3" role="submit" type="submit" id="task-assign-data">Task Assign</button>
         </div>
       </form>
     </div>
@@ -142,14 +113,9 @@
       </div>
 
       <!-- Modal footer -->
-        <div class="modal-footer">
-          <div class="col ml-2 text-left">
-        <button type="button" class="btn btn-warning">RESET</button> </div>
-           <div class="col ml-2 text-center">
-        <button type="button" class="btn btn-primary" role="submit" type="submit" id="task-assign-data">SUBMIT</button></div>
-          <div class="col ml-2 text-right">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button></div>
-        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="close-modal">Close</button>
+      </div>
 
     </div>
   </div>
@@ -261,9 +227,11 @@ $(document).on("click", ".open-AddBookDialog", function () {
   }
 });
    }); 
-
- 
 });
+
+/*$(document).on('click', '.show-documents-intern', function(){
+    
+   });*/
 </script>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -292,6 +260,9 @@ $(document).on("click", ".open-AddBookDialog", function () {
                     Close: function () {
                         $(this).dialog('close');
                     }
+                 /*  BigScreen :function(){
+                    '<a href = '"+fileName+"'>here</a>';
+                   }*/
                 },
                 open: function () {
                     var object = "<object data='"+fileName+"' type=\"application/pdf\" width=\"500px\" height=\"300px\">";

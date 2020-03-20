@@ -1,32 +1,14 @@
 
-
 <div class="container-fluid mt-1">
+  <!-- show all the school list -->
+  <a href="<?php echo base_url().adminpath ?>/Dashboard/intern_school" class="btn btn-primary" role="button">Show All</a>
 <!-- filter -->
- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-filter-new-data" aria-expanded="false" aria-controls="collapse-filter-new-data" id="filter-data-new">
-    Filter Intern List
-  </button>
-<div class="collapse fade" id="collapse-filter-new-data">
-<form method="post" class="form-inline" action="<?php echo base_url() .adminpath .'/Dashboard/filter_data_intern_school_list'; ?>">
-  <label for="typeFilter">Choose Type of Filter: </label>
 
-
-<select  name="typeFilter">
-  <option value="user_id">Intern_Id</option>
-  <option value="sName">School Name</option>
-  <option value="sAddress">School Address</option>
-  <option value="sContact">School Contact</option>
-  <option value="sPerson">School Person</option>
-  <option value="add_time">Adding Time of School</option>
-</select> &nbsp;&nbsp;
-<input type="text" name="FilterData" placeholder="Enter the filter data" id="filter-input" required="">&nbsp;&nbsp;
-<button type="submit" class="btn btn-danger">Search</button>
-</form>
-</div>
   <!-- table -->
 <div class="row mt-2">
   <div class="col-12">
     
-
+  
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -44,6 +26,7 @@
        foreach($fetch_data->result() as $row){
         ?>
         <tr>
+          <th class="text-primary" scope="row"><?php echo $row->user_id; ?></th>
           <td><?php echo $row->sName; ?></td>
           <td><?php echo $row->sContact; ?></td>
           <td><?php echo $row->sPerson; ?></td>

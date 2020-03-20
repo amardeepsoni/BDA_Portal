@@ -36,7 +36,7 @@ class Dashboard_Model extends CI_Model
 	}
 	public function fetch_tasks($u_id)
 	{
-		return $this->db->select('*')->from('intern_task')->where('user_id', $u_id)->get()->result();
+		return $this->db->select('*')->from('intern_task')->where('history','0')->where('user_id', $u_id)->get()->result();
 	}
 	public function task_completed($id)
 	{
@@ -86,6 +86,8 @@ class Dashboard_Model extends CI_Model
 	{
 		$this->db->set('response', $message);
 		$this->db->set('completed', '1');
+		$this->db->set('disapproved', '0');
+		$this->db->set('seen', '0');
 		$this->load->helper('date');
 		date_default_timezone_set('Asia/Kolkata');
 		$this->db->set('complete_time', date("Y-m-d H:i:s"));
@@ -128,30 +130,21 @@ class Dashboard_Model extends CI_Model
 	}
 	public function updateTasks($id)
 	{
-		$this->db->select('*')->from('intern_task');
+		$this->db->set('history', '1');
 		$this->load->helper('date');
 		date_default_timezone_set('Asia/Kolkata');
 		$time =  date("Y-m-d H:i:s", strtotime('-24 hour', strtotime(date("Y-m-d H:i:s"))));
 		$this->db->where('complete_time<=', $time);
 		$this->db->where('approved_task', '1');
-		$this->db->where('user_id',$id);
-		$query_tasks = $this->db->get();
-		$count = $query_tasks->num_rows();
-		$result = $query_tasks->result();
-		// print_r($result);
-		while ($count) {
-			$count--;
-			$result = $query_tasks->result();
-			$out = $result[$count];
-			if ($this->db->insert('task_history', $out)) {
-				if ($this->db->where('id', $out->id)->delete('intern_task'))
-					return true;
-			} else {
-				return false;
-			}
-		}
+		$this->db->where('user_id', $id);
+		$this->db->update('intern_task');
 	}
-	public function task_history($id){
-		return $this->db->select('*')->from('task_history')->where('user_id', $id)->get()->result_array();
+	public function task_history($id)
+	{
+		return $this->db->select('*')->from('intern_task')->where('history','1')->where('user_id', $id)->get()->result_array();
+	}
+	public function task_seen($id)
+	{
+		$this->db->set('seen', '1')->where('id', $id)->update('intern_task');
 	}
 }
