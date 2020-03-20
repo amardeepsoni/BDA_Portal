@@ -9,16 +9,102 @@
 
 
  -->
+
  <style>
+  
+  /*counter css start*/
+
+.counter-box {
+    display: block;
+    background: #f6f6f6;
+    padding: 20px 20px 37px;
+    text-align: center
+}
+
+.counter-box p {
+    margin: 1px auto;
+    padding: 0;
+    color: #909090;
+    font-size: 18px;
+    font-weight: 500
+}
+
+.counter-box i {
+    font-size: 60px;
+    margin: 0 0 15px;
+    color: #d2d2d2
+}
+
+.counter {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: #666;
+    line-height: 28px
+}
+
+.counter-box.colored {
+    background: #3acf87
+}
+
+.counter-box.colored p,
+.counter-box.colored i,
+.counter-box.colored .counter {
+    color: #fff
+}
+/*counter css end*/
   #not-empty-admin-suggestion{
     display: none;
     color:red;
   }
 </style>
 <div class="row">
-  <div class="col-12">
+  <div class="col-2">
     <p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php echo $_GET['id']; ?></u></p>
   </div>
+ </div>
+
+     
+     <?php if($detail->num_rows()>0){
+        $comp = 0;
+        $appr = 0;
+        foreach ($detail->result() as $value) {
+          if($value->completed==1){
+            $comp++;
+          }
+          if($value->approved_task==1){
+            $appr++;
+          }
+        }
+     } 
+     else{
+      $comp = 0;
+      $appr = 0;
+     }
+
+      ?>
+ 
+
+
+<!-- counter -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class=""> <i class="counter"><?php  echo $detail->num_rows(); ?></i>
+                <p>Total Tasks</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class=""> <i class="counter"><?php echo $appr; ?></i>
+                <p>Approved Tasks</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class=""><i class="counter"><?php echo $comp; ?></i>
+                <p>Completed Tasks</p>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container-fluid mt-0">
 
@@ -169,6 +255,7 @@ if ($row->approved_task == 1) {
     </div>
   </div>
 </div>
+
 <script>
   $(document).ready(function(){
     //to deapproved
@@ -279,4 +366,23 @@ if ($row->approved_task == 1) {
         $('#descriptionModal .modal-body').html('');
       });
       });
+
+  /*conter js*/
+
+  $(document).ready(function() {
+
+$('.counter').each(function () {
+$(this).prop('Counter',0).animate({
+Counter: $(this).text()
+}, {
+duration: 500,
+easing: 'swing',
+step: function (now) {
+$(this).text(Math.ceil(now));
+}
+});
+});
+
+});
+  /*end counter js*/
 </script>
