@@ -53,7 +53,7 @@ class Dashboard extends CI_Controller {
 		$config = [
 			'base_url' => base_url('admin/Dashboard/intern_school'),
 			'per_page' => 10,
-			'total_rows' => $this->dm->getRowSchool()
+			'total_rows' => $this->dm->getRowSchoolFilter()
 		];
 		$this->pagination->initialize($config);
 		
@@ -127,6 +127,35 @@ class Dashboard extends CI_Controller {
 		$data['fetch_data'] = $this->dm->getDataFilter($config['per_page'], $this->uri->segment(4), $data);
 		$this->load->View('header');
 		$this->load->view(adminpath . '/intern_list_filter.php', $data);
+		$this->load->View('footer');
+	}
+
+	public function filter_data_intern_school_list(){
+		if(isset($_POST['typeFilter']) AND isset($_POST['FilterData'])){
+			$this->session->set_userdata('filter_status',$this->input->post('typeFilter'));
+			$this->session->set_userdata('value_status',$this->input->post('FilterData'));
+			$data['type'] = $this->session->userdata('filter_status');
+            $data['value'] = $this->session->userdata('value_status');
+	}
+	else{
+			if($this->session->userdata('filter_status')!='')
+            {
+                $data['type'] = $this->session->userdata('filter_status');
+                $data['value'] = $this->session->userdata('value_status');
+            }
+		}
+		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
+		$this->load->library('pagination');
+		$config = [
+			'base_url' => base_url('admin/Dashboard/filter_data_intern'),
+			'per_page' => 10,
+			'total_rows' => $this->dm->getRowsFilterSchool($data)
+		];
+		$this->pagination->initialize($config);
+		
+		$data['fetch_data'] = $this->dm->getDataFilterSchool($config['per_page'], $this->uri->segment(4), $data);
+		$this->load->View('header');
+		$this->load->view(adminpath . '/intern_list_filter_school.php', $data);
 		$this->load->View('footer');
 	}
 

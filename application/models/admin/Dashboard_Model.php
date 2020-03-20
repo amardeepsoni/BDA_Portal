@@ -80,6 +80,10 @@ class Dashboard_Model extends CI_Model {
 		return ($this->db->get('intern_school'));
 	}
 
+	public function getRowSchoolFilter(){
+		return ($this->db->get('intern_school')->num_rows());
+	}
+
 	public function getNotification(){
 		 $date = new DateTime("now");
 
@@ -105,8 +109,17 @@ class Dashboard_Model extends CI_Model {
 		return ($this->db->like($data['type'], $data['value'])->get('intern_register')->num_rows());
 	}
 
+	public function getRowsFilterSchool($data){
+		return ($this->db->like($data['type'], $data['value'])->get('intern_school')->num_rows());
+	}
+
 	public function getDataFilter($limit, $offset, $data){
 		$sql = $this->db->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_register');
+		return $sql;
+	}
+
+	public function getDataFilterSchool($limit, $offset, $data){
+		$sql = $this->db->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_school');
 		return $sql;
 	}
 	
