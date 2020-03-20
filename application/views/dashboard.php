@@ -23,18 +23,17 @@ if (!$this->session->userdata("intern")['user_id']) {
         }
     </style>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <?php foreach ($tasks as $task) {
-	$task_disapprove = $task->disapproved;
 
-	if ($task_disapprove == 1) {?>
-
-    <script type="text/javascript">
-       swal("Disapproved by admin", "Please check your message...", "warning");
-    </script>
-    <?php }
-	break;}?>
 
 </head>
+    <?php foreach ($tasks as $task) {
+
+	if ($task->disapproved == 1) {?>
+
+    <script type="text/javascript">
+       swal("Disapproved by admin", "Please check your message...");
+    </script>
+    <?php }}?>
 <div class="container-fluid" style="margin: 0;padding: 0;">
     <?php
 $this->load->model('Dashboard_Model', 'dm');
