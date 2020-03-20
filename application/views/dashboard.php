@@ -22,6 +22,18 @@ if (!$this->session->userdata("intern")['user_id']) {
             background-color: #bee5eb;
         }
     </style>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php foreach ($tasks as $task) {
+	$task_disapprove = $task->disapproved;
+
+	if ($task_disapprove == 1) {?>
+
+    <script type="text/javascript">
+       swal("Disapproved by admin", "Please check your message...", "warning");
+    </script>
+    <?php }
+	break;}?>
+
 </head>
 <div class="container-fluid" style="margin: 0;padding: 0;">
     <?php
@@ -35,7 +47,7 @@ if ($query_out['0']->upload_status) {
                     <div class="col-sm-12">
                         <div class="row p-3">
                             <div class="col-sm-3 p-3" style=" ">
-                                <div class="card" style="background: #eee;">
+                                <div class="card" style="background: #eee;height: 200px;">
                                     <div class="card-body bg-white">
 
                                         <div style="width: 100%;display: flex;justify-content: space-between;">
@@ -55,11 +67,11 @@ if ($query_out['0']->upload_status) {
                                 </div>
                             </div>
                             <div class="col-sm-3 p-3" style="">
-                                <div class="card" style="background: #eee; height:150px;">
+                                <div class="card" style="background: #eee; height: 200px;">
                                     <a class="card-body  bg-white" style="text-decoration: none;">
                                         <div style="width: 100%;display: flex;justify-content: space-between;">
                                             <div class="text-secondary font-weight-bold">List your registered school!</div>
-                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-user' style='font-size:24px; color: white;'></i></div>
+                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-list-alt' style='font-size:24px; color: white;'></i></div>
                                         </div>
                                         <button type="button" data-toggle="modal" data-target="#schoolModal" class="btn-success">Add School</button>
                                         <button type="button" onclick="window.location.href='dashboard/viewSchool'" class="btn-info">View School</button>
@@ -74,7 +86,7 @@ $this->load->model('Dashboard_Model', 'dm');
                             </div>
 
                             <div class="col-sm-3 p-3">
-                                <div class="card" style="background: #eee;">
+                                <div class="card" style="background: #eee;height: 200px;">
                                     <div class="card-body  bg-white">
                                         <div style="width: 100%;display: flex;justify-content: space-between;">
                                             <div class="text-secondary font-weight-bold">Referral Id</div>
@@ -85,12 +97,13 @@ $this->load->model('Dashboard_Model', 'dm');
                                         </div>
 
                                         <div class="" style="width: 100%;">
+                                            <a class="btn btn-success"  href="https://api.whatsapp.com/send?phone=+91<?php echo $this->session->userdata('intern')['mobile_no']; ?>&text=Intellify career referal : <?php echo $this->session->userdata('intern')['referral_id']; ?>" target="_blank"><i class='fab fa-whatsapp' style='font-size:20px'></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-3 p-3" style="">
-                                <div class="card" style="background: #eee;height:150px;">
+                                <div class="card" style="background: #eee;height: 200px;">
                                     <div class="card-body  bg-white">
                                         <div style="width: 100%;display: flex;justify-content: space-between;">
                                             <div class="text-secondary font-weight-bold">Your Signed Doc</div>
@@ -121,11 +134,11 @@ $this->load->model('Dashboard_Model', 'dm');
                                 <form action="dashboard/uploaded_school" method="POST">
                                     <div class="form-group">
                                         <label for="name">School Name</label>
-                                        <input required type="text" class="form-control" id="name" name="name" aria-describedby="Help" placeholder="Enter School Name">
+                                        <input required type="text" class="form-control" id="name" pattern="[A-Za-z ]{5,20}" name="name" aria-describedby="Help" placeholder="Enter School Name">
                                     </div>
                                     <div class="form-group">
                                         <label for="school address"> School Address</label>
-                                        <input required type="text" class="form-control" id="school address" name="address" aria-describedby="Help" placeholder="Enter school address">
+                                        <input required type="text" class="form-control" id="school address" pattern="[A-Za-z-0-9, ]{5,30}" name="address" aria-describedby="Help" placeholder="Enter school address">
                                     </div>
                                     <div class="form-group">
                                         <label for="contact">Contact</label>
@@ -133,7 +146,7 @@ $this->load->model('Dashboard_Model', 'dm');
                                     </div>
                                     <div class="form-group">
                                         <label for="cPerson">Contact Person Name</label>
-                                        <input required type="text" class="form-control" id="cPerson" name="cPerson" aria-describedby="Help" placeholder="Enter contact person's name">
+                                        <input required type="text" class="form-control" id="cPerson" pattern="[A-Za-z ]{5,20}" name="cPerson" aria-describedby="Help" placeholder="Enter contact person's name">
                                     </div>
                                     <div class="form-group">
                                         <label for="number">Number of students regitered:</label>
@@ -193,6 +206,9 @@ $this->load->model('Dashboard_Model', 'dm');
                                         <?php }?>
                                     </div>
                                 </div>
+                                <div class="card-footer text-right px-4">
+                                    <a href="dashboard/taskHistory" class="btn btn-outline-dark"> History</a>
+                                </div>
                             </div>
                         </div>
                         <!-- Modal -->
@@ -209,7 +225,7 @@ $this->load->model('Dashboard_Model', 'dm');
                                         <form action="dashboard/upload_task/<?php echo $list->id ?>" method="POST">
                                             <div id="task_sol" class="modal-body">
                                                 <label for="task_sol">Enter your message below:</label>
-                                                <textarea id="task_sol" rows="6" cols="45" name="solution" required></textarea>
+                                                <textarea pattern="[A-Za-z. ]{5,20}" id="task_sol" rows="6" cols="45" name="solution" required></textarea>
                                             </div>
                                             <button type="submit" class="m-0 btn-block p-3 btn-success">Submit Task</button>
                                         </form>

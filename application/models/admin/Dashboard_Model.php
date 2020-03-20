@@ -52,17 +52,19 @@ class Dashboard_Model extends CI_Model {
 
 	public function approved_task($id){
 		$ap = 1;
-		$st = array('approved_task'=>$ap);
+		$zero = 0;
+		$st = array('approved_task'=>$ap, 'disapproved'=>$zero);
 		$this->db->where('id', $id);
 		$this->db->update('intern_task', $st); 
 		return $id; //not used
 	}
 
-	public function disapproved_task($id){
+	public function disapproved_task($data){
 		$comp = 0;
 		$app = 0;
-		$st = array('approved_task'=>$app, 'complete_time'=>$comp, 'completed'=>$comp);
-		$this->db->where('id', $id);
+		$one = 1;
+		$st = array('approved_task'=>$app, 'complete_time'=>$comp, 'completed'=>$comp, 'suggestion'=>$data['suggestion'], 'disapproved'=>$one);
+		$this->db->where('id', $data['id']);
 		$this->db->update('intern_task', $st); 
 		return $id; //not used
 	}
@@ -91,4 +93,16 @@ class Dashboard_Model extends CI_Model {
 		 $query = $this->db->get();
 		 return $query;
 	}
+
+
+	public function get_filter_intern_data($data){
+		$query = $this->db->like($data['type'], $data['value'])->get('intern_register');
+		return $query;
+	}
+	
+	/*public function getDataWhereLike($field, $search)
+	{
+	    $query = $this->db->like($field, $search)->orderBy('id', 'asc')->get('intern_register');
+	    return $query->result();
+	}*/
 }

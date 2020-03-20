@@ -105,7 +105,14 @@ class Dashboard_Model extends CI_Model
 	public function return_school($id)
 	{
 		$count['number'] = $this->db->select('*')->from('intern_school')->where('user_id', $id)->get()->num_rows();
-		$count['info'] = $this->db->select('*')->from('intern_school')->where('user_id', $id)->get()->result();
+
+		$this->db->select('sName');
+		$this->db->select('sAddress');
+		$this->db->select('sContact');
+		$this->db->select('sPerson');
+		$this->db->select('no_of_students');
+		$this->db->select('add_time');
+		$count['info'] = $this->db->from('intern_school')->where('user_id', $id)->get()->result_array();
 		return $count;
 	}
 	public function return_intern($id)
@@ -118,5 +125,33 @@ class Dashboard_Model extends CI_Model
 		$this->db->select('email');
 		$this->db->select('domain');
 		return $this->db->from('intern_register')->where('user_id', $id)->get()->result();
+	}
+	public function updateTasks($id)
+	{
+		$this->db->select('*')->from('intern_task');
+		$this->load->helper('date');
+		date_default_timezone_set('Asia/Kolkata');
+		$time =  date("Y-m-d H:i:s", strtotime('-24 hour', strtotime(date("Y-m-d H:i:s"))));
+		$this->db->where('complete_time<=', $time);
+		$this->db->where('approved_task', '1');
+		$this->db->where('user_id',$id);
+		$query_tasks = $this->db->get();
+		$count = $query_tasks->num_rows();
+		$result = $query_tasks->result();
+		// print_r($result);
+		while ($count) {
+			$count--;
+			$result = $query_tasks->result();
+			$out = $result[$count];
+			if ($this->db->insert('task_history', $out)) {
+				if ($this->db->where('id', $out->id)->delete('intern_task'))
+					return true;
+			} else {
+				return false;
+			}
+		}
+	}
+	public function task_history($id){
+		return $this->db->select('*')->from('task_history')->where('user_id', $id)->get()->result_array();
 	}
 }

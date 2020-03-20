@@ -94,10 +94,31 @@ class Dashboard extends CI_Controller {
 	}	
 
 	public function disapprovedTask(){
-		$id = $this->input->post('id');
+		$data['id'] = htmlspecialchars($this->input->post('id'));
+		$data['suggestion'] = htmlspecialchars($this->input->post('sugg'));
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
-		$res = $this->dm->disapproved_task($id);
+		$res = $this->dm->disapproved_task($data);
 		echo $res;
-	}	
+	}
+
+/*	public function filterData(){
+        $filter = $this->input->post('filter');
+        $field  = $this->input->post('field');
+        $search = $this->input->post('search');
+
+        if (isset($filter) && !empty($search)) {
+            $this->load->model(adminpath . '/Dashboard_Model', 'dm');
+            $data['filter_data'] = $this->dm->getDataWhereLike($field, $search);
+        } else {
+            $this->load->model(adminpath . '/Dashboard_Model', 'dm');
+            $data['filter_data'] = $this->dm->getDataFilter();
+        }
+
+        $data['module']    = 'admin';
+        $data['view_file'] = 'students/view';
+
+        $this->load->module('templates');
+        $this->templates->admin($data);    
+	}*/	
 
 }
