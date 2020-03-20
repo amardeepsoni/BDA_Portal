@@ -185,10 +185,10 @@ if (!$this->session->userdata("intern")['user_id']) {
                                                                 <?php echo $list->topic; ?>
                                                             </div>
                                                             <?php if ($list->disapproved) {
-                                                                echo '      <span class="badge badge-pill badge-danger">Disapproved Task</span>';
+                                                                echo '&nbsp;&nbsp;<span class="badge badge-pill badge-danger">Disapproved Task</span>';
                                                             }
                                                             if ($list->seen) {
-                                                                echo '      <span class="badge badge-pill badge-info">Task seen</span>';
+                                                                echo '&nbsp;&nbsp;<span class="badge badge-pill badge-info">Task seen</span>';
                                                             } ?>
 
                                                         </div>

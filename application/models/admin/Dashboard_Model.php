@@ -100,6 +100,25 @@ class Dashboard_Model extends CI_Model {
 		return $query;
 	}
 	
+	public function today_tasks(){
+		$this->load->helper('date');
+		date_default_timezone_set('Asia/Kolkata');
+		// $time =  date("Y-m-d H:i:s", strtotime('-24 hour', strtotime(date("Y-m-d H:i:s"))));
+		$time = date("Y-m-d");
+		$today = $time." 00:00:00";
+		// echo $time;
+		$result = $this->db->select('*')->from('intern_task')->where('add_time >=',$time)->get()->result_array();
+		// print_r($result);
+		return $result;
+	}
+
+	public function pie_count(){
+		$count['total'] = $this->db->select('*')->from('intern_task')->get()->num_rows();
+		$count['completed'] = $this->db->select('*')->from('intern_task')->where('completed','1')->get()->num_rows();
+		$count['total'] -=$count['completed'];
+		return $count;
+	}
+
 	/*public function getDataWhereLike($field, $search)
 	{
 	    $query = $this->db->like($field, $search)->orderBy('id', 'asc')->get('intern_register');

@@ -6,10 +6,12 @@ class Dashboard extends CI_Controller {
 		if (!$this->session->userdata('admin_login')) {
 			redirect('admin');
 		}
-		//$data['page_title'] = 'Dashboard';
+		// $data['page_title'] = 'Dashboard';
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
 		$data['row'] = $this->dm->getRow();//intern rows
 		$data['rows'] = $this->dm->getRowSchool();//school rows
+		$data['todays_task']=$this->dm->today_tasks(); //today task table
+		$data['counts'] = $this->dm->pie_count();
 		$data['notification'] = $this->dm->getNotification();//notification rows
 		$this->load->View('header');
 		$this->load->view(adminpath . '/dashboard.php', $data);
@@ -121,4 +123,11 @@ class Dashboard extends CI_Controller {
         $this->templates->admin($data);    
 	}*/	
 
+	public function demo()
+	{
+		# code...
+		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
+		$result = $this->dm->pie_count();
+		print_r($result);
+	}
 }
