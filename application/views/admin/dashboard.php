@@ -15,13 +15,8 @@ a{
         max-width:none !important;
 
     }
-#notific{
-  position: absolute;
-  top: 6.2%;
-  left: 78%;
-}
+
 </Style>
-<i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"><span class="h-6 text-danger"><?php echo $notification->num_rows(); ?> </span></i>
 <div class="container mt-1">
 <!--   <div class="row">
      <div class="col-12 text-right">

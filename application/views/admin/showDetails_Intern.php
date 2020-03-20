@@ -87,12 +87,12 @@ if ($row->approved_task == 1) {
           else{
             if($row->seen==1){
               ?>
-              <td><p class="text-danger">Task Seen</p></td>
+              <td><p class="text-success">Task Seen</p></td>
             <?php
             }
             else{
             ?>
-              <td><p class="text-danger">Task Not Completed</p></td>
+              <td><p class="text-danger">Task Not Seen</p></td>
             <?php
           }
           }

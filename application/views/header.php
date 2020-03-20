@@ -4,11 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
-  <title>Intellify</title>
-=======
+
+
   <title><?php if ($page_title) {echo $page_title;} else {echo "Career";}?></title>
->>>>>>> 4d6d2ab8d0b4951dde420da95a1750b030b81fc7
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/favlogo.png" type="image/png" sizes="16x16">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -90,3 +88,12 @@ if ($this->session->userdata('admin_login')) {?>
       </div>
     </div>
   </nav>
+
+  <style>
+  #notific{
+  position: absolute;
+  top: 6.2%;
+  left: 78%;
+}
+</Style>
+<i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"><span class="h-6 text-danger"><?php echo $notification->num_rows(); ?> </span></i>
