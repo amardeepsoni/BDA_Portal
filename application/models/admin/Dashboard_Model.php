@@ -72,6 +72,7 @@ class Dashboard_Model extends CI_Model {
 	public function getRows(){
 		return ($this->db->get('intern_register')->num_rows());
 	}
+
 	public function getRow(){
 		return ($this->db->get('intern_register'));
 	}
@@ -100,9 +101,13 @@ class Dashboard_Model extends CI_Model {
 		return $query;
 	}
 	
-	/*public function getDataWhereLike($field, $search)
-	{
-	    $query = $this->db->like($field, $search)->orderBy('id', 'asc')->get('intern_register');
-	    return $query->result();
-	}*/
+	public function getRowsFilter($data){
+		return ($this->db->like($data['type'], $data['value'])->get('intern_register')->num_rows());
+	}
+
+	public function getDataFilter($limit, $offset, $data){
+		$sql = $this->db->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_register');
+		return $sql;
+	}
+	
 }
