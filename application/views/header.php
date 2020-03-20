@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
   <title><?php if ($page_title) {echo $page_title;} else {echo "Career";}?></title>
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/favlogo.png" type="image/png" sizes="16x16">
   <!-- Latest compiled and minified CSS -->
@@ -96,4 +95,9 @@ if ($this->session->userdata('admin_login')) {?>
   left: 78%;
 }
 </Style>
+<?php if(isset($notification)){
+  ?>
 <i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"><span class="h-6 text-danger"><?php echo $notification->num_rows(); ?> </span></i>
+<?php
+}
+?>
