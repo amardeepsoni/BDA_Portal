@@ -10,6 +10,7 @@ class Dashboard extends CI_Controller {
 		// session_start();
 		$_SESSION['Quiz'] = 5;
 		$out['page_title'] = 'Intern | Dashboard';
+
 		$this->dm->updateTasks($this->session->userdata("intern")['user_id']);
 		$out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
 		$out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
@@ -304,6 +305,11 @@ class Dashboard extends CI_Controller {
 		$this->load->View('header');
 		$this->load->View('intern/task_history', $result);
 		$this->load->View('footer');
+	}
+	public function taskSeen($id) {
+		$this->load->model('Dashboard_Model', 'dm');
+		$this->dm->task_seen($id);
+		redirect('intern/dashboard');
 	}
 
 }

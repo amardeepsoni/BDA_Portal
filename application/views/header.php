@@ -52,10 +52,10 @@
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<?php echo base_url(); ?>"> Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url(); ?>">About</a>
+          <a class="nav-link" href="<?php echo base_url(); ?>"> About Us </a>
         </li>
       </ul>
 
@@ -73,10 +73,15 @@
           </div>
         <?php }
 if ($this->session->userdata('admin_login')) {?>
+  <div class="dropdown" style=" margin-right: 90px;">
           <a href="<?php echo base_url(); ?>admin/Dashboard" class="btn btn-outline-info nav-link">
-            <font style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('admin_login')['name']; ?> </font>Profile
+            <font style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('admin_login')['name']; ?> </font>Admin
           </a>&nbsp;
-          <a href="<?php echo base_url(); ?>admin/Login/logout" class="btn btn-outline-danger nav-link">Log Out</a>&nbsp;
+          <div class="dropdown-content" aria-labelledby="dropdownMenuLink" style="background:#fff;z-index: 9999;">
+            <a class="dropdown-item" href="#">Support</a><hr>
+          <a class="dropdown-item" href="<?php echo base_url(); ?>admin/Login/logout" class="btn btn-outline-danger nav-link">Log Out</a>&nbsp;
+          </div>
+          </div>
         <?php }?>
       </div>
     </div>

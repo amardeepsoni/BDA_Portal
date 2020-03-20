@@ -30,10 +30,15 @@ if (!$this->session->userdata("intern")['user_id']) {
 
 	if ($task->disapproved == 1) {?>
 
-    <script type="text/javascript">
-       swal("Disapproved by admin", "Please check your message...");
-    </script>
-    <?php }}?>
+            <script type="text/javascript">
+                swal("Disapproved by admin", "Please check your message...", "warning");
+            </script>
+    <?php }
+	break;
+}?>
+
+</head>
+
 <div class="container-fluid" style="margin: 0;padding: 0;">
     <?php
 $this->load->model('Dashboard_Model', 'dm');
@@ -96,7 +101,7 @@ $this->load->model('Dashboard_Model', 'dm');
                                         </div>
 
                                         <div class="" style="width: 100%;">
-                                            <a class="btn btn-success"  href="https://api.whatsapp.com/send?phone=+91<?php echo $this->session->userdata('intern')['mobile_no']; ?>&text=Intellify career referal : <?php echo $this->session->userdata('intern')['referral_id']; ?>" target="_blank"><i class='fab fa-whatsapp' style='font-size:20px'></i></a>
+                                            <a class="btn btn-success" href="https://api.whatsapp.com/send?phone=+91<?php echo $this->session->userdata('intern')['mobile_no']; ?>&text=Intellify career referal : <?php echo $this->session->userdata('intern')['referral_id']; ?>" target="_blank"><i class='fab fa-whatsapp' style='font-size:20px'></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -285,6 +290,11 @@ $this->load->model('Dashboard_Model', 'dm');
         <?php foreach ($tasks as $list) {?>
             $("#list-<?php echo $list->id ?>").click(function() {
                 $("#task_description<?php echo $list->id ?>").toggle();
+
+                <?php
+if (!$list->seen) {?>
+                    window.location.href = "dashboard/taskSeen/<?php echo $list->id ?>";
+                <?php }?>
             });
         <?php }?>
     });
