@@ -306,5 +306,10 @@ class Dashboard extends CI_Controller {
         $this->load->View('header');
         $this->load->View('intern/task_history', $result);
         $this->load->View('footer');
-    }
+	}
+	public function taskSeen($id){
+		$this->load->model('Dashboard_Model', 'dm');
+		$this->dm->task_seen($id);
+		redirect('intern/dashboard');
+	}
 }
