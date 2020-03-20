@@ -72,11 +72,16 @@ class Dashboard_Model extends CI_Model {
 	public function getRows(){
 		return ($this->db->get('intern_register')->num_rows());
 	}
+
 	public function getRow(){
 		return ($this->db->get('intern_register'));
 	}
 	public function getRowSchool(){
 		return ($this->db->get('intern_school'));
+	}
+
+	public function getRowSchoolFilter(){
+		return ($this->db->get('intern_school')->num_rows());
 	}
 
 	public function getNotification(){
@@ -124,4 +129,22 @@ class Dashboard_Model extends CI_Model {
 	    $query = $this->db->like($field, $search)->orderBy('id', 'asc')->get('intern_register');
 	    return $query->result();
 	}*/
+	public function getRowsFilter($data){
+		return ($this->db->like($data['type'], $data['value'])->get('intern_register')->num_rows());
+	}
+
+	public function getRowsFilterSchool($data){
+		return ($this->db->like($data['type'], $data['value'])->get('intern_school')->num_rows());
+	}
+
+	public function getDataFilter($limit, $offset, $data){
+		$sql = $this->db->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_register');
+		return $sql;
+	}
+
+	public function getDataFilterSchool($limit, $offset, $data){
+		$sql = $this->db->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_school');
+		return $sql;
+	}
+	
 }

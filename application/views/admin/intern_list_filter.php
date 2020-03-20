@@ -5,25 +5,7 @@
     }
 </style>
 <div class="container-fluid mt-1">
-
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-filter-new-data" aria-expanded="false" aria-controls="collapse-filter-new-data" id="filter-data-new">
-    Filter Intern List
-  </button>
-<div class="collapse fade" id="collapse-filter-new-data">
-<form method="post" class="form-inline" action="<?php echo base_url() .adminpath .'/Dashboard/filter_data_intern'; ?>">
-  <label for="typeFilter">Choose Type of Filter: </label>
-
-<select  name="typeFilter">
-  <option value="user_id">Intern_Id</option>
-  <option value="name">Name</option>
-  <option value="domain">Domain</option>
-</select> &nbsp;&nbsp;
-<input type="text" name="FilterData" placeholder="Enter the filter data" id="filter-input" required="">&nbsp;&nbsp;
-<button type="submit" class="btn btn-danger">Search</button>
-</form>
-</div>
-
-
+  <a href="<?php echo base_url().adminpath ?>/Dashboard/intern_list" class="btn btn-primary" role="button">Show All</a>
   <!-- table -->
 <div class="row mt-2">
   <div class="col-12">
@@ -245,9 +227,11 @@ $(document).on("click", ".open-AddBookDialog", function () {
   }
 });
    }); 
-
- 
 });
+
+/*$(document).on('click', '.show-documents-intern', function(){
+    
+   });*/
 </script>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -276,6 +260,9 @@ $(document).on("click", ".open-AddBookDialog", function () {
                     Close: function () {
                         $(this).dialog('close');
                     }
+                 /*  BigScreen :function(){
+                    '<a href = '"+fileName+"'>here</a>';
+                   }*/
                 },
                 open: function () {
                     var object = "<object data='"+fileName+"' type=\"application/pdf\" width=\"500px\" height=\"300px\">";
