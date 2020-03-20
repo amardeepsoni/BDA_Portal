@@ -41,11 +41,7 @@
 
     }
     .modal-dialog {
-        width: 100% !important;
-        height: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        max-width:none !important;
+        
 
     }
   </style>
@@ -112,7 +108,7 @@ if ($this->session->userdata('admin_login')) {?>
 
 <!-- Modal -->
 <div id="myModal-header" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="width: 100% !important; height: 100% !important; margin: 0 !important;  padding: 0 !important; max-width:none !important;">
 
     <!-- Modal content-->
     <div class="modal-content">
