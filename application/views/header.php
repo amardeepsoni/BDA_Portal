@@ -4,7 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
+  <title>Intellify</title>
+=======
   <title><?php if ($page_title) {echo $page_title;} else {echo "Career";}?></title>
+>>>>>>> 4d6d2ab8d0b4951dde420da95a1750b030b81fc7
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/favlogo.png" type="image/png" sizes="16x16">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -52,10 +56,10 @@
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<?php echo base_url(); ?>"> Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url(); ?>">About</a>
+          <a class="nav-link" href="<?php echo base_url(); ?>"> About Us </a>
         </li>
       </ul>
 
@@ -73,10 +77,15 @@
           </div>
         <?php }
 if ($this->session->userdata('admin_login')) {?>
+  <div class="dropdown" style=" margin-right: 90px;">
           <a href="<?php echo base_url(); ?>admin/Dashboard" class="btn btn-outline-info nav-link">
-            <font style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('admin_login')['name']; ?> </font>Profile
+            <font style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('admin_login')['name']; ?> </font>Admin
           </a>&nbsp;
-          <a href="<?php echo base_url(); ?>admin/Login/logout" class="btn btn-outline-danger nav-link">Log Out</a>&nbsp;
+          <div class="dropdown-content" aria-labelledby="dropdownMenuLink" style="background:#fff;z-index: 9999;">
+            <a class="dropdown-item" href="#">Support</a><hr>
+          <a class="dropdown-item" href="<?php echo base_url(); ?>admin/Login/logout" class="btn btn-outline-danger nav-link">Log Out</a>&nbsp;
+          </div>
+          </div>
         <?php }?>
       </div>
     </div>
