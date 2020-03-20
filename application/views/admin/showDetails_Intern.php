@@ -85,9 +85,16 @@ if ($row->approved_task == 1) {
           <?php
         }
           else{
+            if($row->seen==1){
+              ?>
+              <td><p class="text-danger">Task Seen</p></td>
+            <?php
+            }
+            else{
             ?>
               <td><p class="text-danger">Task Not Completed</p></td>
             <?php
+          }
           }
 }
 		?>
