@@ -21,49 +21,130 @@ a{
   left: 78%;
 }
 </Style>
-<i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"><span class="h-6 text-danger"><?php echo $notification->num_rows(); ?> </span></i>
 <div class="container mt-1">
 <!--   <div class="row">
      <div class="col-12 text-right">
         <i class="fas fa-bell btn btn-link" title="<?php //echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"></i>
       </div>    
   </div> -->
-<div class="row">
-            <div class="col-xl-3 col-md-6 bg-muted mb-2">
-              <a href="<?php echo base_url().adminpath ?>/Dashboard/intern_list" class="custom-card">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body border shadow rounded border-warning">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-muted mb-0 font-weight-bold">Hi Admin</h5>
-                      <span class="h2 font-weight-bold mt-5"><?php echo $row->num_rows(); ?><span class="font-weight-normal ml-3">Intern</span></span>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                  </p>
-                </div>
-              </div>
-            </a>
-            </div>
-            <div class="col-xl-3 col-md-6 bg-muted mb-2">
-              <a href="<?php echo base_url().adminpath ?>/Dashboard/intern_school" class="custom-card">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body border shadow rounded border-warning">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-muted font-weight-bold mb-0">School Registered</h5>
-                      <span class="h2 font-weight-bold mt-5 text-center"><?php echo $rows->num_rows();?></span>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                  </p>
-                </div>
-              </div>
-            </a>
-            </div>
-    </div> 
+  <br> <br>  
+ <h1 align="right"><button type="button";  class="btn btn-warning"><i class='fas fa-download'>Generate Report</i>
+ </h1></button>
+ <br> <br>
+<div class="container">
+  
+  <div class="card-columns"><a href="<?php echo base_url().adminpath ?>/Dashboard/intern_list" class="custom-card">
+    <div class="card bg-info">
+      <div class="card-body text-center">
+        <p class="card-text">Total Interns</p><span class="h2 font-weight-bold mt-5"><?php echo $row->num_rows(); ?><span class="font-weight-normal ml-3"></span></span>
+      </div>
+    </div></a>
+        <a href="<?php echo base_url().adminpath ?>/Dashboard/intern_school" class="custom-card"><div class="card bg-warning">
+      <div class="card-body text-center">
+        <p class="card-text">Total School Registered</p>
+        <span class="h2 font-weight-bold mt-5 text-center"><?php echo $rows->num_rows();?></span>
+      </div>
+    </div> </a>
+        <div class="card bg-success">
+      <div class="card-body text-center">
+        <p class="card-text">Today Present</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br> <br>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col" style="background-color:lightyellow;">Space Left for backend developer to place bar graph of the calls made so far (Day,Month,Year,Intern wise view)</div>
+    <div class="col" style="background-color:lavender;">Space left for the backend developer to place pie chart of the calls that was successive out of total calls (Day,Month,Year,Intern wise view)</div>
+  </div>
+</div>
+
+<br> <br>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4" style="background-color:lavender;">
+    <div class="container">
+  <h2>On Going Projects</h2>
+   
+  <p>Server Migration </p>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped" style="width:30%"></div>
+  </div>
+  <br>
+  <p>Mobile App</p>
+  <div class="progress">
+    <div class="progress-bar bg-success progress-bar-striped" style="width:40%"></div>
+  </div>
+  <br>
+  <p>Marketing</p>
+  <div class="progress">
+    <div class="progress-bar bg-info progress-bar-striped" style="width:50%"></div>
+  </div>
+  <br>
+  <p>abc</p>
+  <div class="progress">
+    <div class="progress-bar bg-warning progress-bar-striped" style="width:60%"></div>
+  </div>
+  <br>
+  <p>def</p>
+  <div class="progress">
+    <div class="progress-bar bg-danger progress-bar-striped" style="width:70%"></div>
+  </div>
+</div>
+
+    </div>
+    <div class="col-sm-8" style="background-color:lavenderblush;"> <div class="container">
+  <h2>Today's Task</h2>
+  <div class="alert alert-warning alert-dismissible fade show">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong><div class="container">          
+  <table class="table text-center table-bordered table-hover">
+    <thead>
+      <tr>
+        <th><font color="red">Intern_ID</th></font>
+        <th><font color="red">Topic</th></font>
+        <th><font color="red">Description</th></font>
+        <th><font color="red">Add<br>Time</th></font>
+        <th><font color="red">Completed<br>Time</th></font>
+        <th><font color="red">Consumed<br>Time</th></font>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table></strong>
+  </div> </th>
+</div> </div>
+  </div> 
 </div>
 
 <!-- modal for notifications -->
