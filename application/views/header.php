@@ -40,6 +40,14 @@
       padding: 5px;
 
     }
+    .modal-dialog {
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width:none !important;
+
+    }
   </style>
 </head>
 
@@ -97,7 +105,91 @@ if ($this->session->userdata('admin_login')) {?>
 </Style>
 <?php if(isset($notification)){
   ?>
-<i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"><span class="h-6 text-danger"><?php echo $notification->num_rows(); ?> </span></i>
+<i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal-header" type="button"><span class="h-6 text-danger"><?php echo $notification->num_rows(); ?> </span></i>
+<?php
+?>
+<!-- modal for notifications -->
+
+<!-- Modal -->
+<div id="myModal-header" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h4 class="modal-title">Today Task</h4>
+        <i type="button" class="close" data-dismiss="modal">&times;</i>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid mt-5">
+
+  <!-- table -->
+<div class="row">
+  <div class="col-12">
+    
+  
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Intern_ID</th>
+      <th scope="col">Topic</th>
+      <th scope="col">Description</th>
+      <th scope="col">Add-time</th>
+      <th scope="col">Completed-time</th>
+      <th scope="col">Consumed-time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <?php 
+      if($notification->num_rows()>0){
+       foreach($notification->result() as $row){
+        ?>
+        <tr>
+          <th scope="row" class="text-primary"><a href="<?php echo base_url().adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></th>
+          <td><?php echo $row->topic; ?></td>
+          <td><?php echo $row->description; ?></td>
+          <td><?php echo $row->add_time; ?></td>
+          <td><?php echo $row->complete_time; ?></td>
+          <?php 
+            $start = new DateTime($row->add_time);
+            $end = new DateTime($row->complete_time);
+            $diff = $start->diff($end);
+          ?>
+          <td> <?php echo $diff->format('%d days %h hours %i minutes %S seconds'); ?> </td>
+        </tr>
+        <?php
+      }
+    }
+    else{
+    ?>
+      <tr>
+        <td colspan="4">Today Completed Task not found</td>
+      </tr>
+    <?php
+  } 
+
+      ?>
+    </tr>
+  </tbody>
+</table>
+<div class="row">
+<div class="col-12">
+<p class="text-center font-weight-bold" style="word-spacing: 30px;"><?php //$this->pagination->create_links();?></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <i type="button" class="btn btn-default" data-dismiss="modal">Close</i>
+      </div>
+    </div>
+
+  </div>
+</div>
 <?php
 }
 ?>

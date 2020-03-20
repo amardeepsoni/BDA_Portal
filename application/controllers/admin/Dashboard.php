@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller {
 	protected $title = ['page_title'=> 'Admin Dashboard'];
+	protected $title1 = ['page_title'=> 'Admin Dashboard'];
 	//constructor
 	public function __construct(){
 		parent::__construct();
@@ -88,7 +89,7 @@ class Dashboard extends CI_Controller {
 		$data['id'] = $_GET['id'];
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
 		$details['detail'] = $this->dm->getDetails_Intern($data);
-		$this->load->View('header', $this->title);
+		$this->load->View('header', $this->title1);
 		$this->load->view(adminpath . '/showDetails_Intern.php', $details);
 		$this->load->View('footer');
 	}

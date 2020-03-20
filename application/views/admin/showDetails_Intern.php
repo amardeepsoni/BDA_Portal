@@ -122,8 +122,8 @@ if ($row->approved_task == 1) {
 <i type="button" class="btn btn-primary sr-only" data-toggle="modal" data-target="#descriptionModal" id="modal-desc">
   Launch Description Modal
 </i >
-<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel" aria-hidden="true" style="position: absolute;top: 50%;left: 50%;  transform: translate(-50%, -50%); width: 50%;">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php echo $_GET['id']; ?></u></p>Task Description </h5>
@@ -150,15 +150,15 @@ if ($row->approved_task == 1) {
 </i>
 
 <!-- Modal -->
-<div class="modal fade" id="suggestion-task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade" id="suggestion-task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"  style="position: absolute;top: 50%;left: 50%;  transform: translate(-50%, -50%); width: 50%;">
+  <div class="modal-dialog modal-dialog-centered" role="">
     <div class="modal-content">
    
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Suggestion</h5>
 
       </div>
-      <div class="modal-body">
+      <div class="">
         <textarea class="form-control" required id="suggestion-admin"></textarea>
         <i id="not-empty-admin-suggestion">Please Eneter the suggestion</i>
       </div>
@@ -176,17 +176,21 @@ if ($row->approved_task == 1) {
     $(document).on('click', '.disapproved', function(){
      // alert($(this).attr('id'));
      idi = $(this).attr('id');
+     $('#suggestion-admin').val(null);
       $('#suggestion-task-modal').trigger('click');
     });
     $('#save-changes').click(function(){
+
       if($('#suggestion-admin').val()!=''){
-        $('#not-empty-admin-suggestion').css('display', 'none');
-      myswalfunction(idi);
-      $('#close-modal-save').trigger('click');
+            $('#not-empty-admin-suggestion').css('display', 'none');
+            myswalfunction(idi);
+            $('#close-modal-save').trigger('click');
     }
     else{
       $('#not-empty-admin-suggestion').css('display', 'block');
+      $('#suggestion-admin').val(null);
     }
+
     });
     function myswalfunction(id){
       Swal.fire({
