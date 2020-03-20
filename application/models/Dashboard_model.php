@@ -86,6 +86,8 @@ class Dashboard_Model extends CI_Model
 	{
 		$this->db->set('response', $message);
 		$this->db->set('completed', '1');
+		$this->db->set('disapproved', '0');
+		$this->db->set('seen', '0');
 		$this->load->helper('date');
 		date_default_timezone_set('Asia/Kolkata');
 		$this->db->set('complete_time', date("Y-m-d H:i:s"));

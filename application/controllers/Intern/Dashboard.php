@@ -8,8 +8,9 @@ class Dashboard extends CI_Controller {
 	public function index() {
 		$this->load->model('Dashboard_Model', 'dm');
 		// session_start();
-		$out['page_title'] = 'Intern | Dashboard';
 		$_SESSION['Quiz'] = 5;
+		$out['page_title'] = 'Intern | Dashboard';
+
 		$this->dm->updateTasks($this->session->userdata("intern")['user_id']);
 		$out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
 		$out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
@@ -215,7 +216,7 @@ class Dashboard extends CI_Controller {
 			redirect(base_url());
 		}
 		if ($this->input->server('REQUEST_METHOD') == 'POST') {
-			$data['solution'] = $this->input->post('solution');
+			$data['solution'] = stripslashes(strip_tags($this->input->post('solution')));
 		}
 		// echo "Hello";
 		// echo $data['solution'];
@@ -254,10 +255,9 @@ class Dashboard extends CI_Controller {
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
-		$data['page_title'] = 'Intern | School list';
 		$this->load->model('Dashboard_Model', 'dm');
 		$result['data'] = $this->dm->return_school($this->session->userdata('intern')['user_id']);
-		$this->load->View('header', $data);
+		$this->load->View('header');
 		$this->load->View('intern/view_school', $result);
 		$this->load->View('footer');
 	}
@@ -288,28 +288,28 @@ class Dashboard extends CI_Controller {
 		// file creation
 		$file = fopen('php://output', 'w');
 
-        $header = array("Name of the School     ", "School Address   ", "Contact Details     ", "Contact Person   ", "Number of Registered Students", "Schhol Added on     ");
-        fputcsv($file, $header);
-        foreach ($usersData as $line) {
-            fputcsv($file, $line);
-        }
-        fclose($file);
-        exit;
-    }
-    public function taskHistory()
-    {
-        if (!$this->session->userdata('intern')['user_id']) {
-            redirect(base_url());
-        }
-        $this->load->model('Dashboard_Model', 'dm');
-        $result['data'] = $this->dm->task_history($this->session->userdata("intern")['user_id']);
-        $this->load->View('header');
-        $this->load->View('intern/task_history', $result);
-        $this->load->View('footer');
+		$header = array("Name of the School     ", "School Address   ", "Contact Details     ", "Contact Person   ", "Number of Registered Students", "Schhol Added on     ");
+		fputcsv($file, $header);
+		foreach ($usersData as $line) {
+			fputcsv($file, $line);
+		}
+		fclose($file);
+		exit;
 	}
-	public function taskSeen($id){
+	public function taskHistory() {
+		if (!$this->session->userdata('intern')['user_id']) {
+			redirect(base_url());
+		}
+		$this->load->model('Dashboard_Model', 'dm');
+		$result['data'] = $this->dm->task_history($this->session->userdata("intern")['user_id']);
+		$this->load->View('header');
+		$this->load->View('intern/task_history', $result);
+		$this->load->View('footer');
+	}
+	public function taskSeen($id) {
 		$this->load->model('Dashboard_Model', 'dm');
 		$this->dm->task_seen($id);
 		redirect('intern/dashboard');
 	}
+
 }

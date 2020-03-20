@@ -23,19 +23,22 @@ if (!$this->session->userdata("intern")['user_id']) {
         }
     </style>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <?php foreach ($tasks as $task) {
-        $task_disapprove = $task->disapproved;
 
-        if ($task_disapprove == 1) { ?>
-
-            <script type="text/javascript">
-                swal("Disapproved by admin", "Please check your message...", "warning");
-            </script>
-    <?php }
-        break;
-    } ?>
 
 </head>
+<?php foreach ($tasks as $task) {
+
+    if ($task->disapproved == 1) { ?>
+
+        <script type="text/javascript">
+            swal("A task disapproved by admin", "Please check your message...", "warning");
+        </script>
+<?php }
+    break;
+} ?>
+
+</head>
+
 <div class="container-fluid" style="margin: 0;padding: 0;">
     <?php
     $this->load->model('Dashboard_Model', 'dm');
@@ -174,11 +177,19 @@ if (!$this->session->userdata("intern")['user_id']) {
                                         ?>
                                                 <a class="list-group-item  list-group-item-action list-group-item-info" id="list-<?php echo $list->id ?>" data-toggle="list" href="#list-<?php echo $list->id ?>" role="tab" aria-controls="<?php echo $list->id ?>">
                                                     <div class="d-flex w-100 justify-content-between">
-                                                        <div id="task_topic<?php echo $list->id ?>" <?php if ($list->completed) {
-                                                                                                        echo 'style="text-decoration: line-through; " ';
-                                                                                                    }
-                                                                                                    ?>>
-                                                            <?php echo $list->topic; ?>
+                                                        <div>
+                                                            <div id="task_topic<?php echo $list->id ?>" <?php if ($list->completed) {
+                                                                                                            echo 'style="text-decoration: line-through; " ';
+                                                                                                        }
+                                                                                                        ?>>
+                                                                <?php echo $list->topic; ?>
+                                                            </div>
+                                                            <?php if ($list->disapproved) {
+                                                                echo '      <span class="badge badge-pill badge-danger">Disapproved Task</span>';
+                                                            }
+                                                            if ($list->seen) {
+                                                                echo '      <span class="badge badge-pill badge-info">Task seen</span>';
+                                                            } ?>
 
                                                         </div>
                                                         <?php if ($list->approved_task) { ?>
@@ -198,7 +209,11 @@ if (!$this->session->userdata("intern")['user_id']) {
                                                             }
                                                             ?>><?php echo $list->add_time; ?></small>
                                                     <div id="task_description<?php echo $list->id ?>" class="p-2 border" style="display: none; background-color:#fff; ">
-                                                        <?php echo $list->description; ?>
+                                                        <?php echo $list->description;
+                                                        if ($task->disapproved) {
+                                                            echo "<hr><b>Suggestion:</b><br>" . $task->suggestion;
+                                                        }
+                                                        ?>
                                                     </div>
                                                 </a>
                                             <?php }
