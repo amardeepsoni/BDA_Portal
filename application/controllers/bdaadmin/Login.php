@@ -5,7 +5,7 @@ class Login extends CI_Controller {
 
 	public function index() {
 		if ($this->session->userdata('admin_login')) {
-			redirect('admin/dashboard');
+			redirect('bdaadmin/dashboard');
 		}
 
 		if ($this->input->post('int_admin_login_user') != '') {
@@ -34,22 +34,22 @@ class Login extends CI_Controller {
 					);
 					// Add user data in session
 					$this->session->set_userdata('admin_login', $session_data);
-					redirect('admin/dashboard');
+					redirect('bdaadmin/Dashboard');
 				}
 			} else {
 				$this->session->set_flashdata('loginnotify', 'Username and Password not Valid.');
-				redirect('admin');
+				redirect('bdaadmin');
 			}
 
 		} else {
 
-			$this->load->view('admin/bda_admin');
+			$this->load->view('bdaadmin/bda_admin');
 		}
 	}
 
 	public function logout() {
 		$this->session->unset_userdata('admin_login');
-		redirect('admin');
+		redirect('bdaadmin');
 	}
 
 }

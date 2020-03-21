@@ -291,7 +291,7 @@ input[type=text],input[type=password]:placeholder {
     </div>
 
     <!-- Login Form -->
-    <form action="<?php echo base_url(); ?>admin/login" method="post">
+    <form action="<?php echo base_url(); ?>bdaadmin/login" method="post">
       <input type="text" id="login" class="fadeIn second" name="int_admin_login_user" placeholder="Username" required>
       <input type="password" id="password" class="fadeIn third" name="int_admin_login_pass" placeholder="Password" required>
       <input type="submit" class="fadeIn fourth">
