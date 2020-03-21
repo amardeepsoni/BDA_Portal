@@ -63,7 +63,14 @@ class Dashboard_Model extends CI_Model {
 		$st = array('approved_task'=>$ap, 'disapproved'=>$zero);
 		$this->db->where('id', $id);
 		$this->db->update('intern_task', $st); 
-		return $id; //not used
+
+		//increase scoreboard of this intern
+		/*$user = 'EMP3976';
+			$this->db->set('score', 'score+1', FALSE);        
+		    $where = array('user_id' =>$user);
+		    $this->db->where($where);
+		    $this->db->update('intern_scoreboard');*/
+			return $id; //not used
 	}
 
 	public function disapproved_task($data){
