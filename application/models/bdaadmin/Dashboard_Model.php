@@ -6,8 +6,15 @@ class Dashboard_Model extends CI_Model {
 	}
 
 	public function getData($limit, $offset){
-		$sql = $this->db->limit($limit, $offset)->get('intern_register');
-		return $sql;
+		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
+			$sql = $this->db->limit($limit, $offset)->get('intern_register');
+			return $sql;
+		}
+		else{
+			$sql = $this->db->like('user_id', 'wf')->limit($limit, $offset)->get('intern_register');
+			return $sql;
+		}
+		
 	}
 
 	public function getDataSchool($limit, $offset){
@@ -70,21 +77,45 @@ class Dashboard_Model extends CI_Model {
 	}
 
 	public function getRows(){
-		return ($this->db->get('intern_register')->num_rows());
+		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
+			return ($this->db->get('intern_register')->num_rows());
+		}
+		else{
+			return ($this->db->like('user_id', 'wf')->get('intern_register')->num_rows());
+		}
+		
 	}
 
 	public function getRow(){
+		$this->db->like('user_id', 'wf');
 		return ($this->db->get('intern_register'));
 	}
+
+	public function getRowEmp(){
+		$this->db->like('user_id', 'emp');
+		return($this->db->get('intern_register'));
+	}
+
 	public function getRowSchool(){
+		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
 		return ($this->db->get('intern_school'));
+	}
+	else{
+		return ($this->db->like('user_id', 'wf')->get('intern_school'));
+	}
 	}
 
 	public function getRowSchoolFilter(){
+		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
 		return ($this->db->get('intern_school')->num_rows());
+	}
+	else{
+		return ($this->db->like('user_id', 'wf')->get('intern_school')->num_rows());	
+	}
 	}
 
 	public function getNotification(){
+		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
 		 $date = new DateTime("now");
 
 		 $curr_date = $date->format('Y-m-d ');
@@ -97,6 +128,21 @@ class Dashboard_Model extends CI_Model {
 		 $this->db->where('DATE(add_time)',$curr_date);//use date function
 		 $query = $this->db->get();
 		 return $query;
+		}
+		else{
+			 $date = new DateTime("now");
+			 $curr_date = $date->format('Y-m-d ');
+			 $ap = 0;
+			 $cp = 1;
+			 $this->db->select('*');
+			 $this->db->from('intern_task'); 
+			 $this->db->like('user_id', 'wf'); 
+			 $this->db->where('approved_task', $ap);
+			 $this->db->where('completed', $cp);
+			 $this->db->where('DATE(add_time)',$curr_date);//use date function
+			 $query = $this->db->get();
+			 return $query;			
+		}
 	}
 
 
@@ -130,16 +176,33 @@ class Dashboard_Model extends CI_Model {
 	    return $query->result();
 	}*/
 	public function getRowsFilter($data){
+		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
 		return ($this->db->like($data['type'], $data['value'])->get('intern_register')->num_rows());
+	}
+	else{
+		return ($this->db->like('user_id', 'wf')->like($data['type'], $data['value'])->get('intern_register')->num_rows());
+	}
+
 	}
 
 	public function getRowsFilterSchool($data){
-		return ($this->db->like($data['type'], $data['value'])->get('intern_school')->num_rows());
+		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
+			return ($this->db->like($data['type'], $data['value'])->get('intern_school')->num_rows());
+		}
+		else{
+			return ($this->db->like('user_id', 'wf')->like($data['type'], $data['value'])->get('intern_school')->num_rows());
+		}
 	}
 
 	public function getDataFilter($limit, $offset, $data){
+		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
 		$sql = $this->db->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_register');
-		return $sql;
+			return $sql;
+		}
+		else{
+			$sql = $this->db->like('user_id', 'wf')->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_register');
+				return $sql;
+		}
 	}
 
 	public function getDataFilterSchool($limit, $offset, $data){

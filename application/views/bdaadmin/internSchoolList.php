@@ -44,6 +44,7 @@
        foreach($fetch_data->result() as $row){
         ?>
         <tr>
+          <td class="text-primary"><?php echo $row->user_id; ?></td>
           <td><?php echo $row->sName; ?></td>
           <td><?php echo $row->sContact; ?></td>
           <td><?php echo $row->sPerson; ?></td>

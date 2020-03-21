@@ -55,6 +55,7 @@
     }
   </script>
 </head>
+<?php echo $this->session->userdata('username'); ?>
 <div class="container mt-1">
   <!--   <div class="row">
      <div class="col-12 text-right">
@@ -83,11 +84,16 @@
           </div>
         </div>
       </a>
-      <div class="card bg-success">
-        <div class="card-body text-center">
-          <p class="card-text">Today Present</p>
-        </div>
-      </div>
+      <?php if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
+          ?><a href="<?php echo base_url() . adminpath ?>/Dashboard/intern_list" class="custom-card">
+            <div class="card bg-success">
+          <div class="card-body text-center">
+            <p class="card-text"> <?php echo $row_emp->num_rows(); ?> Employees</p>
+          </div>
+        </div> </a>
+          <?php
+      } ?>
+      
     </div>
   </div>
 

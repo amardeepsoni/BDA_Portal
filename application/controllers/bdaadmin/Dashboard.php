@@ -17,16 +17,33 @@ class Dashboard extends CI_Controller
 		if (!$this->session->userdata('admin_login')) {
 			redirect('bdaadmin');
 		}
+		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
 		$data['page_title'] = 'Admin Dashboard';
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
 		$data['row'] = $this->dm->getRow(); //intern rows
 		$data['rows'] = $this->dm->getRowSchool(); //school rows
+		$data['row_emp'] = $this->dm->getRowEmp(); //emp rows
 		$data['todays_task'] = $this->dm->today_tasks(); //today task table
 		$data['counts'] = $this->dm->pie_count();
 		$data['notification'] = $this->dm->getNotification(); //notification rows
 		$this->load->View('header', $data);
 		$this->load->view(adminpath . '/dashboard.php', $this->title);
 		$this->load->View('footer');
+		}
+		else{
+		$data['page_title'] = 'Admin Dashboard';
+		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
+		$data['row'] = $this->dm->getRow(); //intern rows
+		$data['rows'] = $this->dm->getRowSchool(); //school rows
+		//$data['row_emp'] = $this->dm->getRowEmp(); //school rows
+		$data['todays_task'] = $this->dm->today_tasks(); //today task table
+		$data['counts'] = $this->dm->pie_count();
+		$data['notification'] = $this->dm->getNotification(); //notification rows
+		$this->load->View('header', $data);
+		$this->load->view(adminpath . '/dashboard.php', $this->title);
+		$this->load->View('footer');
+	}
+
 	}
 	public function taskAssign()
 	{
