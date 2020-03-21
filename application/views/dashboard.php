@@ -2,6 +2,7 @@
 if (!$this->session->userdata("intern")['user_id']) {
     redirect('/');
 }
+$tasks = $all_task['tasks'];
 ?>
 
 <head>
@@ -29,7 +30,6 @@ if (!$this->session->userdata("intern")['user_id']) {
 <?php foreach ($tasks as $task) {
 
     if ($task->disapproved == 1) { ?>
-
         <script type="text/javascript">
             swal("A task disapproved by admin", "Please check your message...", "warning");
         </script>
@@ -166,18 +166,18 @@ if (!$this->session->userdata("intern")['user_id']) {
                 <div class="col-sm-12" style="">
                     <div class="row p-3">
                         <div class="col-sm-8 p-3" style="">
-                            <div class="card" style="width: 100%; background: #eee;box-shadow: 2px 1px 20px #555">
+                            <div class="card" style="width: 100%; height: 500px; background: #eee;box-shadow: 2px 1px 20px #555">
                                 <div class="card-header list-group-item-info">
-                                    To do list
+                                    To do list <?php echo "<b>&nbsp;&nbsp;&nbsp;#</b>" . $all_task['count']; ?>
                                 </div>
-                                <div class="card-body p-0" style="background: #eee;">
+                                <div class="card-body p-0" style="background: #eee; overflow: scroll; overflow-x: hidden;">
                                     <div class="list-group-flush list-group" id="list-tab" role="tablist">
                                         <?php if ($tasks) {
                                             foreach ($tasks as $list) {
                                         ?>
-                                                <a class="list-group-item  list-group-item-action list-group-item-info" id="list-<?php echo $list->id ?>" data-toggle="list" href="#list-<?php echo $list->id ?>" role="tab" aria-controls="<?php echo $list->id ?>">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <div>
+                                                <a class="list-group-item  list-group-item-action list-group-item-info" data-toggle="list" href="#list-<?php echo $list->id ?>" role="tab" aria-controls="<?php echo $list->id ?>">
+                                                    <div class="d-flex w-100 " >
+                                                        <div class="" id="list-<?php echo $list->id ?>" style="width:70%; background-color: #000;">
                                                             <div id="task_topic<?php echo $list->id ?>" <?php if ($list->completed) {
                                                                                                             echo 'style="text-decoration: line-through; " ';
                                                                                                         }
@@ -192,17 +192,20 @@ if (!$this->session->userdata("intern")['user_id']) {
                                                             } ?>
 
                                                         </div>
-                                                        <?php if ($list->approved_task) { ?>
-                                                            <button type="button" class="btn btn-success" disabled>Approved</button>
-                                                        <?php } else {
-                                                        ?>
-                                                            <button type="button" class="btn btn-info" <?php if ($list->completed) {
-                                                                                                            echo 'disabled';
-                                                                                                        }
-                                                                                                        ?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
-                                                                Check here to submit task
-                                                            </button>
-                                                        <?php } ?>
+                                                        
+                                                        <div class="justify-content-end ml-auto">
+                                                            <?php if ($list->approved_task) { ?>
+                                                                <button type="button" class="btn btn-success" disabled>Approved</button>
+                                                            <?php } else {
+                                                            ?>
+                                                                <button type="button" class=" btn btn-info" <?php if ($list->completed) {
+                                                                                                                echo 'disabled';
+                                                                                                            }
+                                                                                                            ?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
+                                                                    Check here to submit task
+                                                                </button>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
                                                     <small <?php if ($list->completed) {
                                                                 echo 'style="text-decoration: line-through; " ';
@@ -251,9 +254,9 @@ if (!$this->session->userdata("intern")['user_id']) {
                         <?php } ?>
                         <!-- modal closed -->
                         <div class="col-sm-4 p-3" style="">
-                            <div class="card list-group-item-info" style="width: 100%; height: 400px;background: #fff;">
+                            <div class="card list-group-item-info" style="width: 100%; height: 500px; background: #fff;">
                                 <div class="card-header">
-                                    Leader Scoreboard
+                                    Leader Scoreboard <?php echo "<b>#</b>" . $score['count']; ?>
                                 </div>
                                 <div class="card-body p-1" style="overflow: scroll; overflow-x: hidden;">
                                     <div><?php $this->load->View('intern/leaderscore', $score); ?>
