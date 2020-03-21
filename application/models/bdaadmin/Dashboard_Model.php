@@ -6,16 +6,15 @@ class Dashboard_Model extends CI_Model {
 	}
 
 	public function getData($limit, $offset){
-		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
-			$sql = $this->db->limit($limit, $offset)->get('intern_register');
-			return $sql;
-		}
-		else{
 			$sql = $this->db->like('user_id', 'wf')->limit($limit, $offset)->get('intern_register');
 			return $sql;
 		}
-		
-	}
+
+
+	public function getDataEmp($limit, $offset){
+			$sql = $this->db->like('user_id', 'emp')->limit($limit, $offset)->get('intern_register');
+			return $sql;
+		}
 
 	public function getDataSchool($limit, $offset){
 		$sql = $this->db->limit($limit, $offset)->get('intern_school');
@@ -63,7 +62,14 @@ class Dashboard_Model extends CI_Model {
 		$st = array('approved_task'=>$ap, 'disapproved'=>$zero);
 		$this->db->where('id', $id);
 		$this->db->update('intern_task', $st); 
-		return $id; //not used
+
+		//increase scoreboard of this intern
+		/*$user = 'EMP3976';
+			$this->db->set('score', 'score+1', FALSE);        
+		    $where = array('user_id' =>$user);
+		    $this->db->where($where);
+		    $this->db->update('intern_scoreboard');*/
+			return $id; //not used
 	}
 
 	public function disapproved_task($data){
@@ -77,13 +83,13 @@ class Dashboard_Model extends CI_Model {
 	}
 
 	public function getRows(){
-		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
-			return ($this->db->get('intern_register')->num_rows());
-		}
-		else{
+			
 			return ($this->db->like('user_id', 'wf')->get('intern_register')->num_rows());
-		}
-		
+	}
+
+	public function getRowsEmp(){
+			
+			return ($this->db->like('user_id', 'emp')->get('intern_register')->num_rows());
 	}
 
 	public function getRow(){
