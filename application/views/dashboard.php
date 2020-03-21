@@ -78,7 +78,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                                             <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-list-alt' style='font-size:24px; color: white;'></i></div>
                                         </div>
                                         <button type="button" data-toggle="modal" data-target="#schoolModal" class="btn-success">Add School</button>
-                                        <button type="button" onclick="window.location.href='Interndashboard/viewSchool'" class="btn-info">View School</button>
+                                        <button type="button" onclick="window.location.href='interndashboard/viewSchool'" class="btn-info">View School</button>
                                         <div class="p-2" style="width: 100%;">
                                             Schools: <?php
                                                         $this->load->model('Dashboard_Model', 'dm');
@@ -135,7 +135,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="Interndashboard/uploaded_school" method="POST">
+                                <form action="interndashboard/uploaded_school" method="POST">
                                     <div class="form-group">
                                         <label for="name">School Name</label>
                                         <input required type="text" class="form-control" id="name" pattern="[A-Za-z ]{5,20}" name="name" aria-describedby="Help" placeholder="Enter School Name">
@@ -223,7 +223,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                                     </div>
                                 </div>
                                 <div class="card-footer text-right px-4">
-                                    <a href="Interndashboard/taskHistory" class="btn btn-outline-dark"> History</a>
+                                    <a href="interndashboard/taskHistory" class="btn btn-outline-dark"> History</a>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +238,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="Interndashboard/upload_task/<?php echo $list->id ?>" method="POST">
+                                        <form action="interndashboard/upload_task/<?php echo $list->id ?>" method="POST">
                                             <div id="task_sol" class="modal-body">
                                                 <label for="task_sol">Enter your message below:</label>
                                                 <textarea pattern="[A-Za-z. ]{5,20}" id="task_sol" rows="6" cols="45" name="solution" required></textarea>
@@ -252,15 +252,12 @@ if (!$this->session->userdata("intern")['user_id']) {
                         <!-- modal closed -->
                         <div class="col-sm-4 p-3" style="">
                             <div class="card list-group-item-info" style="width: 100%; height: 400px;background: #fff;">
-                                <div class="card-header ">
-                                    Referrals
+                                <div class="card-header">
+                                    Leader Scoreboard
                                 </div>
-                                <div class="card-body">
-                                    <div>No referals</div>
-                                    <!--  <div class="tab-content" id="nav-tabContent">
-
-
-                                       </div> -->
+                                <div class="card-body p-1" style="overflow: scroll; overflow-x: hidden;">
+                                    <div><?php $this->load->View('intern/leaderscore', $score); ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -280,7 +277,7 @@ if (!$this->session->userdata("intern")['user_id']) {
                     Ulpoad your Governemnt Id and Offer letter in a single pdf.
                 </li>
             </ul>
-            <form action="Interndashboard/upload_id" method="post" enctype="multipart/form-data">
+            <form action="interndashboard/upload_id" method="post" enctype="multipart/form-data">
                 Select image to upload:
                 <input class="btn btn-outline-primary" type="file" name="file" id="fileToUpload">
                 <input class="btn btn-info" type="submit" value="Upload Image" name="submit">
@@ -291,7 +288,7 @@ if (!$this->session->userdata("intern")['user_id']) {
 
         <div class="container p-3">
             <h3 class="p-3">To start Quiz click below,</h3>
-            <a href="Interndashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
+            <a href="interndashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
         </div>
     <?php } ?>
 </div>
@@ -305,7 +302,7 @@ if (!$this->session->userdata("intern")['user_id']) {
 
                 <?php
                 if (!$list->seen) { ?>
-                    window.location.href = "Interndashboard/taskSeen/<?php echo $list->id ?>";
+                    window.location.href = "interndashboard/taskSeen/<?php echo $list->id ?>";
                 <?php } ?>
             });
         <?php } ?>
