@@ -17,7 +17,16 @@ class Register extends CI_Controller {
 
 	public function take_data_intern() {
 		$this->load->model('Register_Model', 'rm');
-		$intern_id = 'INT' . rand(1111, 9999);
+		$code = '';
+		$type = $this->input->post('type');
+		if($type === 'Intern Work from Office'){
+			$code = 'WFO';
+		}elseif($type === 'Intern Work from Home'){
+			$code = 'WFH';
+		} else{
+			$code = 'EMP';
+		}
+		$intern_id = $code. rand(1111, 9999);
 		$str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@#$';
 		$referrals = 'Intellifybda' . $intern_id;
 		if (htmlspecialchars($this->input->post('referal_by'))) {
@@ -39,6 +48,8 @@ class Register extends CI_Controller {
 			'state' => htmlspecialchars($this->input->post('state')),
 			'email' => htmlspecialchars($this->input->post('email')),
 			'domain' => htmlspecialchars($this->input->post('domain')),
+			'type' => htmlspecialchars($this->input->post('type')),
+			'workfrom' => htmlspecialchars($this->input->post('workfrom')),
 			'user_id' => htmlspecialchars($intern_id),
 			'password' => md5($intern_pass),
 			'security_question' => htmlspecialchars($this->input->post('security_question')),

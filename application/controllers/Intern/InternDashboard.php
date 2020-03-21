@@ -4,8 +4,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
-class InternDashboard extends CI_Controller {
-	public function index() {
+class InternDashboard extends CI_Controller
+{
+	public function index()
+	{
 		$this->load->model('Dashboard_Model', 'dm');
 		// session_start();
 		$_SESSION['Quiz'] = 5;
@@ -14,12 +16,14 @@ class InternDashboard extends CI_Controller {
 		$this->dm->updateTasks($this->session->userdata("intern")['user_id']);
 		$out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
 		$out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
+		$out['score'] = $this->dm->show_scoreboard($this->session->userdata("intern")['user_id']);
 		$this->load->View('header', $out);
 		$this->load->View('dashboard', $out);
 		$this->load->View('footer');
 	}
 
-	public function quiz() {
+	public function quiz()
+	{
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
@@ -36,27 +40,28 @@ class InternDashboard extends CI_Controller {
 			} else {
 				echo "<center><br><br><h1>Quiz Over!!</h1><br></center>";
 				$this->dm->update_status($this->session->userdata("intern")['user_id']);
-				?>
-                <center>
-                    <br><Br><br>
-                    <a href="<?php echo base_url(); ?>uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">
-                        <button alt="Offer Letter">
-                            <h3>Download Offer Letter</h3>
-                        </button>
-                    </a>
-                    <br><br><Br><br>
-                    <button alt="Offer Letter"><a href=" ">
-                            <h4>Redirect to home</h4>
-                        </a></button>
-                </center>
+?>
+				<center>
+					<br><Br><br>
+					<a href="<?php echo base_url(); ?>uploads/OfferLetter.pdf" download="<?php echo $this->session->userdata("intern")['name'] ?>">
+						<button alt="Offer Letter">
+							<h3>Download Offer Letter</h3>
+						</button>
+					</a>
+					<br><br><Br><br>
+					<button alt="Offer Letter"><a href=" ">
+							<h4>Redirect to home</h4>
+						</a></button>
+				</center>
 <?php
-// header("Refresh:5; url= " . base_url() . "intern/interndashboard");    //Add whole part for site
+				// header("Refresh:5; url= " . base_url() . "intern/interndashboard");    //Add whole part for site
 			}
 		} else {
 			redirect('intern/interndashboard');
 		}
 	}
-	public function upload_id() {
+	public function upload_id()
+	{
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
@@ -202,7 +207,8 @@ class InternDashboard extends CI_Controller {
 			header("Refresh:3; url= " . base_url() . "intern/interndashboard");
 		}
 	}
-	function task_completed($id) {
+	function task_completed($id)
+	{
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
@@ -211,7 +217,8 @@ class InternDashboard extends CI_Controller {
 		echo "<center><br><br><h1>Your Response marked!!</h1><br><h4>Wait redirecting...</h4></center>";
 		header("Refresh:3; url= " . base_url() . "intern/interndashboard");
 	}
-	public function upload_task($id) {
+	public function upload_task($id)
+	{
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
@@ -227,7 +234,8 @@ class InternDashboard extends CI_Controller {
 			redirect('intern/interndashboard');
 		}
 	}
-	public function upload_school() {
+	public function upload_school()
+	{
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
@@ -235,7 +243,8 @@ class InternDashboard extends CI_Controller {
 		$this->load->View('intern/upload_school');
 		$this->load->View('footer');
 	}
-	function uploaded_school() {
+	function uploaded_school()
+	{
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
@@ -251,7 +260,8 @@ class InternDashboard extends CI_Controller {
 			redirect('intern/interndashboard');
 		}
 	}
-	public function viewSchool() {
+	public function viewSchool()
+	{
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
@@ -261,7 +271,8 @@ class InternDashboard extends CI_Controller {
 		$this->load->View('intern/view_school', $result);
 		$this->load->View('footer');
 	}
-	public function id() {
+	public function id()
+	{
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
@@ -269,7 +280,8 @@ class InternDashboard extends CI_Controller {
 		$result['data'] = $this->dm->return_intern($this->session->userdata('intern')['user_id']);
 		$this->load->View('intern/id', $result);
 	}
-	function downloadData() {
+	function downloadData()
+	{
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
@@ -296,7 +308,8 @@ class InternDashboard extends CI_Controller {
 		fclose($file);
 		exit;
 	}
-	public function taskHistory() {
+	public function taskHistory()
+	{
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
@@ -306,10 +319,11 @@ class InternDashboard extends CI_Controller {
 		$this->load->View('intern/task_history', $result);
 		$this->load->View('footer');
 	}
-	public function taskSeen($id) {
+	public function taskSeen($id)
+	{
 		$this->load->model('Dashboard_Model', 'dm');
 		$this->dm->task_seen($id);
 		redirect('intern/interndashboard');
 	}
-
+	
 }

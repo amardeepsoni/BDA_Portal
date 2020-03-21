@@ -71,7 +71,7 @@
             <span class="btn btn-outline-info nav-link" style="border-radius: 50px;"><img src="https://cdn.iconscout.com/icon/free/png-512/avatar-380-456332.png" class="rounded-circle" style="width: 30px; height: 30px;"> <?php echo 'Welcome, ' . $this->session->userdata('intern')['name']; ?></span>
 
             <div class="dropdown-content" aria-labelledby="dropdownMenuLink" style="background:#fff;z-index: 9999;">
-              <a class="dropdown-item" href="<?php echo base_url(); ?>intern/internDashboard">My Profile</a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>intern/interndashboard">My Profile</a>
               <a class="dropdown-item" href="#">Support</a><hr>
               <a class="dropdown-item" href="<?php echo base_url(); ?>InternLogin/logout">Logout</a>
             </div>
