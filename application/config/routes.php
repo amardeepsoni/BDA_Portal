@@ -67,11 +67,11 @@ $route['api/schools/(:num)/students/(:num)/help'] = 'api/students/$2/help';
 $route['api/schools/(:num)/students/(:num)/changepass'] = 'api/students/$2/changepass';
 $route['api/schools/(:num)/students/(:num)'] = 'api/students/$2';
 $route['api/schools/(:num)/students'] = 'api/students';*/
-$route['default_controller'] = 'Carrer';
+$route['default_controller'] = 'Career';
 
 $route['interndashboard'] = 'InternDashboard';
 $route['quiz'] = 'internDashboard/quiz';
-$route['admin'] = 'bdaadmin/login';
+$route['bdaadmin'] = 'bdaadmin/Login';
 
 /*$route['admin'] = adminpath . '/login';
 $route['ISCO/Round2'] = round2path . '/login';

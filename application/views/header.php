@@ -79,12 +79,12 @@
         <?php }
 if ($this->session->userdata('admin_login')) {?>
   <div class="dropdown" style=" margin-right: 90px;">
-          <a href="<?php echo base_url(); ?>admin/Dashboard" class="btn btn-outline-info nav-link">
+          <a href="<?php echo base_url(); ?>bdaadmin/Dashboard" class="btn btn-outline-info nav-link">
             <font style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('admin_login')['name']; ?> </font>Admin
           </a>&nbsp;
           <div class="dropdown-content" aria-labelledby="dropdownMenuLink" style="background:#fff;z-index: 9999;">
             <a class="dropdown-item" href="#">Support</a><hr>
-          <a class="dropdown-item" href="<?php echo base_url(); ?>admin/Login/logout" class="btn btn-outline-danger nav-link">Log Out</a>&nbsp;
+          <a class="dropdown-item" href="<?php echo base_url(); ?>bdaadmin/Login/logout" class="btn btn-outline-danger nav-link">Log Out</a>&nbsp;
           </div>
           </div>
         <?php }?>

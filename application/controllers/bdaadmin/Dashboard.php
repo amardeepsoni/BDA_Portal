@@ -15,7 +15,7 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		if (!$this->session->userdata('admin_login')) {
-			redirect('admin');
+			redirect('bdaadmin');
 		}
 		$data['page_title'] = 'Admin Dashboard';
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
