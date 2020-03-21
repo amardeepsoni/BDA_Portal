@@ -70,7 +70,7 @@ $route['api/schools/(:num)/students'] = 'api/students';*/
 $route['default_controller'] = 'Career';
 
 $route['interndashboard'] = 'InternDashboard';
-$route['quiz'] = 'internDashboard/quiz';
+$route['quiz'] = 'InternDashboard/quiz';
 $route['bdaadmin'] = 'bdaadmin/Login';
 
 /*$route['admin'] = adminpath . '/login';

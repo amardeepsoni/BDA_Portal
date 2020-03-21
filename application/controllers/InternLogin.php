@@ -5,7 +5,7 @@ class InternLogin extends CI_Controller {
 
 	public function index() {
 		if ($this->session->userdata('intern')['user_id']) {
-			redirect('dashboard');
+			redirect('Intern/interndashboard');
 		}
 		$data = array();
 

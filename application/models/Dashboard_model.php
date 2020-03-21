@@ -36,7 +36,7 @@ class Dashboard_Model extends CI_Model
 	}
 	public function fetch_tasks($u_id)
 	{
-		return $this->db->select('*')->from('intern_task')->where('history','0')->where('user_id', $u_id)->get()->result();
+		return $this->db->select('*')->from('intern_task')->where('history', '0')->where('user_id', $u_id)->get()->result();
 	}
 	public function task_completed($id)
 	{
@@ -141,10 +141,18 @@ class Dashboard_Model extends CI_Model
 	}
 	public function task_history($id)
 	{
-		return $this->db->select('*')->from('intern_task')->where('history','1')->where('user_id', $id)->get()->result_array();
+		return $this->db->select('*')->from('intern_task')->where('history', '1')->where('user_id', $id)->get()->result_array();
 	}
 	public function task_seen($id)
 	{
 		$this->db->set('seen', '1')->where('id', $id)->update('intern_task');
+	}
+	public function show_scoreboard($uid)
+	{
+		$score['other'] = $this->db->select('*')->from('intern_scoreboard')->order_by('score', 'DESC')->get()->result_array();
+		$score['me'] = $this->db->select('*')->from('intern_scoreboard')->where('user_id', $uid)->get()->result_array();
+		$score['count'] = $this->db->select('*')->from('intern_scoreboard')->get()->num_rows();
+		// print_r($score);
+		return $score;
 	}
 }
