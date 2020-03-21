@@ -16,7 +16,7 @@ class Login extends CI_Controller {
 			$data['username'] = $username;
 			$data['password'] = $password;
 
-			$this->load->model('admin/Model_admin_login', 'admin');
+			$this->load->model('bdaadmin/Model_admin_login', 'admin');
 			$result = $this->admin->logincheck($data);
 
 			if ($result == TRUE) {
