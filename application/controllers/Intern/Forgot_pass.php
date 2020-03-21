@@ -5,7 +5,7 @@ class Forgot_pass extends CI_Controller {
 	public function index() {
 		$data['page_title'] = 'Forgot Password';
 		$this->load->View('header', $data);
-		$this->load->View('intern/forgotpass', $data);
+		$this->load->View('Intern/forgotpass', $data);
 		$this->load->View('footer');
 	}
 
@@ -18,11 +18,11 @@ class Forgot_pass extends CI_Controller {
 			if ($this->form_validation->run() == FALSE) {
 				$this->session->set_flashdata('loginnotify', 'Email not Valid.');
 				$this->session->set_flashdata('color', 'bg-danger');
-				redirect('intern/Forgot_pass');
+				redirect('Intern/Forgot_pass');
 			} else if ($this->input->post('new_password') != $this->input->post('conf_password')) {
 				$this->session->set_flashdata('loginnotify', 'Confirm password not match');
 				$this->session->set_flashdata('color', 'bg-danger');
-				redirect('intern/Forgot_pass');
+				redirect('Intern/Forgot_pass');
 			} else {
 				$this->load->model('Dashboard_model');
 				$result = $this->Dashboard_model->checkmail($data['email']);
@@ -45,20 +45,20 @@ class Forgot_pass extends CI_Controller {
 							$this->session->set_flashdata('loginnotify', 'Password changed successfully');
 							$this->session->set_flashdata('color', 'bg-success');
 
-							redirect('intern/Forgot_pass');
+							redirect('Intern/Forgot_pass');
 						}
 
 					} else {
 						$this->session->set_flashdata('loginnotify', 'Security_answer or password are not match in existing information.');
 						$this->session->set_flashdata('color', 'bg-danger');
-						redirect('intern/Forgot_pass');
+						redirect('Intern/Forgot_pass');
 					}
 
 				} else {
 
 					$this->session->set_flashdata('loginnotify', 'Email not exist');
 					$this->session->set_flashdata('color', 'bg-danger');
-					redirect('intern/Forgot_pass');
+					redirect('Intern/Forgot_pass');
 				}
 			}
 		}

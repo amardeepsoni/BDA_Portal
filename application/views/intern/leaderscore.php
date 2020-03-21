@@ -25,13 +25,18 @@
     ?>
     <ul class="list-group">
         <?php
-        foreach ($record as $info) { ?>
+        foreach ($record as $info) {
+            $per = $info['score'] + 30;
+        ?>
 
-            <li class="list-group-item list-group-item-action  <?php if ($info['user_id'] === $this->session->userdata("intern")['user_id']) {
+            <li class="list-group-item list-group-item-action <?php if ($info['user_id'] === $this->session->userdata("intern")['user_id']) {
                                                                     echo 'active" id="myscore';
-                                                                } ?>">
-                <div class="">
+                                                                } ?>" style=" background-color: #fff; color:#000;">
+                <div class="p-2">
                     <?php echo "<b>#</b>" . $counts++ . "   " . $info['user_id']; ?>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-info progress-bar-striped" style="width:<?php echo $per; ?>%"></div>
                 </div>
                 <div class="text-right">
                     <?php echo $info['score']; ?>

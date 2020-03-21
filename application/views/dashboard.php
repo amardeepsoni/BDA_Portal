@@ -177,7 +177,7 @@ $tasks = $all_task['tasks'];
                                         ?>
                                                 <a class="list-group-item  list-group-item-action list-group-item-info" data-toggle="list" href="#list-<?php echo $list->id ?>" role="tab" aria-controls="<?php echo $list->id ?>">
                                                     <div class="d-flex w-100 " >
-                                                        <div class="" id="list-<?php echo $list->id ?>" style="width:70%; background-color: #000;">
+                                                        <div class="" id="list-<?php echo $list->id ?>" style="width:70%;">
                                                             <div id="task_topic<?php echo $list->id ?>" <?php if ($list->completed) {
                                                                                                             echo 'style="text-decoration: line-through; " ';
                                                                                                         }
