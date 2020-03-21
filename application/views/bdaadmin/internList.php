@@ -23,7 +23,7 @@
   </div>  
 
   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-filter-new-data" aria-expanded="false" aria-controls="collapse-filter-new-data" id="filter-data-new">
-    Filter Intern List
+    Filter List
   </button>
 <div class="collapse fade" id="collapse-filter-new-data">
 <form method="post" class="form-inline" action="<?php echo base_url() .adminpath .'/Dashboard/filter_data_intern'; ?>">
