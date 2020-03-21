@@ -113,11 +113,10 @@
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
-
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">TASK ASSIGN</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" id="#close-modal">&times;</button>
       </div>
 
       <!-- Modal body -->
@@ -127,7 +126,8 @@
       <div class="col ml-2 text-right"> 
      <input value="" id="modal-user-id" readonly class="text-danger"></p>
     </div>
-       <form class="container">
+       
+<form class="container">
         <div class="col-12 ml-2 text-left">
           <label class="text-primary  font-weight-bold h4">Task Heading</label>
           <input type="text" name="" class="form-control" placeholder="Enter the Topic"  required id="topic">
@@ -136,7 +136,7 @@
           <label class="text-primary font-weight-bold h3">Task Description</label>
           <textarea class="form-control" placeholder="Enter the Description" required id="description"></textarea>
         </div>
-      </form>
+      
     </div>
  
       </div>
@@ -146,11 +146,11 @@
           <div class="col ml-2 text-left">
         <button type="button" class="btn btn-warning">RESET</button> </div>
            <div class="col ml-2 text-center">
-        <button type="button" class="btn btn-primary" role="submit" type="submit" id="task-assign-data">SUBMIT</button></div>
+        <button type="submit" class="btn btn-primary .open-AddBookDialog" role="submit" type="submit" id="task-assign-data">SUBMIT</button></div>
           <div class="col ml-2 text-right">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button></div>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button></div>
         </div>
-
+</form>
     </div>
   </div>
 </div>
@@ -164,6 +164,8 @@ $(document).ready(function(){
   var myBookId;
 $(document).on("click", ".open-AddBookDialog", function () {
      myBookId = $(this).data('id');
+     $('#description').val('');
+     $('#topic').val('');
      $(".modal-body #modal-user-id").val(myBookId);
 });
    $('.modal-body form').submit(function(e){
@@ -180,10 +182,11 @@ $(document).on("click", ".open-AddBookDialog", function () {
           swal("Task is not Assigned !..");
         } 
         else{
-           $('#close-modal').trigger('click');
+
           swal(myBookId, "Task Assigned Successfully to "+myBookId, "success");
           $('#topic').val('');
           $('#description').val('');
+          $('#close-modal').trigger('click');
         }
       }
       );
