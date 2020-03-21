@@ -1,4 +1,5 @@
 
+
 <div class="container-fluid mt-1">
 <!-- filter -->
  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-filter-new-data" aria-expanded="false" aria-controls="collapse-filter-new-data" id="filter-data-new">
@@ -7,6 +8,7 @@
 <div class="collapse fade" id="collapse-filter-new-data">
 <form method="post" class="form-inline" action="<?php echo base_url() .adminpath .'/Dashboard/filter_data_intern_school_list'; ?>">
   <label for="typeFilter">Choose Type of Filter: </label>
+
 
 <select  name="typeFilter">
   <option value="user_id">Intern_Id</option>
@@ -24,7 +26,7 @@
 <div class="row mt-2">
   <div class="col-12">
     
-  
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -42,7 +44,6 @@
        foreach($fetch_data->result() as $row){
         ?>
         <tr>
-          <th class="text-primary" scope="row"><?php echo $row->user_id; ?></th>
           <td><?php echo $row->sName; ?></td>
           <td><?php echo $row->sContact; ?></td>
           <td><?php echo $row->sPerson; ?></td>
