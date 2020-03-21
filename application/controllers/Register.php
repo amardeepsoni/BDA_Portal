@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 class Register extends CI_Controller {
 	public function index() {
 		if ($this->session->userdata('intern')['user_id']) {
-			redirect('intern/Dashboard');
+			redirect('Intern/Interndashboard');
 		}
 
 		$data['page_title'] = 'Career | Register';

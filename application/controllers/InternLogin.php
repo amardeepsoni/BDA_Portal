@@ -5,7 +5,7 @@ class InternLogin extends CI_Controller {
 
 	public function index() {
 		if ($this->session->userdata('intern')['user_id']) {
-			redirect('Intern/interndashboard');
+			redirect('Intern/Interndashboard');
 		}
 		$data = array();
 
@@ -59,7 +59,7 @@ class InternLogin extends CI_Controller {
 						// Add user data in session
 						$this->session->set_userdata('intern', $session_data);
 
-						redirect('intern/interndashboard');
+						redirect('Intern/Interndashboard');
 					}
 				} else {
 					$this->session->set_flashdata('loginnotify', 'Username and Password not Valid.');
