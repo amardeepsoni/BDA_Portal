@@ -36,7 +36,7 @@ class Dashboard_Model extends CI_Model
 	}
 	public function fetch_tasks($u_id)
 	{
-		$query = $this->db->select('*')->from('intern_task')->where('history', '0')->where('user_id', $u_id)->get();
+		$query = $this->db->select('*')->from('intern_task')->order_by('Add_time', 'DESC')->where('history', '0')->where('user_id', $u_id)->get();
 		$result['tasks'] = $query->result();
 		$result['count'] = $query->num_rows();
 		return $result;

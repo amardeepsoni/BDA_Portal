@@ -175,9 +175,9 @@ $tasks = $all_task['tasks'];
                                         <?php if ($tasks) {
                                             foreach ($tasks as $list) {
                                         ?>
-                                                <a class="list-group-item  list-group-item-action list-group-item-info" id="list-<?php echo $list->id ?>" data-toggle="list" href="#list-<?php echo $list->id ?>" role="tab" aria-controls="<?php echo $list->id ?>">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <div>
+                                                <a class="list-group-item  list-group-item-action list-group-item-info" data-toggle="list" href="#list-<?php echo $list->id ?>" role="tab" aria-controls="<?php echo $list->id ?>">
+                                                    <div class="d-flex w-100 " >
+                                                        <div class="" id="list-<?php echo $list->id ?>" style="width:70%; background-color: #000;">
                                                             <div id="task_topic<?php echo $list->id ?>" <?php if ($list->completed) {
                                                                                                             echo 'style="text-decoration: line-through; " ';
                                                                                                         }
@@ -192,17 +192,20 @@ $tasks = $all_task['tasks'];
                                                             } ?>
 
                                                         </div>
-                                                        <?php if ($list->approved_task) { ?>
-                                                            <button type="button" class="btn btn-success" disabled>Approved</button>
-                                                        <?php } else {
-                                                        ?>
-                                                            <button type="button" class="btn btn-info" <?php if ($list->completed) {
-                                                                                                            echo 'disabled';
-                                                                                                        }
-                                                                                                        ?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
-                                                                Check here to submit task
-                                                            </button>
-                                                        <?php } ?>
+                                                        
+                                                        <div class="justify-content-end ml-auto">
+                                                            <?php if ($list->approved_task) { ?>
+                                                                <button type="button" class="btn btn-success" disabled>Approved</button>
+                                                            <?php } else {
+                                                            ?>
+                                                                <button type="button" class=" btn btn-info" <?php if ($list->completed) {
+                                                                                                                echo 'disabled';
+                                                                                                            }
+                                                                                                            ?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
+                                                                    Check here to submit task
+                                                                </button>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
                                                     <small <?php if ($list->completed) {
                                                                 echo 'style="text-decoration: line-through; " ';
