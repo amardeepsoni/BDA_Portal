@@ -63,7 +63,7 @@ class InternLogin extends CI_Controller {
 					}
 				} else {
 					$this->session->set_flashdata('loginnotify', 'Username and Password not Valid.');
-					redirect('login');
+					redirect('internlogin');
 				}
 			}
 
