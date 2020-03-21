@@ -40,10 +40,7 @@
       padding: 5px;
 
     }
-    .modal-dialog {
-        
-
-    }
+    
   </style>
 </head>
 
@@ -95,13 +92,13 @@ if ($this->session->userdata('admin_login')) {?>
   <style>
   #notific{
   position: absolute;
-  top: 6.2%;
-  left: 78%;
+  top:8%;
+  left: 95%;
 }
 </Style>
 <?php if(isset($notification)){
   ?>
-<i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal-header" type=""><i class="h-6 text-danger"><?php echo $notification->num_rows(); ?> </i></i>
+<i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal-header" type=""><i class="h-6 text-danger badge"><?php echo $notification->num_rows(); ?> </i></i>
 <?php
 ?>
 <!-- modal for notifications -->
