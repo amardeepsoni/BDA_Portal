@@ -1,20 +1,29 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
-class Register_Model extends CI_Model {
-	function __construct() {
+<?php defined('BASEPATH') or exit('No direct script access allowed');
+class Register_Model extends CI_Model
+{
+	function __construct()
+	{
 		parent::__construct();
 		$this->load->database();
 	}
-	public function read_by_email($email = null) {
+	public function read_by_email($email = null)
+	{
 		return $this->db->select("*")->from('intern_register')->where('email', $email)->get()->row();
 	}
-	public function data_intern($data) {
+	public function data_intern($data)
+	{
 		if ($this->db->insert('intern_register', $data)) {
-			return $this->db->select('*')->from('intern_register')->where('email', $data['email'])->get()->result();
+			$score = array(
+				'user_id' => $data['user_id']
+			);
+			if ($this->db->insert('intern_scoreboard', $score)) {
+				return $this->db->select('*')->from('intern_register')->where('email', $data['email'])->get()->result();
+			}
 		}
-
 	}
 
-	public function logincheck($data) {
+	public function logincheck($data)
+	{
 		$enc_pass = md5($data['password']);
 		$condition = "email =" . "'" . $data['username'] . "' AND " . "password =" . "'" . $enc_pass . "'";
 		$this->db->select('*');
@@ -29,7 +38,8 @@ class Register_Model extends CI_Model {
 		}
 	}
 
-	public function studentinfo($username) {
+	public function studentinfo($username)
+	{
 		$condition = "email =" . "'" . $username . "'";
 		$this->db->select('*');
 		$this->db->from('intern_register');
@@ -42,5 +52,4 @@ class Register_Model extends CI_Model {
 			return false;
 		}
 	}
-
 }
