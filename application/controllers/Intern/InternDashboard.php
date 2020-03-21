@@ -15,8 +15,8 @@ class InternDashboard extends CI_Controller
 
 		$this->dm->updateTasks($this->session->userdata("intern")['user_id']);
 		$out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
-		$out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
-		$out['score'] = $this->dm->show_scoreboard($this->session->userdata("intern")['user_id']);
+		$out['all_task'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);				//To get tasks
+		$out['score'] = $this->dm->show_scoreboard($this->session->userdata("intern")['user_id']);		//Leader scoreboard data
 		$this->load->View('header', $out);
 		$this->load->View('dashboard', $out);
 		$this->load->View('footer');
@@ -325,5 +325,4 @@ class InternDashboard extends CI_Controller
 		$this->dm->task_seen($id);
 		redirect('intern/interndashboard');
 	}
-	
 }

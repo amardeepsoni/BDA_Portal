@@ -49,7 +49,6 @@ class Register extends CI_Controller {
 			'email' => htmlspecialchars($this->input->post('email')),
 			'domain' => htmlspecialchars($this->input->post('domain')),
 			'type' => htmlspecialchars($this->input->post('type')),
-			'workfrom' => htmlspecialchars($this->input->post('workfrom')),
 			'user_id' => htmlspecialchars($intern_id),
 			'password' => md5($intern_pass),
 			'security_question' => htmlspecialchars($this->input->post('security_question')),

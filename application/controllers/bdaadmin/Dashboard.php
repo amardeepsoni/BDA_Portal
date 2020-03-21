@@ -80,6 +80,23 @@ class Dashboard extends CI_Controller
 		$this->load->View('footer');
 	}
 
+	public function emp_list()
+	{
+		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
+		$this->load->library('pagination');
+		$config = [
+			'base_url' => base_url('admin/Dashboard/intern_list'),
+			'per_page' => 10,
+			'total_rows' => $this->dm->getRowsEmp()
+		];
+		$this->pagination->initialize($config);
+
+		$data['fetch_data'] = $this->dm->getDataEmp($config['per_page'], $this->uri->segment(4));
+		$this->load->View('header', $this->title);
+		$this->load->view(adminpath . '/internList.php', $data);
+		$this->load->View('footer');
+	}
+
 	public function intern_school()
 	{
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');

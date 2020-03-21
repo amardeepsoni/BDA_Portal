@@ -19,8 +19,7 @@
 </style>
 <div class="container">
     <?php
-    // print_r($data);
-    $record = $score['other'];
+    $record = $score['scores'];
     $counts = 1;
 
     ?>
