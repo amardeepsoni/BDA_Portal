@@ -124,8 +124,8 @@
     <div class="container">
     <div class="row mt-2 mb-5">
       <div class="col ml-2 text-right"> 
-     <input value="" id="modal-user-id" readonly class="text-danger"></p>
-    </div>
+      <input value="" id="modal-user-id" readonly class="text-danger" />
+      </div>
        
 <form class="container">
         <div class="col-12 ml-2 text-left">
