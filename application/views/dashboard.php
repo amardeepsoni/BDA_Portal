@@ -31,7 +31,7 @@ $tasks = $all_task['tasks'];
 
     if ($task->disapproved == 1) { ?>
         <script type="text/javascript">
-            swal("A task disapproved by admin", "Please check your message...", "warning");
+            swal("Your Task has been Disapproved by Admin", "Please Check your Message...", "warning");
         </script>
 <?php }
     break;
@@ -74,11 +74,11 @@ $tasks = $all_task['tasks'];
                                 <div class="card" style="background: #eee; height: 200px;">
                                     <a class="card-body  bg-white" style="text-decoration: none;">
                                         <div style="width: 100%;display: flex;justify-content: space-between;">
-                                            <div class="text-secondary font-weight-bold">List your registered school!</div>
+                                            <div class="text-secondary font-weight-bold">My TaskBar</div>
                                             <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-list-alt' style='font-size:24px; color: white;'></i></div>
                                         </div>
-                                        <button type="button" data-toggle="modal" data-target="#schoolModal" class="btn-success">Add School</button>
-                                        <button type="button" onclick="window.location.href='InternDashboard/viewSchool'" class="btn-info">View School</button>
+                                        <button type="button" data-toggle="modal" data-target="#schoolModal" class="btn-warning">Add School</button>
+                                        <button type="button" onclick="window.location.href='InternDashboard/viewSchool'" class="btn-danger">View School</button>
                                         <div class="p-2" style="width: 100%;">
                                             Schools: <?php
                                                         $this->load->model('Dashboard_Model', 'dm');
@@ -93,7 +93,7 @@ $tasks = $all_task['tasks'];
                                 <div class="card" style="background: #eee;height: 200px;">
                                     <div class="card-body  bg-white">
                                         <div style="width: 100%;display: flex;justify-content: space-between;">
-                                            <div class="text-secondary font-weight-bold">Referral Id</div>
+                                            <div class="text-secondary font-weight-bold">Referral ID</div>
                                             <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fa fa-share-alt' style='font-size:24px; color: white;'></i></div>
                                         </div>
                                         <div class="text-primary" style="font-size: 1.5em; width: 100%;">
@@ -110,12 +110,12 @@ $tasks = $all_task['tasks'];
                                 <div class="card" style="background: #eee;height: 200px;">
                                     <div class="card-body  bg-white">
                                         <div style="width: 100%;display: flex;justify-content: space-between;">
-                                            <div class="text-secondary font-weight-bold">Your Signed Doc</div>
+                                            <div class="text-secondary font-weight-bold">My Contract</div>
                                             <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-file-pdf' style='font-size:24px;color:white;'></i></i></div>
                                         </div>
                                         <div>
 
-                                            <a href="<?php echo $query_out['0']->profile_link; ?>" target="_blank" class="btn btn-success">Check File Once!!</a>
+                                            <a href="<?php echo $query_out['0']->profile_link; ?>" target="_blank" class="btn btn-warning">View</a>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@ $tasks = $all_task['tasks'];
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="schoolModalLabel">Enter School Details:</h5>
+                                <h5 class="modal-title" id="schoolModalLabel"><strong>Enter School Details</h5></strong>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -142,21 +142,28 @@ $tasks = $all_task['tasks'];
                                     </div>
                                     <div class="form-group">
                                         <label for="school address"> School Address</label>
-                                        <input required type="text" class="form-control" id="school address" pattern="[A-Za-z-0-9, ]{5,30}" name="address" aria-describedby="Help" placeholder="Enter school address">
+                                        <input required type="text" class="form-control" id="school address" pattern="[A-Za-z-0-9, ]{5,30}" name="address" aria-describedby="Help" placeholder="Enter School Address">
                                     </div>
                                     <div class="form-group">
                                         <label for="contact">Contact</label>
-                                        <input required type="tel" pattern="[0-9]{10}" class="form-control" id="contact" name="contact" aria-describedby="Help" placeholder="Enter conatct details">
+                                        <input required type="tel" pattern="[0-9]{10}" class="form-control" id="contact" name="contact" aria-describedby="Help" placeholder="Enter Contact Details">
                                     </div>
                                     <div class="form-group">
-                                        <label for="cPerson">Contact Person Name</label>
-                                        <input required type="text" class="form-control" id="cPerson" pattern="[A-Za-z ]{5,20}" name="cPerson" aria-describedby="Help" placeholder="Enter contact person's name">
+                                        <label for="cPerson">Contact Person's Name</label>
+                                        <input required type="text" class="form-control" id="cPerson" pattern="[A-Za-z ]{5,20}" name="cPerson" aria-describedby="Help" placeholder="Enter Contact Person's Name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="number">Number of students regitered:</label>
+                                        <label for="number">Number of Students Regitered</label>
                                         <input required type="number" class="form-control" pattern="[0-9]{2,4}" id="number" name="number" aria-describedby="Help" placeholder="Enter Number of students regitered">
                                     </div>
-                                    <button class="btn btn-primary btn-block btn-lg" type="submit">Submit Details</button>
+                                    <div class="modal-footer">
+          <div class="col ml-2 text-left">
+        <button type="button" class="btn btn-warning">RESET</button> </div>
+           <div class="col ml-2 text-center">
+        <button type="submit" class="btn btn-primary .open-AddBookDialog" role="submit" type="submit" id="task-assign-data">SUBMIT</button></div>
+          <div class="col ml-2 text-right">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button></div>
+        </div>
                                 </form>
                             </div>
                         </div>
@@ -198,11 +205,11 @@ $tasks = $all_task['tasks'];
                                                                 <button type="button" class="btn btn-success" disabled>Approved</button>
                                                             <?php } else {
                                                             ?>
-                                                                <button type="button" class=" btn btn-info" <?php if ($list->completed) {
+                                                                <button type="button" class=" btn btn-danger" <?php if ($list->completed) {
                                                                                                                 echo 'disabled';
                                                                                                             }
                                                                                                             ?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
-                                                                    Check here to submit task
+                                                                    Submit Task
                                                                 </button>
                                                             <?php } ?>
                                                         </div>
@@ -221,7 +228,7 @@ $tasks = $all_task['tasks'];
                                                 </a>
                                             <?php }
                                         } else { ?>
-                                            <a href="#" class="list-group-item  list-group-item-action list-group-item-info">No task available</a>
+                                            <a href="#" class="list-group-item  list-group-item-action list-group-item-info">No New Task Available</a>
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -236,17 +243,24 @@ $tasks = $all_task['tasks'];
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="modalCenterTitle">Task</h5>
+                                            <h4 class="modal-title" id="modalCenterTitle">My Task</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <form action="InternDashboard/upload_task/<?php echo $list->id ?>" method="POST">
                                             <div id="task_sol" class="modal-body">
-                                                <label for="task_sol">Enter your message below:</label>
-                                                <textarea pattern="[A-Za-z. ]{5,20}" id="task_sol" rows="6" cols="45" name="solution" required></textarea>
+                                                <label for="task_sol" class="text-primary font-weight-bold h3">Description</label>
+                                                <textarea pattern="[A-Za-z. ]{5,20}" id="task_sol" placeholder="Enter Your Message Here" rows="6" cols="45" name="solution" required></textarea>
                                             </div>
-                                            <button type="submit" class="m-0 btn-block p-3 btn-success">Submit Task</button>
+                                            <div class="modal-footer">
+          <div class="col ml-2 text-left">
+        <button type="button" class="btn btn-warning">RESET</button> </div>
+           <div class="col ml-2 text-center">
+        <button type="submit" class="btn btn-primary .open-AddBookDialog" role="submit" type="submit" id="task-assign-data">SUBMIT</button></div>
+          <div class="col ml-2 text-right">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" >Close</button></div>
+        </div>
                                         </form>
                                     </div>
                                 </div>
