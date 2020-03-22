@@ -84,8 +84,13 @@
           </div>
         </div>
       </a>
+<<<<<<< HEAD
       <?php if ($this->session->userdata('admin_login')['username'] == 'MAINBDAADMIN') {
 	?><a href="<?php echo base_url() . bdaadminpath ?>/Dashboard/emp_list" class="custom-card">
+=======
+      <?php if($this->session->userdata('main_admin_login')){
+          ?><a href="<?php echo base_url() . adminpath ?>/Dashboard/emp_list" class="custom-card">
+>>>>>>> bafcb9ce2efb490fd5b43e9d38237e208bcf0ba3
             <div class="card bg-success">
           <div class="card-body text-center">
             <p class="card-text"> <?php echo $row_emp->num_rows(); ?> Employees</p>

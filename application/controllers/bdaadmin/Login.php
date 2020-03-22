@@ -7,14 +7,22 @@ class Login extends CI_Controller {
 		if ($this->session->userdata('admin_login')) {
 			redirect('bdaadmin/dashboard');
 		}
+		if (!$this->session->userdata('admin_login')) {
+			if($this->session->userdata('main_admin_login')){
+			redirect('bdaadmin/dashboard');
+		}
+		}
+
 
 		if ($this->input->post('int_admin_login_user') != '') {
 
 			$username = htmlspecialchars($this->input->post('int_admin_login_user'));
 			$password = htmlspecialchars($this->input->post('int_admin_login_pass'));
+			$login_type = htmlspecialchars($this->input->post('loginType'));
 
 			$data['username'] = $username;
 			$data['password'] = $password;
+			$data['login_type'] = $login_type;
 
 			$this->load->model('bdaadmin/Model_admin_login', 'admin');
 			$result = $this->admin->logincheck($data);
@@ -33,7 +41,18 @@ class Login extends CI_Controller {
 
 					);
 					// Add user data in session
-					$this->session->set_userdata('admin_login', $session_data);
+					//set the main admin session
+					$maint = "main";
+					if($data['login_type']===$maint){
+						$this->session->set_userdata('main_admin_login', $session_data);
+						$this->session->unset_userdata('admin_login');
+					}
+					//set the local admin session
+					else{
+						$this->session->unset_userdata('main_admin_login');
+						$this->session->set_userdata('admin_login', $session_data);
+					}
+					
 					redirect('bdaadmin/Dashboard');
 				}
 			} else {
@@ -49,6 +68,10 @@ class Login extends CI_Controller {
 
 	public function logout() {
 		$this->session->unset_userdata('admin_login');
+		redirect('bdaadmin');
+	}
+	public function mainlogout(){
+		$this->session->unset_userdata('main_admin_login');
 		redirect('bdaadmin');
 	}
 

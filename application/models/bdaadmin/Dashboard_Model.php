@@ -17,8 +17,16 @@ class Dashboard_Model extends CI_Model {
 		}
 
 	public function getDataSchool($limit, $offset){
-		$sql = $this->db->limit($limit, $offset)->get('intern_school');
-		return $sql;
+
+		if($this->session->userdata('main_admin_login')){
+			$sql = $this->db->limit($limit, $offset)->get('intern_school');
+			return $sql;
+		}
+
+		else{
+			$sql = $this->db->like('user_id', 'wf')->limit($limit, $offset)->get('intern_school');
+			return $sql;
+		}
 	}
 
 	public function takeTask($task){
@@ -103,7 +111,7 @@ class Dashboard_Model extends CI_Model {
 	}
 
 	public function getRowSchool(){
-		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
+		if($this->session->userdata('main_admin_login')){
 		return ($this->db->get('intern_school'));
 	}
 	else{
@@ -112,7 +120,7 @@ class Dashboard_Model extends CI_Model {
 	}
 
 	public function getRowSchoolFilter(){
-		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
+		if($this->session->userdata('main_admin_login')){
 		return ($this->db->get('intern_school')->num_rows());
 	}
 	else{
@@ -121,7 +129,7 @@ class Dashboard_Model extends CI_Model {
 	}
 
 	public function getNotification(){
-		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
+		if($this->session->userdata('main_admin_login')){
 		 $date = new DateTime("now");
 
 		 $curr_date = $date->format('Y-m-d ');
@@ -182,17 +190,11 @@ class Dashboard_Model extends CI_Model {
 	    return $query->result();
 	}*/
 	public function getRowsFilter($data){
-		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
-		return ($this->db->like($data['type'], $data['value'])->get('intern_register')->num_rows());
-	}
-	else{
 		return ($this->db->like('user_id', 'wf')->like($data['type'], $data['value'])->get('intern_register')->num_rows());
 	}
 
-	}
-
 	public function getRowsFilterSchool($data){
-		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
+		if($this->session->userdata('main_admin_login')){
 			return ($this->db->like($data['type'], $data['value'])->get('intern_school')->num_rows());
 		}
 		else{
@@ -201,19 +203,20 @@ class Dashboard_Model extends CI_Model {
 	}
 
 	public function getDataFilter($limit, $offset, $data){
-		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
-		$sql = $this->db->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_register');
-			return $sql;
-		}
-		else{
-			$sql = $this->db->like('user_id', 'wf')->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_register');
+		$sql = $this->db->like('user_id', 'wf')->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_register');
 				return $sql;
-		}
 	}
 
 	public function getDataFilterSchool($limit, $offset, $data){
-		$sql = $this->db->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_school');
-		return $sql;
+		if($this->session->userdata('main_admin_login')){
+			$sql = $this->db->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_school');
+			return $sql;	
+		}
+		else{
+			$sql = $this->db->like('user_id', 'wf')->like($data['type'], $data['value'])->limit($limit, $offset)->get('intern_school');
+			return $sql;
+		}
+		
 	}
 	
 }
