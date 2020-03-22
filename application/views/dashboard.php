@@ -78,7 +78,7 @@ $tasks = $all_task['tasks'];
                                             <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-list-alt' style='font-size:24px; color: white;'></i></div>
                                         </div>
                                         <button type="button" data-toggle="modal" data-target="#schoolModal" class="btn-success">Add School</button>
-                                        <button type="button" onclick="window.location.href='interndashboard/viewSchool'" class="btn-info">View School</button>
+                                        <button type="button" onclick="window.location.href='InternDashboard/viewSchool'" class="btn-info">View School</button>
                                         <div class="p-2" style="width: 100%;">
                                             Schools: <?php
                                                         $this->load->model('Dashboard_Model', 'dm');
@@ -135,7 +135,7 @@ $tasks = $all_task['tasks'];
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="interndashboard/uploaded_school" method="POST">
+                                <form action="InternDashboard/uploaded_school" method="POST">
                                     <div class="form-group">
                                         <label for="name">School Name</label>
                                         <input required type="text" class="form-control" id="name" pattern="[A-Za-z ]{5,20}" name="name" aria-describedby="Help" placeholder="Enter School Name">
@@ -226,7 +226,7 @@ $tasks = $all_task['tasks'];
                                     </div>
                                 </div>
                                 <div class="card-footer text-right px-4">
-                                    <a href="interndashboard/taskHistory" class="btn btn-outline-dark"> History</a>
+                                    <a href="InternDashboard/taskHistory" class="btn btn-outline-dark"> History</a>
                                 </div>
                             </div>
                         </div>
@@ -241,7 +241,7 @@ $tasks = $all_task['tasks'];
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form action="interndashboard/upload_task/<?php echo $list->id ?>" method="POST">
+                                        <form action="InternDashboard/upload_task/<?php echo $list->id ?>" method="POST">
                                             <div id="task_sol" class="modal-body">
                                                 <label for="task_sol">Enter your message below:</label>
                                                 <textarea pattern="[A-Za-z. ]{5,20}" id="task_sol" rows="6" cols="45" name="solution" required></textarea>
@@ -280,7 +280,7 @@ $tasks = $all_task['tasks'];
                     Ulpoad your Governemnt Id and Offer letter in a single pdf.
                 </li>
             </ul>
-            <form action="interndashboard/upload_id" method="post" enctype="multipart/form-data">
+            <form action="InternDashboard/upload_id" method="post" enctype="multipart/form-data">
                 Select image to upload:
                 <input class="btn btn-outline-primary" type="file" name="file" id="fileToUpload">
                 <input class="btn btn-info" type="submit" value="Upload Image" name="submit">
@@ -291,7 +291,7 @@ $tasks = $all_task['tasks'];
 
         <div class="container p-3">
             <h3 class="p-3">To start Quiz click below,</h3>
-            <a href="interndashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
+            <a href="InternDashboard/quiz"><button type="button" class="btn btn-primary">Start Quiz</button></a>
         </div>
     <?php } ?>
 </div>
@@ -305,7 +305,7 @@ $tasks = $all_task['tasks'];
 
                 <?php
                 if (!$list->seen) { ?>
-                    window.location.href = "interndashboard/taskSeen/<?php echo $list->id ?>";
+                    window.location.href = "InternDashboard/taskSeen/<?php echo $list->id ?>";
                 <?php } ?>
             });
         <?php } ?>

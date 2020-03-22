@@ -69,7 +69,7 @@
             </div>
     <?php }
     }else{
-        redirect('intern/dashboard');
+        redirect('Intern/InternDashboard');
     } ?>
     <!-- Scripts -->
     <script>

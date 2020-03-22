@@ -4,11 +4,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
-class Interndashboard extends CI_Controller
+class InternDashboard extends CI_Controller
 {
 	public function index()
 	{
-		$this->load->model('Dashboard_Model', 'dm');
+		$this->load->model('Dashboard_model', 'dm');
 		// session_start();
 		$_SESSION['Quiz'] = 5;
 		$out['page_title'] = 'Intern | Dashboard';
@@ -27,7 +27,7 @@ class Interndashboard extends CI_Controller
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
-		$this->load->model('Dashboard_Model', 'dm');
+		$this->load->model('Dashboard_model', 'dm');
 
 		$out = $this->dm->check_status($this->session->userdata("intern")['user_id']);
 		if (!$out[0]->quiz_status) {
@@ -54,10 +54,10 @@ class Interndashboard extends CI_Controller
 						</a></button>
 				</center>
 <?php
-				// header("Refresh:5; url= " . base_url() . "Intern/Interndashboard");    //Add whole part for site
+				// header("Refresh:5; url= " . base_url() . "Intern/InternDashboard");    //Add whole part for site
 			}
 		} else {
-			redirect('Intern/Interndashboard');
+			redirect('Intern/InternDashboard');
 		}
 	}
 	public function upload_id()
@@ -65,7 +65,7 @@ class Interndashboard extends CI_Controller
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
-		$this->load->model('Dashboard_Model', 'dm');
+		$this->load->model('Dashboard_model', 'dm');
 		if (!$this->dm->check_upload_status($this->session->userdata("intern")['user_id'])['0']->upload_status) {
 			if ($_FILES['file']['size']) {
 				$this->load->library('S3');
@@ -73,12 +73,12 @@ class Interndashboard extends CI_Controller
 				if ($_FILES["file"]["size"] > 5000000) {
 					//approx 50mb
 					echo "<center><br><br><h1>Sorry, your file is too large!!</h1><br><h4>Try Again with smaller size!!<br>Wait redirecting...</h4></center>";
-					header("Refresh:3; url= " . base_url() . "Intern/Interndashboard");
+					header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 					exit;
 				}
 				if ($ext != "png" && $ext != "jpeg" && $ext != "jpg" && $ext != "PNG" && $ext != "JPEG" && $ext != "JPG" && $ext != "pdf" && $ext != "PDF") {
 					echo "<center><br><br><h1>Sorry, your file type not supported!!</h1><br><h4>Try Again!!<br>Wait redirecting...</h4></center>";
-					header("Refresh:3; url= " . base_url() . "Intern/Interndashboard");
+					header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 					exit;
 				}
 				$target_dir = "application\controllers\Intern\uploads/";
@@ -90,7 +90,7 @@ class Interndashboard extends CI_Controller
 					echo "<center><br><br><h1>Your file uploaded!!</h1><br></center>";
 					//mail
 
-					$this->load->model('Dashboard_Model', 'dm');
+					$this->load->model('Dashboard_model', 'dm');
 					$result_int = $this->dm->return_intern($this->session->userdata('intern')['user_id']);
 					require 'vendor/autoload.php';
 					$info_int = $result_int['0'];
@@ -182,7 +182,7 @@ class Interndashboard extends CI_Controller
 
 						if ($mail->send()) {
 							echo "<center><br><br><h1>Your ID card is mailed!!</h1>Check you mail.<br><h4>Wait redirecting... " . $this->session->userdata('intern')['email'] . "</h4></center>";
-							header("Refresh:3; url= " . base_url() . "Intern/Interndashboard");
+							header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 						}
 					} catch (Exception $e) {
 						echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -196,15 +196,15 @@ class Interndashboard extends CI_Controller
 					$task['add_time'] = date("Y-m-d H:i:s");
 					$this->dm->takeTask($task);
 					$this->dm->upload_status($url, $this->session->userdata("intern")['user_id']);
-					header("Refresh:3; url= " . base_url() . "Intern/Interndashboard");
+					header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 				} else {
 					echo "<center><br><br><h1>Sorry, there was an error uploading your file.</h1><br><h4>Try Again after some time!!<br>Wait redirecting...</h4></center>";
-					header("Refresh:3; url= " . base_url() . "Intern/Interndashboard");
+					header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 				}
 			}
 		} else {
 			echo "<center><br><br><h1>File already Uploaded!!</h1><br>Wait redirecting...</h4></center>";
-			header("Refresh:3; url= " . base_url() . "Intern/Interndashboard");
+			header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 		}
 	}
 	function task_completed($id)
@@ -212,10 +212,10 @@ class Interndashboard extends CI_Controller
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
-		$this->load->model('Dashboard_Model', 'dm');
+		$this->load->model('Dashboard_model', 'dm');
 		$this->dm->task_completed($id);
 		echo "<center><br><br><h1>Your Response marked!!</h1><br><h4>Wait redirecting...</h4></center>";
-		header("Refresh:3; url= " . base_url() . "Intern/Interndashboard");
+		header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 	}
 	public function upload_task($id)
 	{
@@ -227,11 +227,11 @@ class Interndashboard extends CI_Controller
 		}
 		// echo "Hello";
 		// echo $data['solution'];
-		$this->load->model('Dashboard_Model', 'dm');
+		$this->load->model('Dashboard_model', 'dm');
 		// $out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
 		// $out['tasks'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']);
 		if ($this->dm->update_sol($id, $data['solution'])) {
-			redirect('Intern/Interndashboard');
+			redirect('Intern/InternDashboard');
 		}
 	}
 	public function upload_school()
@@ -255,9 +255,9 @@ class Interndashboard extends CI_Controller
 			'sPerson' => stripslashes(strip_tags($this->input->post('cPerson'))),
 			'user_id' => $this->session->userdata("intern")['user_id'],
 		);
-		$this->load->model('Dashboard_Model', 'dm');
+		$this->load->model('Dashboard_model', 'dm');
 		if ($this->dm->upload_schools($data)) {
-			redirect('Intern/Interndashboard');
+			redirect('Intern/InternDashboard');
 		}
 	}
 	public function viewSchool()
@@ -265,7 +265,7 @@ class Interndashboard extends CI_Controller
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
-		$this->load->model('Dashboard_Model', 'dm');
+		$this->load->model('Dashboard_model', 'dm');
 		$result['data'] = $this->dm->return_school($this->session->userdata('intern')['user_id']);
 		$this->load->View('header');
 		$this->load->View('intern/view_school', $result);
@@ -276,7 +276,7 @@ class Interndashboard extends CI_Controller
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
-		$this->load->model('Dashboard_Model', 'dm');
+		$this->load->model('Dashboard_model', 'dm');
 		$result['data'] = $this->dm->return_intern($this->session->userdata('intern')['user_id']);
 		$this->load->View('intern/id', $result);
 	}
@@ -286,7 +286,7 @@ class Interndashboard extends CI_Controller
 			redirect(base_url());
 		}
 		// get data
-		$this->load->model('Dashboard_Model', 'dm');
+		$this->load->model('Dashboard_model', 'dm');
 		$users = $this->dm->return_school($this->session->userdata('intern')['user_id']);
 		// print_r($users);
 		$usersData = $users['info'];
@@ -313,7 +313,7 @@ class Interndashboard extends CI_Controller
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
-		$this->load->model('Dashboard_Model', 'dm');
+		$this->load->model('Dashboard_model', 'dm');
 		$result['data'] = $this->dm->task_history($this->session->userdata("intern")['user_id']);
 		$this->load->View('header');
 		$this->load->View('Intern/task_history', $result);
@@ -321,8 +321,8 @@ class Interndashboard extends CI_Controller
 	}
 	public function taskSeen($id)
 	{
-		$this->load->model('Dashboard_Model', 'dm');
+		$this->load->model('Dashboard_model', 'dm');
 		$this->dm->task_seen($id);
-		redirect('Intern/Interndashboard');
+		redirect('Intern/InternDashboard');
 	}
 }
