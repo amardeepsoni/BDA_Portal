@@ -9,17 +9,15 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 		$this->load->model(bdaadminpath . '/Dashboard_Model', 'dm');
 		$this->title['notification'] = $this->dm->getNotification();
-<<<<<<< HEAD
+		if (!$this->session->userdata('admin_login')) {
+			if (!$this->session->userdata('main_admin_login')) {
+				redirect('bdaadmin');
+			}
+		}
 	}
 	public function index() {
-=======
->>>>>>> bafcb9ce2efb490fd5b43e9d38237e208bcf0ba3
-		if (!$this->session->userdata('admin_login')) {
-			if(!$this->session->userdata('main_admin_login')){
-			redirect('bdaadmin');
-		}
-<<<<<<< HEAD
-		if ($this->session->userdata('admin_login')['username'] == 'MAINBDAADMIN') {
+
+		if ($this->session->userdata('main_admin_login')) {
 			$data['page_title'] = 'Admin Dashboard';
 			$this->load->model(bdaadminpath . '/Dashboard_Model', 'dm');
 			$data['row'] = $this->dm->getRow(); //intern rows
@@ -43,25 +41,6 @@ class Dashboard extends CI_Controller {
 			$this->load->View('bdaheader', $data);
 			$this->load->view(bdaadminpath . '/dashboard.php', $this->title);
 			$this->load->View('bdafooter');
-=======
-		}
-	}
-	public function index()
-	{
-		
-		if($this->session->userdata('main_admin_login')){
-		$data['page_title'] = 'Admin Dashboard';
-		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
-		$data['row'] = $this->dm->getRow(); //intern rows
-		$data['rows'] = $this->dm->getRowSchool(); //school rows
-		$data['row_emp'] = $this->dm->getRowEmp(); //emp rows
-		$data['todays_task'] = $this->dm->today_tasks(); //today task table
-		$data['counts'] = $this->dm->pie_count();
-		$data['notification'] = $this->dm->getNotification(); //notification rows
-		$this->load->View('header', $data);
-		$this->load->view(adminpath . '/dashboard.php', $this->title);
-		$this->load->View('footer');
->>>>>>> bafcb9ce2efb490fd5b43e9d38237e208bcf0ba3
 		}
 
 	}

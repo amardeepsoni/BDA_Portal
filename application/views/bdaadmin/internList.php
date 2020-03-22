@@ -120,17 +120,12 @@ if ($fetch_data->num_rows() > 0) {
       <div class="modal-body">
     <div class="container">
     <div class="row mt-2 mb-5">
-<<<<<<< HEAD
-      <div class="col ml-2 text-right">
-     <input value="" id="modal-user-id" readonly class="text-danger"></p>
-    </div>
 
-=======
-      <div class="col ml-2 text-right"> 
+      <div class="col ml-2 text-right">
       <input value="" id="modal-user-id" readonly class="text-danger" />
       </div>
-       
->>>>>>> bafcb9ce2efb490fd5b43e9d38237e208bcf0ba3
+
+
 <form class="container">
         <div class="col-12 ml-2 text-left">
           <label class="text-primary  font-weight-bold h4">Task Heading</label>

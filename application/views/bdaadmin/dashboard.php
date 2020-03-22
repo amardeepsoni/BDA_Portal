@@ -56,7 +56,7 @@
   </script>
 </head>
 <?php echo $this->session->userdata('username'); ?>
-<div class="container mt-1">
+<div class="container">
   <!--   <div class="row">
      <div class="col-12 text-right">
         <i class="fas fa-bell btn btn-link" title="<?php //echo $notification->num_rows();
@@ -76,7 +76,7 @@
           </div>
         </div>
       </a>
-      <a href="<?php echo base_url() . bdaadminpath ?>/Dashboard/intern_school" class="custom-card">
+      <a href="<?php echo base_url() . bdaadminpath; ?>/Dashboard/intern_school" class="custom-card">
         <div class="card bg-warning">
           <div class="card-body text-center">
             <p class="card-text">Total School Registered</p>
@@ -84,13 +84,10 @@
           </div>
         </div>
       </a>
-<<<<<<< HEAD
-      <?php if ($this->session->userdata('admin_login')['username'] == 'MAINBDAADMIN') {
-	?><a href="<?php echo base_url() . bdaadminpath ?>/Dashboard/emp_list" class="custom-card">
-=======
-      <?php if($this->session->userdata('main_admin_login')){
-          ?><a href="<?php echo base_url() . adminpath ?>/Dashboard/emp_list" class="custom-card">
->>>>>>> bafcb9ce2efb490fd5b43e9d38237e208bcf0ba3
+
+      <?php if ($this->session->userdata('main_admin_login')) {
+	?><a href="<?php echo base_url() . bdaadminpath; ?>/Dashboard/emp_list" class="custom-card">
+
             <div class="card bg-success">
           <div class="card-body text-center">
             <p class="card-text"> <?php echo $row_emp->num_rows(); ?> Employees</p>
@@ -150,7 +147,7 @@
 
       </div>
       <div class="col-sm-8" style="background-color:lavenderblush;">
-        <div class="container">
+        <div class="container"  style="overflow: auto;">
           <h2>Today's Task</h2>
           <div class="alert alert-warning alert-dismissible fade show">
             <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
@@ -224,7 +221,7 @@
 
             <!-- table -->
             <div class="row">
-              <div class="col-12">
+              <div class="col-12" style="">
 
 
                 <table class="table table-bordered">
@@ -331,9 +328,9 @@ $start = new DateTime($row->add_time);
 ?></th>
           <td><?php //echo $row->name;
 ?></td>
-          <td><? php // echo $row->domain;
+          <td><? //php // echo $row->domain;
               ?></td>
-          <td><a class="btn text-success" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;<a href="#" role="button" class="btn text-danger" title="Deactive"><i class="fas fa-user-slash m-1"></i></a>&nbsp;<a href="<? php // echo base_url().bdaadminpath;
+          <td><a class="btn text-success" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;<a href="#" role="button" class="btn text-danger" title="Deactive"><i class="fas fa-user-slash m-1"></i></a>&nbsp;<a href="<? //php // echo base_url().bdaadminpath;
                                                                                                                                                                                                                               ?>/Dashboard/taskAssign?id=<?php //echo $row->user_id;
 ?>" role="button" class="btn m-1 text-warning" title="Task Assign"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a></td>
         </tr>
@@ -389,11 +386,11 @@ $start = new DateTime($row->add_time);
         <tr>
           <th scope="row" class="text-primary"><?php //echo $row->user_id;
 ?></th>
-          <td><? php // echo $row->name;
+          <td><? //php // echo $row->name;
               ?></td>
-          <td><? php // echo $row->domain;
+          <td><? //php // echo $row->domain;
               ?></td>
-          <td><a class="btn text-success" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;<a href="#" role="button" class="btn text-danger" title="Deactive"><i class="fas fa-user-slash m-1"></i></a>&nbsp;<a href="<? php // echo base_url().bdaadminpath;
+          <td><a class="btn text-success" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;<a href="#" role="button" class="btn text-danger" title="Deactive"><i class="fas fa-user-slash m-1"></i></a>&nbsp;<a href="<?// php // echo base_url().bdaadminpath;
                                                                                                                                                                                                                               ?>/Dashboard/taskAssign?id=<?php //echo $row->user_id;
 ?>" role="button" class="btn m-1 text-warning" title="Task Assign"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a></td>
         </tr>

@@ -85,7 +85,7 @@ if ($this->session->userdata('admin_login')) {?>
           </div>
           </div>
         <?php }
-        if ($this->session->userdata('main_admin_login')) {?>
+if ($this->session->userdata('main_admin_login')) {?>
   <div class="dropdown" style=" margin-right: 90px;">
           <a href="<?php echo base_url(); ?>bdaadmin/Dashboard" class="btn btn-outline-info nav-link">
             <font style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('main_admin_login')['name']; ?> </font>Admin
@@ -109,7 +109,9 @@ if ($this->session->userdata('admin_login')) {?>
 </Style>
 <?php if (isset($notification)) {
 	?>
+    <ul class="navbar-nav mr-auto">
 <i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal-header" type=""><i class="h-6 text-danger badge"><?php echo $notification->num_rows(); ?> </i></i>
+</ul>
 <?php
 ?>
 <!-- modal for notifications -->

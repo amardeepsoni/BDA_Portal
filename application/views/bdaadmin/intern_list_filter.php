@@ -6,12 +6,12 @@
     }
 </style>
 <div class="container-fluid mt-1">
-  <a href="<?php echo base_url().adminpath ?>/Dashboard/intern_list" class="btn btn-primary" role="button">Show All</a>
+  <a href="<?php echo base_url() . bdaadminpath ?>/Dashboard/intern_list" class="btn btn-primary" role="button">Show All</a>
   <!-- table -->
 <div class="row mt-2">
   <div class="col-12">
-    
-  
+
+
 <table class="table table-bordered" id="myTable">
   <thead>
     <tr>
@@ -23,49 +23,46 @@
   </thead>
   <tbody>
     <tr>
-      <?php 
-      if($fetch_data->num_rows()>0){
-       foreach($fetch_data->result() as $row){
-        ?>
+      <?php
+if ($fetch_data->num_rows() > 0) {
+	foreach ($fetch_data->result() as $row) {
+		?>
         <tr>
-          <td scope="row" class="text-primary"><a href="<?php echo base_url().adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></td>
-          <td><?php echo $row->name;?></td>
-          <td><?php echo $row->domain;?></td>
+          <td scope="row" class="text-primary"><a href="<?php echo base_url() . bdaadminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></td>
+          <td><?php echo $row->name; ?></td>
+          <td><?php echo $row->domain; ?></td>
           <td>
-            <?php if($row->login_status) { ?>
+            <?php if ($row->login_status) {?>
             <a class="btn text-success active-btn-login" title="Active" id="<?php echo $row->user_id; ?>"><i class="fas fa-user m-1"></i></a>&nbsp;
-          <?php }
-          else {
-            ?>
+          <?php } else {
+			?>
               <a class="btn text-success disabled" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;
             <?php
-          }
-           ?>
-            <?php if(!$row->login_status) {?><a href="#" role="button" class="btn text-danger b-de" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a>
-          <?php } 
-          else{ ?>
-           <a href="#" role="button" class="btn text-danger disabled" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a> 
-          <?php } ?>
-          &nbsp;<a href="#myModal" role="button" class="btn m-1 text-warning open-AddBookDialog" data-toggle="modal"  title="Task Assign" data-id="<?php echo $row->user_id;?>"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 show-documents-intern" title="Intern Documents" id="<?php echo $row->user_id;  ?>"><i class="fas fa-info-circle"></i></a></td>
+}
+		?>
+            <?php if (!$row->login_status) {?><a href="#" role="button" class="btn text-danger b-de" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a>
+          <?php } else {?>
+           <a href="#" role="button" class="btn text-danger disabled" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a>
+          <?php }?>
+          &nbsp;<a href="#myModal" role="button" class="btn m-1 text-warning open-AddBookDialog" data-toggle="modal"  title="Task Assign" data-id="<?php echo $row->user_id; ?>"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 show-documents-intern" title="Intern Documents" id="<?php echo $row->user_id; ?>"><i class="fas fa-info-circle"></i></a></td>
         </tr>
         <?php
-      }
-    }
-    else{
-    ?>
+}
+} else {
+	?>
       <tr>
         <td colspan="4">No data found</td>
       </tr>
     <?php
-  } 
+}
 
-      ?>
+?>
     </tr>
   </tbody>
 </table>
 <div class="row">
 <div class="col-12">
-<p class="text-center font-weight-bold" style="word-spacing: 30px;"><?= $this->pagination->create_links();?></p>
+<p class="text-center font-weight-bold" style="word-spacing: 30px;"><?=$this->pagination->create_links();?></p>
 </div>
 </div>
 </div>
@@ -110,7 +107,7 @@
         </div>
       </form>
     </div>
- 
+
       </div>
 
       <!-- Modal footer -->
@@ -136,7 +133,7 @@ $(document).on("click", ".open-AddBookDialog", function () {
    $('.modal-body form').submit(function(e){
     e.preventDefault();
     $.post(
-      '<?php echo base_url().adminpath;?>/Dashboard/insertTask',
+      '<?php echo base_url() . bdaadminpath; ?>/Dashboard/insertTask',
       {
         user_id:myBookId,
         topic : $('#topic').val(),
@@ -145,7 +142,7 @@ $(document).on("click", ".open-AddBookDialog", function () {
       function(result){
         if(result=='error'){
           swal("Task is not Assigned !..");
-        } 
+        }
         else{
            $('#close-modal').trigger('click');
           swal(myBookId, "Task Assigned Successfully to "+myBookId, "success");
@@ -168,9 +165,9 @@ $(document).on("click", ".open-AddBookDialog", function () {
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, deactivated it!'
 }).then((result) => {
-  if (result.value) { 
+  if (result.value) {
     $.post(
-        '<?php echo base_url().adminpath;?>/Dashboard/insertStatus',
+        '<?php echo base_url() . bdaadminpath; ?>/Dashboard/insertStatus',
         {
           user_id:$(this).attr('id')
         },
@@ -191,7 +188,7 @@ $(document).on("click", ".open-AddBookDialog", function () {
     location.reload(true);
   }
 });
-   }); 
+   });
 
    //activate the login status
    $(document).on('click', '.active-btn-login', function(){
@@ -204,9 +201,9 @@ $(document).on("click", ".open-AddBookDialog", function () {
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, activated it!'
 }).then((result) => {
-  if (result.value) { 
+  if (result.value) {
     $.post(
-        '<?php echo base_url().adminpath;?>/Dashboard/insertStatusActive',
+        '<?php echo base_url() . bdaadminpath; ?>/Dashboard/insertStatusActive',
         {
           user_id:$(this).attr('id')
         },
@@ -227,11 +224,11 @@ $(document).on("click", ".open-AddBookDialog", function () {
     location.reload(true);
   }
 });
-   }); 
+   });
 });
 
 /*$(document).on('click', '.show-documents-intern', function(){
-    
+
    });*/
 </script>
 
