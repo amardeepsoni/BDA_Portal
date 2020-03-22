@@ -98,11 +98,13 @@ $db['default'] = array(
 	'save_queries' => TRUE,
 );
 /*$db['default'] = array(
-'dsn'	=> '',
-'hostname' => 'intellifydb.cgurwbqxioqu.ap-south-1.rds.amazonaws.com',
-'username' => 'intellifyiitd16',
-'password' => 'dbsolve6june',
-'database' => 'intellify',
+
+'dsn' => '',
+'hostname' => 'aa122w01jbjn29x.cxtmzg7or5nd.ap-south-1.rds.amazonaws.com',
+'username' => 'intellifydb',
+'password' => 'k4HNiVT74mU1SxaCnncyUXlxC7l1J9',
+'database' => 'Intellify',
+
 'dbdriver' => 'mysqli',
 'dbprefix' => '',
 'pconnect' => FALSE,
@@ -116,7 +118,8 @@ $db['default'] = array(
 'compress' => FALSE,
 'stricton' => FALSE,
 'failover' => array(),
-'save_queries' => TRUE
+
+'save_queries' => TRUE,
 );*/
 $db['quizdb'] = array(
 	'dsn' => '',

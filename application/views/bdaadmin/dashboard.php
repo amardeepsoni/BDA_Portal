@@ -59,9 +59,9 @@
 <div class="container mt-1">
   <!--   <div class="row">
      <div class="col-12 text-right">
-        <i class="fas fa-bell btn btn-link" title="<?php //echo $notification->num_rows(); 
-                                                    ?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"></i>
-      </div>    
+        <i class="fas fa-bell btn btn-link" title="<?php //echo $notification->num_rows();
+?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"></i>
+      </div>
   </div> -->
   <br> <br>
   <h1 align="right"><button type="button" ; class="btn btn-warning"><i class='fas fa-download'>Generate Report</i>
@@ -84,16 +84,16 @@
           </div>
         </div>
       </a>
-      <?php if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
-          ?><a href="<?php echo base_url() . adminpath ?>/Dashboard/emp_list" class="custom-card">
+      <?php if ($this->session->userdata('admin_login')['username'] == 'MAINBDAADMIN') {
+	?><a href="<?php echo base_url() . adminpath ?>/Dashboard/emp_list" class="custom-card">
             <div class="card bg-success">
           <div class="card-body text-center">
             <p class="card-text"> <?php echo $row_emp->num_rows(); ?> Employees</p>
           </div>
         </div> </a>
           <?php
-      } ?>
-      
+}?>
+
     </div>
   </div>
 
@@ -180,7 +180,7 @@
                       </font>
                     </tr>
                   </thead>
-                  <?php foreach ($todays_task as $task) { ?>
+                  <?php foreach ($todays_task as $task) {?>
                     <tbody>
                       <tr>
                         <td><?php echo $task['user_id']; ?></td>
@@ -191,7 +191,7 @@
                         <td><?php echo $task['complete_time']; ?></td>
                       </tr>
                     </tbody>
-                  <?php } ?>
+                  <?php }?>
                 </table>
             </strong>
           </div>
@@ -236,9 +236,9 @@
                   <tbody>
                     <tr>
                       <?php
-                      if ($notification->num_rows() > 0) {
-                        foreach ($notification->result() as $row) {
-                      ?>
+if ($notification->num_rows() > 0) {
+	foreach ($notification->result() as $row) {
+		?>
                     <tr>
                       <th scope="row" class="text-primary"><a href="<?php echo base_url() . adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></th>
                       <td><?php echo $row->topic; ?></td>
@@ -246,30 +246,30 @@
                       <td><?php echo $row->add_time; ?></td>
                       <td><?php echo $row->complete_time; ?></td>
                       <?php
-                          $start = new DateTime($row->add_time);
-                          $end = new DateTime($row->complete_time);
-                          $diff = $start->diff($end);
-                      ?>
+$start = new DateTime($row->add_time);
+		$end = new DateTime($row->complete_time);
+		$diff = $start->diff($end);
+		?>
                       <td> <?php echo $diff->format('%d days %h hours %i minutes %S seconds'); ?> </td>
                     </tr>
                   <?php
-                        }
-                      } else {
-                  ?>
+}
+} else {
+	?>
                   <tr>
                     <td colspan="4">Today Completed Task not found</td>
                   </tr>
                 <?php
-                      }
+}
 
-                ?>
+?>
                 </tr>
                   </tbody>
                 </table>
                 <div class="row">
                   <div class="col-12">
                     <p class="text-center font-weight-bold" style="word-spacing: 30px;"><?php //$this->pagination->create_links();
-                                                                                        ?></p>
+?></p>
                   </div>
                 </div>
               </div>
@@ -291,13 +291,13 @@
     });
   </script>
 
-  <!-- 
-<div class="container"> 
+  <!--
+<div class="container">
   <aside class="float-right border ">
   <a  class="h3 mr-2 text-success" href="#">Add Quiz</a>
 </aside>
 </div> -->
-  <!-- 
+  <!--
 <div class="clearfix"></div> -->
   <!-- <div class="container-fluid mt-5"> -->
 
@@ -318,32 +318,32 @@
   <tbody>
     <tr>
       <?php
-      //if($fetch_data->num_rows()>0){
-      // foreach($fetch_data->result() as $row){
-      ?>
+//if($fetch_data->num_rows()>0){
+// foreach($fetch_data->result() as $row){
+?>
         <tr>
-          <th scope="row" class="text-primary"><?php //echo $row->user_id; 
-                                                ?></th>
+          <th scope="row" class="text-primary"><?php //echo $row->user_id;
+?></th>
           <td><?php //echo $row->name;
-              ?></td>
+?></td>
           <td><? php // echo $row->domain;
               ?></td>
-          <td><a class="btn text-success" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;<a href="#" role="button" class="btn text-danger" title="Deactive"><i class="fas fa-user-slash m-1"></i></a>&nbsp;<a href="<? php // echo base_url().adminpath; 
-                                                                                                                                                                                                                              ?>/Dashboard/taskAssign?id=<?php //echo $row->user_id; 
-                                                                                                                                                                                                                                                          ?>" role="button" class="btn m-1 text-warning" title="Task Assign"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a></td>
+          <td><a class="btn text-success" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;<a href="#" role="button" class="btn text-danger" title="Deactive"><i class="fas fa-user-slash m-1"></i></a>&nbsp;<a href="<? php // echo base_url().adminpath;
+                                                                                                                                                                                                                              ?>/Dashboard/taskAssign?id=<?php //echo $row->user_id;
+?>" role="button" class="btn m-1 text-warning" title="Task Assign"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a></td>
         </tr>
         <?php
-        /*  }
-    }*/
-        /* else*/ {
-        ?>
+/*  }
+}*/
+/* else*/{
+	?>
       <tr>
         <td colspan="4">No data found</td>
       </tr>
     <?php
-        }
+}
 
-    ?>
+?>
     </tr>
   </tbody>
 </table> -->
@@ -378,32 +378,32 @@
   <tbody>
     <tr>
       <?php
-      // if($fetch_data->num_rows()>0){
-      //foreach($fetch_data->result() as $row){
-      ?>
+// if($fetch_data->num_rows()>0){
+//foreach($fetch_data->result() as $row){
+?>
         <tr>
-          <th scope="row" class="text-primary"><?php //echo $row->user_id; 
-                                                ?></th>
+          <th scope="row" class="text-primary"><?php //echo $row->user_id;
+?></th>
           <td><? php // echo $row->name;
               ?></td>
           <td><? php // echo $row->domain;
               ?></td>
-          <td><a class="btn text-success" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;<a href="#" role="button" class="btn text-danger" title="Deactive"><i class="fas fa-user-slash m-1"></i></a>&nbsp;<a href="<? php // echo base_url().adminpath; 
-                                                                                                                                                                                                                              ?>/Dashboard/taskAssign?id=<?php //echo $row->user_id; 
-                                                                                                                                                                                                                                                          ?>" role="button" class="btn m-1 text-warning" title="Task Assign"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a></td>
+          <td><a class="btn text-success" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;<a href="#" role="button" class="btn text-danger" title="Deactive"><i class="fas fa-user-slash m-1"></i></a>&nbsp;<a href="<? php // echo base_url().adminpath;
+                                                                                                                                                                                                                              ?>/Dashboard/taskAssign?id=<?php //echo $row->user_id;
+?>" role="button" class="btn m-1 text-warning" title="Task Assign"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a></td>
         </tr>
         <?php
-        /*  }
-    }
-    else{*/
-        ?>
+/*  }
+}
+else{*/
+?>
       <tr>
         <td colspan="4">No data found</td>
       </tr>
     <?php
-    /*  } 
-*/
-    ?>
+/*  }
+ */
+?>
     </tr>
   </tbody>
 </table>
