@@ -147,7 +147,7 @@
       <div class="col-sm-8" style="background-color:lavenderblush;">
         <div class="container">
           <h2>Today's Task</h2>
-          <div class="alert alert-warning alert-dismissible fade show">
+          <div class="alert alert-dismissible fade show">
             <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
             <strong>
               <div class="container">
@@ -199,7 +199,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> <br> <br>
 
   <!-- modal for notifications -->
 

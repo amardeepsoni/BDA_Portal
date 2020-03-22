@@ -1,3 +1,9 @@
+<div id="preload">
+        <div class="preload">
+            <div class="spinner"></div>
+        </div>
+    </div>
+    
 <div class="container-fluid" style="padding: 0; margin:0;">
 
 <div class="container-fluid" style="padding: 0; margin:0;overflow: hidden;position: relative;">
