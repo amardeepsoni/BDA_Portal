@@ -11,14 +11,15 @@ class Dashboard extends CI_Controller
 		parent::__construct();
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
 		$this->title['notification'] = $this->dm->getNotification();
-	}
-	public function index()
-	{
 		if (!$this->session->userdata('admin_login')) {
 			if(!$this->session->userdata('main_admin_login')){
 			redirect('bdaadmin');
 		}
 		}
+	}
+	public function index()
+	{
+		
 		if($this->session->userdata('main_admin_login')){
 		$data['page_title'] = 'Admin Dashboard';
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');

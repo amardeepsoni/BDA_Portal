@@ -7,6 +7,11 @@ class Login extends CI_Controller {
 		if ($this->session->userdata('admin_login')) {
 			redirect('bdaadmin/dashboard');
 		}
+		if (!$this->session->userdata('admin_login')) {
+			if($this->session->userdata('main_admin_login')){
+			redirect('bdaadmin/dashboard');
+		}
+		}
 
 
 		if ($this->input->post('int_admin_login_user') != '') {
