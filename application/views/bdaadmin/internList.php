@@ -6,7 +6,7 @@
 </style>
 <div class="container-fluid mt-1">
 <!-- filter -->
-<!-- <form class="form-inline" action="<?php //echo base_url() .adminpath .'/Dashboard/filterData'; ?>" method="post">
+<!-- <form class="form-inline" action="<?php //echo base_url() .bdaadminpath .'/Dashboard/filterData'; ?>" method="post">
         <select class="form-control" name="field">
             <option selected="selected" disabled="disabled" value="">Filter By</option>
             <option value="Intern_Id<">Intern_Id</option>
@@ -17,16 +17,16 @@
         <input class="btn btn-default" type="submit" name="filter" value="Go">
 </form> -->
 
-<div class="container">  
+<div class="container">
 <h1 align="right"><button type="button";  class="btn btn-warning"><i class='fas fa-download'>Generate Report</i>
- </h1></button>         
-  </div>  
+ </h1></button>
+  </div>
 
   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-filter-new-data" aria-expanded="false" aria-controls="collapse-filter-new-data" id="filter-data-new">
     Filter List
   </button>
 <div class="collapse fade" id="collapse-filter-new-data">
-<form method="post" class="form-inline" action="<?php echo base_url() .adminpath .'/Dashboard/filter_data_intern'; ?>">
+<form method="post" class="form-inline" action="<?php echo base_url() . bdaadminpath . '/Dashboard/filter_data_intern'; ?>">
   <label for="typeFilter">Choose Type of Filter: </label>
 
 <select  name="typeFilter">
@@ -43,8 +43,8 @@
   <!-- table -->
 <div class="row mt-2">
   <div class="col-12">
-    
-  
+
+
 <table class="table text-center table-bordered table-hover"; id="myTable">
   <thead>
     <tr>
@@ -56,49 +56,46 @@
   </thead>
   <tbody>
     <tr>
-      <?php 
-      if($fetch_data->num_rows()>0){
-       foreach($fetch_data->result() as $row){
-        ?>
+      <?php
+if ($fetch_data->num_rows() > 0) {
+	foreach ($fetch_data->result() as $row) {
+		?>
         <tr>
-          <td scope="row" class="text-primary"><a href="<?php echo base_url().adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></td>
-          <td><?php echo $row->name;?></td>
-          <td><?php echo $row->domain;?></td>
+          <td scope="row" class="text-primary"><a href="<?php echo base_url() . bdaadminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></td>
+          <td><?php echo $row->name; ?></td>
+          <td><?php echo $row->domain; ?></td>
           <td>
-            <?php if($row->login_status) { ?>
+            <?php if ($row->login_status) {?>
             <a class="btn text-success active-btn-login" title="Active" id="<?php echo $row->user_id; ?>"><i class="fas fa-user m-1"></i></a>&nbsp;
-          <?php }
-          else {
-            ?>
+          <?php } else {
+			?>
               <a class="btn text-success disabled" title="Active"><i class="fas fa-user m-1"></i></a>&nbsp;
             <?php
-          }
-           ?>
-            <?php if(!$row->login_status) {?><a href="#" role="button" class="btn text-danger b-de" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a>
-          <?php } 
-          else{ ?>
-           <a href="#" role="button" class="btn text-danger disabled" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a> 
-          <?php } ?>
-          &nbsp;<a href="#myModal" role="button" class="btn m-1 text-warning open-AddBookDialog" data-toggle="modal"  title="Task Assign" data-id="<?php echo $row->user_id;?>"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 show-documents-intern" title="Intern Documents" id="<?php echo $row->user_id;  ?>"><i class="fas fa-info-circle"></i></a></td>
+}
+		?>
+            <?php if (!$row->login_status) {?><a href="#" role="button" class="btn text-danger b-de" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a>
+          <?php } else {?>
+           <a href="#" role="button" class="btn text-danger disabled" title="Deactive" id="<?php echo $row->user_id; ?>"><i class="fas fa-user-slash m-1"></i></a>
+          <?php }?>
+          &nbsp;<a href="#myModal" role="button" class="btn m-1 text-warning open-AddBookDialog" data-toggle="modal"  title="Task Assign" data-id="<?php echo $row->user_id; ?>"><i class="fas fa-tasks"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 " title="Delete"><i class="fas fa-trash-alt"></i></a>&nbsp;<a href="#" role="button" class="btn btn-default m-1 show-documents-intern" title="Intern Documents" id="<?php echo $row->user_id; ?>"><i class="fas fa-info-circle"></i></a></td>
         </tr>
         <?php
-      }
-    }
-    else{
-    ?>
+}
+} else {
+	?>
       <tr>
         <td colspan="4">No data found</td>
       </tr>
     <?php
-  } 
+}
 
-      ?>
+?>
     </tr>
   </tbody>
 </table>
 <div class="row">
 <div class="col-12">
-<p class="text-center font-weight-bold" style="word-spacing: 30px;"><?= $this->pagination->create_links();?></p>
+<p class="text-center font-weight-bold" style="word-spacing: 30px;"><?=$this->pagination->create_links();?></p>
 </div>
 </div>
 </div>
@@ -123,10 +120,10 @@
       <div class="modal-body">
     <div class="container">
     <div class="row mt-2 mb-5">
-      <div class="col ml-2 text-right"> 
+      <div class="col ml-2 text-right">
      <input value="" id="modal-user-id" readonly class="text-danger"></p>
     </div>
-       
+
 <form class="container">
         <div class="col-12 ml-2 text-left">
           <label class="text-primary  font-weight-bold h4">Task Heading</label>
@@ -136,9 +133,9 @@
           <label class="text-primary font-weight-bold h3">Task Description</label>
           <textarea class="form-control" placeholder="Enter the Description" required id="description"></textarea>
         </div>
-      
+
     </div>
- 
+
       </div>
 
       <!-- Modal footer -->
@@ -171,7 +168,7 @@ $(document).on("click", ".open-AddBookDialog", function () {
    $('.modal-body form').submit(function(e){
     e.preventDefault();
     $.post(
-      '<?php echo base_url().adminpath;?>/Dashboard/insertTask',
+      '<?php echo base_url() . bdaadminpath; ?>/Dashboard/insertTask',
       {
         user_id:myBookId,
         topic : $('#topic').val(),
@@ -180,7 +177,7 @@ $(document).on("click", ".open-AddBookDialog", function () {
       function(result){
         if(result=='error'){
           swal("Task is not Assigned !..");
-        } 
+        }
         else{
 
           swal(myBookId, "Task Assigned Successfully to "+myBookId, "success");
@@ -204,9 +201,9 @@ $(document).on("click", ".open-AddBookDialog", function () {
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, deactivated it!'
 }).then((result) => {
-  if (result.value) { 
+  if (result.value) {
     $.post(
-        '<?php echo base_url().adminpath;?>/Dashboard/insertStatus',
+        '<?php echo base_url() . bdaadminpath; ?>/Dashboard/insertStatus',
         {
           user_id:$(this).attr('id')
         },
@@ -227,7 +224,7 @@ $(document).on("click", ".open-AddBookDialog", function () {
     location.reload(true);
   }
 });
-   }); 
+   });
 
    //activate the login status
    $(document).on('click', '.active-btn-login', function(){
@@ -240,9 +237,9 @@ $(document).on("click", ".open-AddBookDialog", function () {
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, activated it!'
 }).then((result) => {
-  if (result.value) { 
+  if (result.value) {
     $.post(
-        '<?php echo base_url().adminpath;?>/Dashboard/insertStatusActive',
+        '<?php echo base_url() . bdaadminpath; ?>/Dashboard/insertStatusActive',
         {
           user_id:$(this).attr('id')
         },
@@ -263,9 +260,9 @@ $(document).on("click", ".open-AddBookDialog", function () {
     location.reload(true);
   }
 });
-   }); 
+   });
 
- 
+
 });
 </script>
 

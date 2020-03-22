@@ -10,23 +10,23 @@ class Register extends CI_Controller {
 		}
 
 		$data['page_title'] = 'Career | Register';
-		$this->load->View('header', $data);
-		$this->load->View('Register');
-		$this->load->View('footer');
+		$this->load->View('bdaheader', $data);
+		$this->load->View('internRegister');
+		$this->load->View('bdafooter');
 	}
 
 	public function take_data_intern() {
 		$this->load->model('Register_Model', 'rm');
 		$code = '';
 		$type = $this->input->post('type');
-		if($type === 'Intern Work from Office'){
+		if ($type === 'Intern Work from Office') {
 			$code = 'WFO';
-		}elseif($type === 'Intern Work from Home'){
+		} elseif ($type === 'Intern Work from Home') {
 			$code = 'WFH';
-		} else{
+		} else {
 			$code = 'EMP';
 		}
-		$intern_id = $code. rand(1111, 9999);
+		$intern_id = $code . rand(1111, 9999);
 		$str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@#$';
 		$referrals = 'Intellifybda' . $intern_id;
 		if (htmlspecialchars($this->input->post('referal_by'))) {

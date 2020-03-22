@@ -11,7 +11,7 @@
  -->
 
  <style>
-  
+
   /*counter css start*/
 .counter {
     display: block;
@@ -32,33 +32,32 @@
   </div>
  </div>
 
-     
-     <?php if($detail->num_rows()>0){
-        $comp = 0;
-        $appr = 0;
-        foreach ($detail->result() as $value) {
-          if($value->completed==1){
-            $comp++;
-          }
-          if($value->approved_task==1){
-            $appr++;
-          }
-        }
-     } 
-     else{
-      $comp = 0;
-      $appr = 0;
-     }
 
-      ?>
- 
+     <?php if ($detail->num_rows() > 0) {
+	$comp = 0;
+	$appr = 0;
+	foreach ($detail->result() as $value) {
+		if ($value->completed == 1) {
+			$comp++;
+		}
+		if ($value->approved_task == 1) {
+			$appr++;
+		}
+	}
+} else {
+	$comp = 0;
+	$appr = 0;
+}
+
+?>
+
 
 
 <!-- counter -->
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class=""> <i class="counter"><?php  echo $detail->num_rows(); ?></i>
+            <div class=""> <i class="counter"><?php echo $detail->num_rows(); ?></i>
                 <p>Total Tasks</p>
             </div>
         </div>
@@ -100,17 +99,17 @@ if ($detail->num_rows() > 0) {
 	foreach ($detail->result() as $row) {
 		?>
         <tr>
-          <th scope="row" class="text-primary"><a href="<?php echo base_url() . adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->id; ?></a></th>
+          <th scope="row" class="text-primary"><a href="<?php echo base_url() . bdaadminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->id; ?></a></th>
           <td><?php echo $row->topic; ?></td>
           <td><?php echo $row->description; ?></td>
           <td><?php echo date("d-m-Y, h:m:i a", strtotime($row->add_time)); ?></td>
-          
+
           <?php
 if ($row->complete_time != '0000-00-00 00:00:00') {
-  ?>
-  <td><?php echo date("d-m-Y, h:m:i a", strtotime($row->complete_time));  ?></td>
+			?>
+  <td><?php echo date("d-m-Y, h:m:i a", strtotime($row->complete_time)); ?></td>
   <?php
-			$start = new DateTime($row->add_time);
+$start = new DateTime($row->add_time);
 			$end = new DateTime($row->complete_time);
 			$diff = $start->diff($end);
 
@@ -130,27 +129,25 @@ if ($row->approved_task == 1) {
 			?>
               <td style="display: flex;"><i class="btn btn-primary disabled mb-1" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up "></i></i>
                 <?php if ($row->completed) {?>
-                <span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" ><i class="fab fa-readme" class="sr-only" value="<?php echo $row->response; ?>"></i></span> <?php } if($row->completed==1){?><a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a><?php } ?></td>
+                <span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" ><i class="fab fa-readme" class="sr-only" value="<?php echo $row->response; ?>"></i></span> <?php }if ($row->completed == 1) {?><a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a><?php }?></td>
             <?php
 } else {
-			 if($row->completed==1){
-      ?>
-          <td style="display: flex;"> <?php if($row->completed==1){ ?><button class="btn btn-primary mb-1" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><?php } if ($row->completed==1) {?><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span><?php }if($row->completed==1){?><a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a><?php } ?> </td>
+			if ($row->completed == 1) {
+				?>
+          <td style="display: flex;"> <?php if ($row->completed == 1) {?><button class="btn btn-primary mb-1" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><?php }if ($row->completed == 1) {?><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span><?php }if ($row->completed == 1) {?><a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a><?php }?> </td>
           <?php
-        }
-          else{
-            if($row->seen==1){
-              ?>
+} else {
+				if ($row->seen == 1) {
+					?>
               <td><p class="text-success">Task Seen</p></td>
             <?php
-            }
-            else{
-            ?>
+} else {
+					?>
               <td><p class="text-danger">Task Not Seen</p></td>
             <?php
-          }
-          }
 }
+			}
+		}
 		?>
 
         </tr>
@@ -207,7 +204,7 @@ if ($row->approved_task == 1) {
 <div class="modal fade" id="suggestion-task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"  style="position: absolute;top: 50%;left: 50%;  transform: translate(-50%, -50%); width: 50%;">
   <div class="modal-dialog modal-dialog-centered" role="">
     <div class="modal-content">
-   
+
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Suggestion</h5>
 
@@ -259,7 +256,7 @@ if ($row->approved_task == 1) {
 }).then((result) => {
   if (result.value) {
     $.post(
-         '<?php echo base_url() . adminpath; ?>/Dashboard/disapprovedTask',
+         '<?php echo base_url() . bdaadminpath; ?>/Dashboard/disapprovedTask',
          {
           id:id,
           sugg:$('#suggestion-admin').val()
@@ -305,7 +302,7 @@ if ($row->approved_task == 1) {
 }).then((result) => {
   if (result.value) {
     $.post(
-         '<?php echo base_url() . adminpath; ?>/Dashboard/approvedTask',
+         '<?php echo base_url() . bdaadminpath; ?>/Dashboard/approvedTask',
          {
           id:$(this).attr('id')
          },

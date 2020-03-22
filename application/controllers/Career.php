@@ -7,10 +7,10 @@ class Career extends CI_Controller {
 		if ($this->session->userdata('intern')) {
 			redirect('Intern/InternDashboard');
 		}
-		$data['page_title'] = 'Home';
-		$this->load->View('header', $data);
-		$this->load->View('home');
-		$this->load->View('footer');
+		$data['page_title'] = 'Intellify | Career';
+		$this->load->View('bdaheader', $data);
+		$this->load->View('bdahome');
+		$this->load->View('bdafooter');
 
 	}
 }

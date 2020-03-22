@@ -15,9 +15,9 @@ class InternDashboard extends CI_Controller {
 		$out['data'] = $this->dm->check_status($this->session->userdata("intern")['user_id']);
 		$out['all_task'] = $this->dm->fetch_tasks($this->session->userdata("intern")['user_id']); //To get tasks
 		$out['score'] = $this->dm->show_scoreboard($this->session->userdata("intern")['user_id']); //Leader scoreboard data
-		$this->load->View('header', $out);
-		$this->load->View('dashboard', $out);
-		$this->load->View('footer');
+		$this->load->View('bdaheader', $out);
+		$this->load->View('interndashboard', $out);
+		$this->load->View('bdafooter');
 	}
 
 	public function quiz() {
@@ -47,7 +47,7 @@ class InternDashboard extends CI_Controller {
 					</a>
 					<br><br><Br><br>
 					<button alt="Offer Letter"><a href=" ">
-							<h4>Redirect To Home</h4>
+							<h4>Redirect to home</h4>
 						</a></button>
 				</center>
 <?php
@@ -68,12 +68,12 @@ class InternDashboard extends CI_Controller {
 				$ext = pathinfo(basename($_FILES['file']['name']), PATHINFO_EXTENSION);
 				if ($_FILES["file"]["size"] > 5000000) {
 					//approx 50mb
-					echo "<center><br><br><h1>Please Reduce File Size</h1><br><h4>Try Again with smaller size!!<br>Wait redirecting...</h4></center>";
+					echo "<center><br><br><h1>Sorry, your file is too large!!</h1><br><h4>Try Again with smaller size!!<br>Wait redirecting...</h4></center>";
 					header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 					exit;
 				}
 				if ($ext != "png" && $ext != "jpeg" && $ext != "jpg" && $ext != "PNG" && $ext != "JPEG" && $ext != "JPG" && $ext != "pdf" && $ext != "PDF") {
-					echo "<center><br><br><h1>File Type Not Supported</h1><br><h4>Try Again!!<br>Wait redirecting...</h4></center>";
+					echo "<center><br><br><h1>Sorry, your file type not supported!!</h1><br><h4>Try Again!!<br>Wait redirecting...</h4></center>";
 					header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 					exit;
 				}
@@ -83,7 +83,7 @@ class InternDashboard extends CI_Controller {
 
 				if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
 					// echo "The file " . basename($_FILES["file"]["name"]) . " has been uploaded.";
-					echo "<center><br><br><h1>File Uploaded Successfully</h1><br></center>";
+					echo "<center><br><br><h1>Your file uploaded!!</h1><br></center>";
 					//mail
 
 					$this->load->model('Dashboard_model', 'dm');
@@ -186,7 +186,7 @@ class InternDashboard extends CI_Controller {
 
 					//mail
 
-					$task = array('user_id' => $this->session->userdata("intern")['user_id'], 'topic' => "First Task to do", 'description' => "Register 3 Schools.Click above to Add Details.");
+					$task = array('user_id' => $this->session->userdata("intern")['user_id'], 'topic' => "First Task to do", 'description' => "Contact and register details for 3 schhool. Click above add school to add details.");
 					$this->load->helper('date');
 					date_default_timezone_set('Asia/Kolkata');
 					$task['add_time'] = date("Y-m-d H:i:s");
@@ -194,7 +194,7 @@ class InternDashboard extends CI_Controller {
 					$this->dm->upload_status($url, $this->session->userdata("intern")['user_id']);
 					header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 				} else {
-					echo "<center><br><br><h1>Sorry, There was an error uploading your file.</h1><br><h4>Try Again after some time!!<br>Wait redirecting...</h4></center>";
+					echo "<center><br><br><h1>Sorry, there was an error uploading your file.</h1><br><h4>Try Again after some time!!<br>Wait redirecting...</h4></center>";
 					header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 				}
 			}
@@ -209,7 +209,7 @@ class InternDashboard extends CI_Controller {
 		}
 		$this->load->model('Dashboard_model', 'dm');
 		$this->dm->task_completed($id);
-		echo "<center><br><br><h1>Your Response is Marked Successfully</h1><br><h4>Wait redirecting...</h4></center>";
+		echo "<center><br><br><h1>Your Response marked!!</h1><br><h4>Wait redirecting...</h4></center>";
 		header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 	}
 	public function upload_task($id) {
@@ -232,9 +232,9 @@ class InternDashboard extends CI_Controller {
 		if (!$this->session->userdata('intern')['user_id']) {
 			redirect(base_url());
 		}
-		$this->load->View('header');
+		$this->load->View('bdaheader');
 		$this->load->View('intern/upload_school');
-		$this->load->View('footer');
+		$this->load->View('bdafooter');
 	}
 	function uploaded_school() {
 		if (!$this->session->userdata('intern')['user_id']) {
@@ -258,9 +258,9 @@ class InternDashboard extends CI_Controller {
 		}
 		$this->load->model('Dashboard_model', 'dm');
 		$result['data'] = $this->dm->return_school($this->session->userdata('intern')['user_id']);
-		$this->load->View('header');
+		$this->load->View('bdaheader');
 		$this->load->View('intern/view_school', $result);
-		$this->load->View('footer');
+		$this->load->View('bdafooter');
 	}
 	public function id() {
 		if (!$this->session->userdata('intern')['user_id']) {
@@ -289,7 +289,7 @@ class InternDashboard extends CI_Controller {
 		// file creation
 		$file = fopen('php://output', 'w');
 
-		$header = array("Name of the School     ", "School Address   ", "Contact Details     ", "Contact Person   ", "Number of Students Registered", "Schhol Added on     ");
+		$header = array("Name of the School     ", "School Address   ", "Contact Details     ", "Contact Person   ", "Number of Registered Students", "Schhol Added on     ");
 		fputcsv($file, $header);
 		foreach ($usersData as $line) {
 			fputcsv($file, $line);
@@ -303,9 +303,9 @@ class InternDashboard extends CI_Controller {
 		}
 		$this->load->model('Dashboard_model', 'dm');
 		$result['data'] = $this->dm->task_history($this->session->userdata("intern")['user_id']);
-		$this->load->View('header');
+		$this->load->View('bdaheader');
 		$this->load->View('Intern/task_history', $result);
-		$this->load->View('footer');
+		$this->load->View('bdafooter');
 	}
 	public function taskSeen($id) {
 		$this->load->model('Dashboard_model', 'dm');

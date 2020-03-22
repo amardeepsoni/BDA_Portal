@@ -40,7 +40,7 @@
       padding: 5px;
 
     }
-    
+
   </style>
 </head>
 
@@ -54,10 +54,10 @@
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url(); ?>"> Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<?php echo base_url(); ?>Career"> Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="<?php echo base_url(); ?>"> About Us </a>
+          <a class="nav-link" href="<?php echo base_url(); ?>/about"> About Us </a>
         </li>
       </ul>
 
@@ -96,8 +96,8 @@ if ($this->session->userdata('admin_login')) {?>
   left: 95%;
 }
 </Style>
-<?php if(isset($notification)){
-  ?>
+<?php if (isset($notification)) {
+	?>
 <i class="fas fa-bell btn btn-link"  title="<?php echo $notification->num_rows(); ?>" id="notific" data-toggle="modal" data-target="#myModal-header" type=""><i class="h-6 text-danger badge"><?php echo $notification->num_rows(); ?> </i></i>
 <?php
 ?>
@@ -110,7 +110,7 @@ if ($this->session->userdata('admin_login')) {?>
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        
+
         <h4 class="modal-title">Today Task</h4>
       </div>
       <div class="modal-body">
@@ -119,8 +119,8 @@ if ($this->session->userdata('admin_login')) {?>
   <!-- table -->
 <div class="row">
   <div class="col-12">
-    
-  
+
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -134,35 +134,34 @@ if ($this->session->userdata('admin_login')) {?>
   </thead>
   <tbody>
     <tr>
-      <?php 
-      if($notification->num_rows()>0){
-       foreach($notification->result() as $row){
-        ?>
+      <?php
+if ($notification->num_rows() > 0) {
+		foreach ($notification->result() as $row) {
+			?>
         <tr>
-          <th scope="row" class="text-primary"><a href="<?php echo base_url().adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></th>
+          <th scope="row" class="text-primary"><a href="<?php echo base_url() . adminpath ?>/Dashboard/showDetails?id=<?php echo $row->user_id; ?>"><?php echo $row->user_id; ?></a></th>
           <td><?php echo $row->topic; ?></td>
           <td><?php echo $row->description; ?></td>
           <td><?php echo $row->add_time; ?></td>
           <td><?php echo $row->complete_time; ?></td>
-          <?php 
-            $start = new DateTime($row->add_time);
-            $end = new DateTime($row->complete_time);
-            $diff = $start->diff($end);
-          ?>
+          <?php
+$start = new DateTime($row->add_time);
+			$end = new DateTime($row->complete_time);
+			$diff = $start->diff($end);
+			?>
           <td> <?php echo $diff->format('%d days %h hours %i minutes %S seconds'); ?> </td>
         </tr>
         <?php
-      }
-    }
-    else{
-    ?>
+}
+	} else {
+		?>
       <tr>
-        <td colspan="4">Today Completed Task not found</td>
+        <td colspan="6" style="text-align: center;">Today Completed Task not found</td>
       </tr>
     <?php
-  } 
+}
 
-      ?>
+	?>
     </tr>
   </tbody>
 </table>

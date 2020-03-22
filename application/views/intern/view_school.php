@@ -3,15 +3,15 @@
     $count = 1;
     ?>
     <div class="p-4 text-right">
-        <button onclick="window.location.href = 'downloadData'" class="btn btn-success" <?php if (!$data['number']) echo "disabled"; ?>><i class='fas fa-download'>Generate Report</button></i>
+        <button onclick="window.location.href = 'downloadData'" class="btn btn-success" <?php if (!$data['number']) echo "disabled"; ?>>Download Detials Table</button>
     </div>
-    <table class="table text-center table-bordered table-hover">
+    <table class="table">
         <thead>
             <tr>
-                <th scope="col">S.No.</th>
+                <th scope="col">S. No.</th>
                 <th scope="col">School Name</th>
                 <th scope="col">Address</th>
-                <th scope="col">Phone Number</th>
+                <th scope="col">Contact</th>
                 <th scope="col">Contact Person</th>
                 <th scope="col">Registered Students</th>
                 <th scope="col">Added on</th>

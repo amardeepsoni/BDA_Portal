@@ -73,7 +73,7 @@ class InternLogin extends CI_Controller {
 	public function logout() {
 		$this->session->unset_userdata('intern');
 
-		redirect('/');
+		redirect('/Career');
 
 	}
 

@@ -4,9 +4,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Forgot_pass extends CI_Controller {
 	public function index() {
 		$data['page_title'] = 'Forgot Password';
-		$this->load->View('header', $data);
+		$this->load->View('bdaheader', $data);
 		$this->load->View('Intern/forgotpass', $data);
-		$this->load->View('footer');
+		$this->load->View('bdafooter');
 	}
 
 	public function forgotpassword() {

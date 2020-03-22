@@ -32,7 +32,8 @@ define('HTTP_IMAGES', $config['base_url'] . 'images/');
 define('DIR_IMAGE', $_SERVER['DOCUMENT_ROOT'] . $dirpath . 'uploads/');
 define('UPLOADFILE', $config['base_url'] . 'uploads/');
 
-define('adminpath', 'bdaadmin');
+define('bdaadminpath', 'bdaadmin');
+define('adminpath', 'admin');
 define('round2path', 'ISCO/Round2');
 
 /*
