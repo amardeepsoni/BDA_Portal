@@ -5,7 +5,7 @@ class Career extends CI_Controller {
 
 	public function index() {
 		if ($this->session->userdata('intern')) {
-			redirect('intern/interndashboard');
+			redirect('Intern/InternDashboard');
 		}
 		$data['page_title'] = 'Home';
 		$this->load->View('header', $data);
