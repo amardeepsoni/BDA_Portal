@@ -84,7 +84,7 @@
           </div>
         </div>
       </a>
-      <?php if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
+      <?php if($this->session->userdata('main_admin_login')){
           ?><a href="<?php echo base_url() . adminpath ?>/Dashboard/emp_list" class="custom-card">
             <div class="card bg-success">
           <div class="card-body text-center">

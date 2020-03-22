@@ -182,11 +182,11 @@ $(document).on("click", ".open-AddBookDialog", function () {
           swal("Task is not Assigned !..");
         } 
         else{
-
           swal(myBookId, "Task Assigned Successfully to "+myBookId, "success");
-          $('#topic').val('');
-          $('#description').val('');
-          $('#close-modal').trigger('click');
+          /*$('#topic').val('');
+          $('#description').val('');*/
+          /*$('#close-modal').trigger('click');*/
+          location.reload(true);
         }
       }
       );

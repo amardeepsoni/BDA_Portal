@@ -15,9 +15,11 @@ class Dashboard extends CI_Controller
 	public function index()
 	{
 		if (!$this->session->userdata('admin_login')) {
+			if(!$this->session->userdata('main_admin_login')){
 			redirect('bdaadmin');
 		}
-		if($this->session->userdata('admin_login')['username']=='MAINBDAADMIN'){
+		}
+		if($this->session->userdata('main_admin_login')){
 		$data['page_title'] = 'Admin Dashboard';
 		$this->load->model(adminpath . '/Dashboard_Model', 'dm');
 		$data['row'] = $this->dm->getRow(); //intern rows

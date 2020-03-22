@@ -9,7 +9,7 @@ class Model_admin_login extends CI_Model {
 
 		$this->db->select('*');
 		$this->db->from('BDA_admin');
-		$this->db->where('username', $data['username'])->where('password', $data['password']);
+		$this->db->where('username', $data['username'])->where('password', $data['password'])->where('type', $data['login_type']);
 		$this->db->limit(1);
 		$query = $this->db->get();
 		// echo $this->db->last_query();

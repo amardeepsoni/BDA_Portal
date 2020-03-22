@@ -294,6 +294,13 @@ input[type=text],input[type=password]:placeholder {
     <form action="<?php echo base_url(); ?>bdaadmin/login" method="post">
       <input type="text" id="login" class="fadeIn second" name="int_admin_login_user" placeholder="Username" required>
       <input type="password" id="password" class="fadeIn third" name="int_admin_login_pass" placeholder="Password" required>
+
+       <label for="login_typed">Choose a Type:</label>
+
+        <select id="login_typed" name="loginType">
+          <option value="local">Local Admin</option>
+          <option value="main">Main Admin</option>
+        </select> 
       <input type="submit" class="fadeIn fourth">
     </form>
 
