@@ -168,11 +168,11 @@ if ($row->approved_task == 1) {
 <i type="button" class="btn btn-primary sr-only" data-toggle="modal" data-target="#descriptionModal" id="modal-desc">
   Launch Description Modal
 </i >
-<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel" aria-hidden="true" style="position: absolute;top: 50%;left: 50%;  transform: translate(-50%, -50%); width: 50%;">
+<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalLabel" aria-hidden="true" style="position: fixed; top: 40%;left: 50%;  transform: translate(-50%, -50%); width: 50%;">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php echo $_GET['id']; ?></u></p>Task Description </h5>
+        <h5 class="modal-title" id="exampleModalLabel"><p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php if(isset($_GET['id'])){ echo $_GET['id'];} else {echo $this->session->userdata('showDetailsID');} ?></u></p>Task Description </h5>
         <i type="button" class="close" data-dismiss="modal" aria-label="Close">
           <i aria-hidden="true" class="remove-modal-body-content">&times;</i>
         </i>
@@ -196,7 +196,7 @@ if ($row->approved_task == 1) {
 </i>
 
 <!-- Modal -->
-<div class="modal fade" id="suggestion-task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"  style="position: absolute;top: 50%;left: 50%;  transform: translate(-50%, -50%); width: 50%;">
+<div class="modal fade" id="suggestion-task" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"  style="position: fixed;top: 40%;left: 50%;  transform: translate(-50%, -50%); width: 50%;">
   <div class="modal-dialog modal-dialog-centered" role="">
     <div class="modal-content">
 
