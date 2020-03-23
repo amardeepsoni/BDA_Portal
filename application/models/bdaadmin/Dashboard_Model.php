@@ -183,10 +183,19 @@ class Dashboard_Model extends CI_Model {
 	}
 
 	public function pie_count(){
+		if($this->session->userdata('main_admin_login')){
 		$count['total'] = $this->db->select('*')->from('intern_task')->get()->num_rows();
 		$count['completed'] = $this->db->select('*')->from('intern_task')->where('completed','1')->get()->num_rows();
 		$count['total'] -=$count['completed'];
 		return $count;
+	}
+	else{
+			$count['total'] = $this->db->select('*')->from('intern_task')->like('user_id', 'wf')->get()->num_rows();
+			$count['completed'] = $this->db->select('*')->from('intern_task')->where('completed','1')->get()->num_rows();
+			$count['total'] -=$count['completed'];
+			return $count;
+		}
+
 	}
 
 	/*public function getDataWhereLike($field, $search)
@@ -307,8 +316,9 @@ class Dashboard_Model extends CI_Model {
 	}
 	else{
 		return 0;
-	}
+			}
 		}
+
 		else{
 			$ap = 1;
 		$total = $this->db->like('user_id', 'wf')->where('domain', 'State Coordinator')->get('intern_task')->num_rows();
@@ -320,7 +330,7 @@ class Dashboard_Model extends CI_Model {
 	}
 	else{
 		return 0;
-	}
+			}
 		}
 	}
 

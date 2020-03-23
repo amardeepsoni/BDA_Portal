@@ -29,7 +29,7 @@ class Dashboard extends CI_Controller {
 			//ongoing projects percentages for main admin
 			$data['Business_Development'] = $this->dm->getOnGoingProjectsBusinessDevelopment();
 			$data['Operation'] = $this->dm->getOnGoingProjectsOperation();
-			$data['State Coordinator'] = $this->dm->getOnGoingProjectsStateCoordinator();
+			$data['State_Coordinator'] = $this->dm->getOnGoingProjectsStateCoordinator();
 			$data['Volunteering'] = $this->dm->getOnGoingProjectsVolunteering();
 			$data['Marketing'] = $this->dm->getOnGoingProjectsMarketing();
 			$data['Sales'] = $this->dm->getOnGoingProjectsSales();
