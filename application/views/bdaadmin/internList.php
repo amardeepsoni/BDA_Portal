@@ -143,7 +143,7 @@ if ($fetch_data->num_rows() > 0) {
       <!-- Modal footer -->
         <div class="modal-footer">
           <div class="col ml-2 text-left">
-        <button type="button" class="btn btn-warning">RESET</button> </div>
+        <button type="button" class="btn btn-warning" id="reset-modal-task-assign">RESET</button> </div>
            <div class="col ml-2 text-center">
         <button type="submit" class="btn btn-primary .open-AddBookDialog" role="submit" type="submit" id="task-assign-data">SUBMIT</button></div>
           <div class="col ml-2 text-right">
@@ -263,7 +263,11 @@ $(document).on("click", ".open-AddBookDialog", function () {
   }
 });
    });
-
+//reset the content of task assign 
+$('#reset-modal-task-assign').click(function(){
+  $('#topic').val('');
+  $('#description').val('');
+});
 
 });
 </script>
@@ -297,7 +301,7 @@ $(document).on("click", ".open-AddBookDialog", function () {
                 },
                 open: function () {
                     var object = "<object data='"+fileName+"' type=\"application/pdf\" width=\"500px\" height=\"300px\">";
-                    object += "If you are unable to view file, you can download from <a href = '"+fileName+"'>here</a>";
+                    object += "If you are unable to view file, you can download from <a href = '"+fileName+"'><p class='text-primary'>here</p></a>";
                     object += " or download <a target = \"_blank\" href = \"http://get.adobe.com/reader/\">Adobe PDF Reader</a> to view the file.";
                     object += "</object>";
                     object = object.replace(/{FileName}/g, "Files/" + fileName);
@@ -306,5 +310,5 @@ $(document).on("click", ".open-AddBookDialog", function () {
             });
     });
 </script>
-<div id="dialog" style="display: none">
+<div id="dialog" style="display: none;">
 </div>
