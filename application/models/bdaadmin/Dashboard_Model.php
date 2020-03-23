@@ -60,24 +60,23 @@ class Dashboard_Model extends CI_Model {
 		}
 	}
 
-	public function getDetails_Intern($data){
-		return $this->db->where('user_id', $data['id'])->get('intern_task');
-	}
-
 	public function approved_task($id){
 		$ap = 1;
 		$zero = 0;
 		$st = array('approved_task'=>$ap, 'disapproved'=>$zero);
 		$this->db->where('id', $id);
 		$this->db->update('intern_task', $st); 
+		return $id; //not used
+	}
 
+	public function scoreboard(){
 		//increase scoreboard of this intern
-		/*$user = 'EMP3976';
-			$this->db->set('score', 'score+1', FALSE);        
-		    $where = array('user_id' =>$user);
-		    $this->db->where($where);
-		    $this->db->update('intern_scoreboard');*/
-			return $id; //not used
+			$user = 'EMP3976';
+			$ap = 29;
+			$sco = array('score'=>$ap);      
+		    /*$where = array('user_id' =>$user);*/
+		    $this->db->where('user_id', $ap);
+		    $this->db->update('intern_scoreboard', $sco);
 	}
 
 	public function disapproved_task($data){
@@ -126,6 +125,10 @@ class Dashboard_Model extends CI_Model {
 	else{
 		return ($this->db->like('user_id', 'wf')->get('intern_school')->num_rows());	
 	}
+	}
+
+	public function getRowShowDetails($data){
+		return ($this->db->like('user_id', $data)->get('intern_task')->num_rows());
 	}
 
 	public function getNotification(){
@@ -217,6 +220,14 @@ class Dashboard_Model extends CI_Model {
 			return $sql;
 		}
 		
+	}
+
+	public function getDetails_Intern($data, $limit, $offset){
+		return ($this->db->where('user_id', $data)->limit($limit, $offset)->get('intern_task'));
+	}
+
+	public function getTotalTaskDetail($data){
+		return ($this->db->where('user_id', $data)->get('intern_task'));
 	}
 	
 }

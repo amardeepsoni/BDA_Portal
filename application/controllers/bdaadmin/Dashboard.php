@@ -61,10 +61,13 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function intern_list() {
+		if($this->session->userdata('showDetailsID')){
+			$this->session->unset_userdata('showDetailsID');
+		}
 		$this->load->model(bdaadminpath . '/Dashboard_Model', 'dm');
 		$this->load->library('pagination');
 		$config = [
-			'base_url' => base_url('admin/Dashboard/intern_list'),
+			'base_url' => base_url('bdaadmin/Dashboard/intern_list'),
 			'per_page' => 10,
 			'total_rows' => $this->dm->getRows(),
 		];
@@ -80,7 +83,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model(bdaadminpath . '/Dashboard_Model', 'dm');
 		$this->load->library('pagination');
 		$config = [
-			'base_url' => base_url('admin/Dashboard/intern_list'),
+			'base_url' => base_url('bdaadmin/Dashboard/intern_list'),
 			'per_page' => 10,
 			'total_rows' => $this->dm->getRowsEmp(),
 		];
@@ -96,7 +99,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model(bdaadminpath . '/Dashboard_Model', 'dm');
 		$this->load->library('pagination');
 		$config = [
-			'base_url' => base_url('admin/Dashboard/intern_school'),
+			'base_url' => base_url('bdaadmin/Dashboard/intern_school'),
 			'per_page' => 10,
 			'total_rows' => $this->dm->getRowSchoolFilter(),
 		];
@@ -123,9 +126,29 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function showDetails() {
-		$data['id'] = $_GET['id'];
+		if(isset($_GET['id'])){
+			$data['id'] = $_GET['id'];	
+			$this->session->set_userdata('showDetailsID', $data['id']);
+		}
+		
 		$this->load->model(bdaadminpath . '/Dashboard_Model', 'dm');
-		$details['detail'] = $this->dm->getDetails_Intern($data);
+		$this->load->library('pagination');
+		$config = [
+			'base_url' => base_url('bdaadmin/Dashboard/showDetails'),
+			'per_page' => 10,
+			'total_rows' => $this->dm->getRowShowDetails($this->session->userdata('showDetailsID')),
+		];
+		/*$this->load->helper('string');
+		$data['id'] = substr($data['id'], 0, 7);
+		echo $data['id'];
+		echo $this->uri->segment(4).'hello';
+		
+			$off = substr($data['id'], 7, 10);
+			echo $off;*/
+		
+		$this->pagination->initialize($config);
+		$details['detail'] = $this->dm->getDetails_Intern($this->session->userdata('showDetailsID'), $config['per_page'], $this->uri->segment(4));
+		$details['detail123'] = $this->dm->getTotalTaskDetail($this->session->userdata('showDetailsID'));
 		$this->load->View('bdaheader', $this->title);
 		$this->load->view(bdaadminpath . '/showDetails_Intern.php', $details);
 		$this->load->View('bdafooter');
@@ -161,7 +184,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model(bdaadminpath . '/Dashboard_Model', 'dm');
 		$this->load->library('pagination');
 		$config = [
-			'base_url' => base_url('admin/Dashboard/filter_data_intern'),
+			'base_url' => base_url('bdaadmin/Dashboard/filter_data_intern'),
 			'per_page' => 10,
 			'total_rows' => $this->dm->getRowsFilter($data),
 		];
@@ -188,7 +211,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model(bdaadminpath . '/Dashboard_Model', 'dm');
 		$this->load->library('pagination');
 		$config = [
-			'base_url' => base_url('admin/Dashboard/filter_data_intern'),
+			'base_url' => base_url('bdaadmin/Dashboard/filter_data_intern'),
 			'per_page' => 10,
 			'total_rows' => $this->dm->getRowsFilterSchool($data),
 		];

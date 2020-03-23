@@ -18,15 +18,15 @@
 </style>
 <div class="row">
   <div class="col-2">
-    <p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php echo $_GET['id']; ?></u></p>
+    <p class="h-5 text-success pl-1 text-left font-weight-bold">Intern_Id: <u class="text-primary"> <?php if(isset($_GET['id'])){echo $_GET['id'];} else{echo $this->session->userdata('showDetailsID');} ?></u></p>
   </div>
  </div>
 
 
-     <?php if ($detail->num_rows() > 0) {
+     <?php if ($detail123->num_rows() > 0) {
 	$comp = 0;
 	$appr = 0;
-	foreach ($detail->result() as $value) {
+	foreach ($detail123->result() as $value) {
 		if ($value->completed == 1) {
 			$comp++;
 		}
@@ -47,17 +47,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class=""> <i class="counter"><?php echo $detail->num_rows(); ?></i>
+            <div class=""> <i class="counter"><?php if(isset($detail123)){ echo $detail123->num_rows();} ?></i>
                 <p>Total Tasks</p>
             </div>
         </div>
         <div class="col-md-3">
-            <div class=""> <i class="counter"><?php echo $appr; ?></i>
+            <div class=""> <i class="counter"><?php if(isset($appr)){ echo $appr; }?></i>
                 <p>Approved Tasks</p>
             </div>
         </div>
         <div class="col-md-3">
-            <div class=""><i class="counter"><?php echo $comp; ?></i>
+            <div class=""><i class="counter"><?php if(isset($comp)){echo $comp; }?></i>
                 <p>Completed Tasks</p>
             </div>
         </div>
@@ -159,6 +159,9 @@ if ($row->approved_task == 1) {
 </table>
 </div>
 </div>
+</div>
+<div class="row">
+<p class="col-12 text-center h-3"> <?= $this->pagination->create_links(); ?> </p>
 </div>
 <!-- Modal body -->
 <!-- Modal -->
