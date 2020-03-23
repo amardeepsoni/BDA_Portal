@@ -30,6 +30,8 @@ class Dashboard_Model extends CI_Model {
 	}
 
 	public function takeTask($task){
+		$sql = $this->db->where('user_id', $task['user_id'])->get('intern_register')->row();
+		$task['domain'] = $sql->domain;
 		if($this->db->insert('intern_task', $task)){
 			return 'success';
 		}
@@ -228,6 +230,188 @@ class Dashboard_Model extends CI_Model {
 
 	public function getTotalTaskDetail($data){
 		return ($this->db->where('user_id', $data)->get('intern_task'));
+	}
+
+	//ongoing projects details
+	//Business Development
+	public function getOnGoingProjectsBusinessDevelopment(){
+		/*return($this->db->like('user_id', 'wf')->get('intern_task'));*/
+		if($this->session->userdata('main_admin_login')){
+			$ap = 1;
+		$total = $this->db->where('domain', 'Business Development')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'Business Development', 'approved_task'=>$ap);
+		$approved = $this->db->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+	} 
+	else{
+		return 0;
+	}
+		}
+		else{
+			$ap = 1;
+		$total = $this->db->like('user_id', 'wf')->where('domain', 'Business Development')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'Business Development', 'approved_task'=>$ap);
+		$approved = $this->db->like('user_id', 'wf')->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+		}
+		else{
+				return 0;
+		}
+		}
+	}
+
+	//operation
+	public function getOnGoingProjectsOperation(){
+		if($this->session->userdata('main_admin_login')){
+			$ap = 1;
+		$total = $this->db->where('domain', 'Operation')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'Operation', 'approved_task'=>$ap);
+		$approved = $this->db->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+	}
+	else{
+		return 0;
+	}
+		}
+		else{
+			$ap = 1;
+		$total = $this->db->like('user_id', 'wf')->where('domain', 'Operation')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'Operation', 'approved_task'=>$ap);
+		$approved = $this->db->like('user_id', 'wf')->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+	}
+	else{
+		return 0;
+		}
+	}
+	}
+
+	//State Coordinator
+	public function getOnGoingProjectsStateCoordinator(){
+		if($this->session->userdata('main_admin_login')){
+			$ap = 1;
+		$total = $this->db->where('domain', 'State Coordinator')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'State Coordinator', 'approved_task'=>$ap);
+		$approved = $this->db->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+	}
+	else{
+		return 0;
+	}
+		}
+		else{
+			$ap = 1;
+		$total = $this->db->like('user_id', 'wf')->where('domain', 'State Coordinator')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'State Coordinator', 'approved_task'=>$ap);
+		$approved = $this->db->like('user_id', 'wf')->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+	}
+	else{
+		return 0;
+	}
+		}
+	}
+
+	//volunteering
+	public function getOnGoingProjectsVolunteering(){
+		if($this->session->userdata('main_admin_login')){
+			$ap = 1;
+		$total = $this->db->where('domain', 'Volunteering')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'Volunteering', 'approved_task'=>$ap);
+		$approved = $this->db->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+	}
+	else{
+		return 0;
+	}
+		}
+		else{
+			$ap = 1;
+		$total = $this->db->like('user_id', 'wf')->where('domain', 'Volunteering')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'Volunteering', 'approved_task'=>$ap);
+		$approved = $this->db->like('user_id', 'wf')->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+	}
+	else{
+		return 0;
+	}
+		}
+	}
+
+	//getOnGoingProjectsMarketing
+	public function getOnGoingProjectsMarketing(){
+		if($this->session->userdata('main_admin_login')){
+			$ap = 1;
+		$total = $this->db->where('domain', 'Marketing')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'Marketing', 'approved_task'=>$ap);
+		$approved = $this->db->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+	}
+	else{
+		return 0;
+	}
+		}
+		else{
+			$ap = 1;
+		$total = $this->db->like('user_id', 'wf')->where('domain', 'Marketing')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'Marketing', 'approved_task'=>$ap);
+		$approved = $this->db->like('user_id', 'wf')->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+	} 
+	else{
+		return 0;
+		}
+	}
+	}
+
+	//Sales
+	public function getOnGoingProjectsSales(){
+		if($this->session->userdata('main_admin_login')){
+			$ap = 1;
+		$total = $this->db->where('domain', 'Sales')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'Sales', 'approved_task'=>$ap);
+		$approved = $this->db->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+	}
+	else{
+		return 0;
+	}
+		}
+		else{
+			$ap = 1;
+		$total = $this->db->like('user_id', 'wf')->where('domain', 'Sales')->get('intern_task')->num_rows();
+		if(!$total==0){
+		$wh = array('domain'=> 'Sales', 'approved_task'=>$ap);
+		$approved = $this->db->like('user_id', 'wf')->where($wh)->get('intern_task')->num_rows();
+		$perc = ($approved/$total)*100;
+		return $perc;
+	} 
+	else{
+		return 0;
+		}
+	}
 	}
 	
 }

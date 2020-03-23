@@ -118,30 +118,34 @@
       <div class="col-sm-4" style="background-color:lavender;">
         <div class="container">
           <h2>On Going Projects</h2>
-
-          <p>Server Migration </p>
+          <p>Business Development</p>
           <div class="progress">
-            <div class="progress-bar progress-bar-striped" style="width:30%"></div>
+            <div class="progress-bar text-center progress-bar-striped progress-bar-animated" style="width:<?php echo $Business_Development; ?>%"><?php echo $Business_Development; ?>%</div>
           </div>
           <br>
-          <p>Mobile App</p>
+          <p>Operation</p>
           <div class="progress">
-            <div class="progress-bar bg-success progress-bar-striped" style="width:40%"></div>
+            <div class="progress-bar bg-success text-center progress-bar-striped progress-bar-animated" style="width:<?php echo $Operation; ?>%"><?php echo $Operation; ?>%</div>
+          </div>
+          <br>
+          <p>State Coordinator</p>
+          <div class="progress">
+            <div class="progress-bar bg-info text-center progress-bar-striped progress-bar-animated" style="width:<?php echo $State_Coordinator; ?>%"><?php echo $State_Coordinator; ?>%</div>
+          </div>
+          <br>
+          <p>Volunteering</p>
+          <div class="progress">
+            <div class="progress-bar bg-warning text-center progress-bar-striped progress-bar-animated" style="width:<?php echo $Volunteering; ?>%"><?php echo $Volunteering; ?>%</div>
           </div>
           <br>
           <p>Marketing</p>
           <div class="progress">
-            <div class="progress-bar bg-info progress-bar-striped" style="width:50%"></div>
+            <div class="progress-bar bg-danger text-center progress-bar-striped progress-bar-animated" style="width:<?php echo $Marketing; ?>%"><?php echo $Marketing; ?>%</div>
           </div>
           <br>
-          <p>abc</p>
+          <p>Sales</p>
           <div class="progress">
-            <div class="progress-bar bg-warning progress-bar-striped" style="width:60%"></div>
-          </div>
-          <br>
-          <p>def</p>
-          <div class="progress">
-            <div class="progress-bar bg-danger progress-bar-striped" style="width:70%"></div>
+            <div class="progress-bar text-center progress-bar-striped progress-bar-animated" style="width:<?php echo $Sales; ?>%"><?php echo $Sales; ?>%</div>
           </div>
         </div>
 

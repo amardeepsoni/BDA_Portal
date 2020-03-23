@@ -26,6 +26,14 @@ class Dashboard extends CI_Controller {
 			$data['todays_task'] = $this->dm->today_tasks(); //today task table
 			$data['counts'] = $this->dm->pie_count();
 			$data['notification'] = $this->dm->getNotification(); //notification rows
+			//ongoing projects percentages for main admin
+			$data['Business_Development'] = $this->dm->getOnGoingProjectsBusinessDevelopment();
+			$data['Operation'] = $this->dm->getOnGoingProjectsOperation();
+			$data['State Coordinator'] = $this->dm->getOnGoingProjectsStateCoordinator();
+			$data['Volunteering'] = $this->dm->getOnGoingProjectsVolunteering();
+			$data['Marketing'] = $this->dm->getOnGoingProjectsMarketing();
+			$data['Sales'] = $this->dm->getOnGoingProjectsSales();
+			//
 			$this->load->View('bdaheader', $data);
 			$this->load->view(bdaadminpath . '/dashboard.php', $this->title);
 			$this->load->View('bdafooter');
@@ -38,6 +46,14 @@ class Dashboard extends CI_Controller {
 			$data['todays_task'] = $this->dm->today_tasks(); //today task table
 			$data['counts'] = $this->dm->pie_count();
 			$data['notification'] = $this->dm->getNotification(); //notification rows
+			//ongoing projects percentages for local admin
+			$data['Business_Development'] = $this->dm->getOnGoingProjectsBusinessDevelopment();
+			$data['Operation'] = $this->dm->getOnGoingProjectsOperation();
+			$data['State_Coordinator'] = $this->dm->getOnGoingProjectsStateCoordinator();
+			$data['Volunteering'] = $this->dm->getOnGoingProjectsVolunteering();
+			$data['Marketing'] = $this->dm->getOnGoingProjectsMarketing();
+			$data['Sales'] = $this->dm->getOnGoingProjectsSales();
+			//
 			$this->load->View('bdaheader', $data);
 			$this->load->view(bdaadminpath . '/dashboard.php', $this->title);
 			$this->load->View('bdafooter');
