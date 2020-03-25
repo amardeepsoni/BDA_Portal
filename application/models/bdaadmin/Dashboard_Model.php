@@ -423,5 +423,46 @@ class Dashboard_Model extends CI_Model {
 		}
 	}
 	}
+
+	//group task assign team
+	public function get_task_project_details($data){
+		$uid = '';
+		$no = 1;
+		foreach($data as $dt){
+			if($no==1){
+				$uid .= $dt;
+				$no++;	
+			}
+			else{
+			$uid.= ' ,'.$dt;
+			$no++;
+		}
+		}
+		$wh = array('user_id'=> $uid);
+		if($no==2){
+			$sql = $this->db->where($wh)->get('intern_register')->result(); 
+			return $sql;	
+		}
+		else{
+			$sql = $this->db->where_in($wh)->get('intern_register')->result(); 
+			return $sql;
+		}
+		
+	}
+
+	//insert group task
+	public function insert_group_task($data, $topic, $description, $mentor){
+		$this->load->helper('date');
+		date_default_timezone_set('Asia/Kolkata');
+		$time = date("Y-m-d H:i:s");
+		$sql = 'error';
+		foreach ($data as $value) {
+			$str = array('user_id'=>$value, 'topic'=>$topic, 'description'=>$description, 'mentor'=>$mentor, 'add_time'=>$time);
+			$this->db->insert('intern_task', $str);
+			$sql = 'true';
+		}
+		return $sql;
+	}
+
 	
 }

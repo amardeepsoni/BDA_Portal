@@ -238,4 +238,46 @@ class Dashboard extends CI_Controller {
 		$this->load->view(bdaadminpath . '/intern_list_filter_school.php', $data);
 		$this->load->View('bdafooter');
 	}
+
+	//grouping task
+	public function take_group_task(){
+		if($this->input->post('data')!='null'){
+		$data = array();
+		$data = $this->input->post('data');
+		$this->load->model(bdaadminpath .'/Dashboard_Model', 'dm');
+		$res = $this->dm->get_task_project_details($data);
+		$str = '';
+		$str .='<p class="text-center text-danger h3"><u> TEAM </u></p>';
+		$str .= '<table class="table text-center table-bordered table-hover" id="task-group-table">';
+		$str .= '<tr> <th scope="col"> ID </th> <th scope="col"> Name </th> <th scope="col"> DOMAIN </th> </tr>';
+		$i = 0;
+		foreach($res as $value){			
+			$str  .= '<tr> <td scope="row" class="text-primary"><input type="checkbox" class="mentor-group-task" name="mentor-checkbox" id="'. $value->user_id.'">'.$value->user_id.'</td> <td>'.$value->name.' </td> <td>'. $value->domain.' </td> </tr>'; 
+		}
+		$str .= '</table>';
+		echo $str;
+	}
+	else{
+		echo 'error';
+	}
+		/*print_r($data);*/
+		
+		/*print_r($res[0]);*/
+	}
+
+	public function get_group_task(){
+		$data = array();
+		$data = $this->input->post('data');
+		if($data!='null'){
+			$topic = htmlspecialchars($this->input->post('topic'));
+			$description = htmlspecialchars($this->input->post('description'));
+			$mentor = htmlspecialchars($this->input->post('mentor'));
+			$this->load->model(bdaadminpath .'/Dashboard_Model', 'dm');
+			$res1 = $this->dm->insert_group_task($data, $topic, $description, $mentor);
+			echo $res1;
+		}
+		else{
+			echo 'error';
+		}
+	}
 }
