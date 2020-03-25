@@ -91,7 +91,7 @@ class InternDashboard extends CI_Controller {
 					require 'vendor/autoload.php';
 					$info_int = $result_int['0'];
 					$to = $info_int->email;
-
+					
 					$subject = "Intellify career INTERN ID CARD OF " . $info_int->name;
 					$message = '
                         <!DOCTYPE html>
@@ -152,6 +152,11 @@ class InternDashboard extends CI_Controller {
                         </body>
                         </html>
                         ';
+                        //code 
+					$this->load->model('Dashboard_model', 'dm');
+					$count_send_mail = $this->dm->get_send_mail_count();
+					//code
+					if($count_send_mail==true){
 					// echo $message;
 					// Instantiation and passing `true` enables exceptions
 					$mail = new PHPMailer(true);
@@ -177,13 +182,18 @@ class InternDashboard extends CI_Controller {
 						// $mail->AltBody = strip_tags($message);
 
 						if ($mail->send()) {
+							$this->load->model('Dashboard_model', 'dm');
+							$this->dm->insert_count_email();
 							echo "<center><br><br><h1>Your ID card is mailed!!</h1>Check you mail.<br><h4>Wait redirecting... " . $this->session->userdata('intern')['email'] . "</h4></center>";
 							header("Refresh:3; url= " . base_url() . "Intern/InternDashboard");
 						}
 					} catch (Exception $e) {
 						echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 					}
-
+			}
+			else{
+				echo "Please use different email because your email limit is over!..";
+			}
 					//mail
 
 					$task = array('user_id' => $this->session->userdata("intern")['user_id'], 'topic' => "First Task to do", 'description' => "Contact and register details for 3 schhool. Click above add school to add details.");

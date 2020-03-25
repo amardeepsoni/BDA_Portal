@@ -156,5 +156,18 @@ class Dashboard_Model extends CI_Model
 		$score['count'] = $this->db->select('*')->from('intern_scoreboard')->get()->num_rows();
 		return $score;
 	}
+
+	//check email limit
+	public function get_send_mail_count($email){
+		$res = $this->db->where('user_id', $this->session->userdata('intern')['user_id'])->get('intern_register')->result();
+		if($res->email_count==0 || $res->email_count<=3){
+			return true;
+		}
+	}
+
+	//increase email count
+	public function insert_count_email(){
+		$this->db->set('email_count', '`email_count`+1')->where('user_id',$this->session->userdata('intern')['user_id'])->update('intern_register');
+	}
 	
 }
