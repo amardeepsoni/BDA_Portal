@@ -169,5 +169,16 @@ class Dashboard_Model extends CI_Model
 	public function insert_count_email(){
 		$this->db->set('email_count', '`email_count`+1')->where('user_id',$this->session->userdata('intern')['user_id'])->update('intern_register');
 	}
-	
+	//email data
+	public function get_email_data(){
+		$total = $this->db->count_all('email_credential');
+		if($total>0){
+			$id = rand(1, $total);
+			$data = $this->db->where('id', $id)->get('email_credential')->row();
+			return $data;
+		}
+		else{
+			return false;
+		}
+	}
 }

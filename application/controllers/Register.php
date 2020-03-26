@@ -5,7 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class Register extends CI_Controller {
 	public function index() {
-		if ($this->session->userdata('intern')['user_id']) {
+		if ($this->session->userdata('intern')) {
 			redirect('Intern/InternDashboard');
 		}
 
@@ -96,6 +96,9 @@ class Register extends CI_Controller {
 					'message' => 'Successfully Registered & Please wait for approval',
 					'flag' => 1,
 				);
+				$this->load->model('Dashboard_model', 'dmr');
+				$email_data = $this->dmr->get_email_data();
+				if($email_data!=false){
 				// Instantiation and passing `true` enables exceptions
 				$mail = new PHPMailer(true);
 				// redirect(base_url() . adminpath . '/ApproveSchoolRegistration');
@@ -103,10 +106,10 @@ class Register extends CI_Controller {
 					//Server settings
 					$mail->SMTPDebug = 0; // Enable verbose debug output
 					$mail->isSMTP(); // Send using SMTP
-					$mail->Host = 'smtp.zoho.com'; // Set the SMTP server to send through
+					$mail->Host = $email_data->host; // Set the SMTP server to send through
 					$mail->SMTPAuth = true; // Enable SMTP authentication
-					$mail->Username = 'info@intellify.in'; // SMTP username
-					$mail->Password = 'Solve@2020'; // SMTP password
+					$mail->Username = $email_data->email; // SMTP username
+					$mail->Password = $email_data->password; // SMTP password
 					$mail->SMTPSecure = 'ssl'; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
 					$mail->Port = 465; // TCP port to connect to
 					//Recipients
@@ -141,7 +144,10 @@ class Register extends CI_Controller {
 				} catch (Exception $e) {
 					echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 				}
-
+			} 
+			else{
+				echo "Mail credential not found!..";
+			}
 			}
 
 		}

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class InternLogin extends CI_Controller {
 
 	public function index() {
-		if ($this->session->userdata('intern')['user_id']) {
+		if ($this->session->userdata('intern')) {
 			redirect('Intern/InternDashboard');
 		}
 		$data = array();
@@ -15,13 +15,13 @@ class InternLogin extends CI_Controller {
 			'href' => base_url(),
 		);
 
-		$this->load->view('header', $data);
-		$this->load->view('register', $data);
-		$this->load->view('footer');
+		$this->load->view('bdaheader', $data);
+		$this->load->view('internRegister', $data);
+		$this->load->view('bdafooter');
 	}
 
 	public function checklogin() {
-		if ($this->session->userdata('intern')['user_id']) {
+		if ($this->session->userdata('intern')) {
 			$this->session->unset_userdata('intern');
 		}
 		if ($this->input->server('REQUEST_METHOD') == 'POST') {

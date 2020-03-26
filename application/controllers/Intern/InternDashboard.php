@@ -153,21 +153,25 @@ class InternDashboard extends CI_Controller {
                         </html>
                         ';
                         //code 
-					$this->load->model('Dashboard_model', 'dm');
-					$count_send_mail = $this->dm->get_send_mail_count();
+					/*$this->load->model('Dashboard_model', 'dm');
+					$count_send_mail = $this->dm->get_send_mail_count();*/
 					//code
-					if($count_send_mail==true){
+					/*if($count_send_mail==true){*/
 					// echo $message;
+					
+					$this->load->model('Dashboard_model', 'dmr');
+					$email_data = $this->dmr->get_email_data();
+					if($email_data!=false){
 					// Instantiation and passing `true` enables exceptions
 					$mail = new PHPMailer(true);
 					try {
 						//Server settings
 						$mail->SMTPDebug = 0; // Enable verbose debug output
 						$mail->isSMTP(); // Send using SMTP
-						$mail->Host = 'smtp.zoho.com'; // Set the SMTP server to send through
+						$mail->Host = $email_data->host; // Set the SMTP server to send through
 						$mail->SMTPAuth = true; // Enable SMTP authentication
-						$mail->Username = 'info@intellify.in'; // SMTP username
-						$mail->Password = 'Solve@2020'; // SMTP password
+						$mail->Username = $email_data->email; // SMTP username
+						$mail->Password = $email_data->password; // SMTP password
 						$mail->SMTPSecure = 'ssl'; // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
 						$mail->Port = 465; // TCP port to connect to
 						//Recipients
@@ -190,10 +194,14 @@ class InternDashboard extends CI_Controller {
 					} catch (Exception $e) {
 						echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 					}
-			}
+				}
+				else{
+					echo 'email credential not found';
+				}
+			/*}
 			else{
 				echo "Please use different email because your email limit is over!..";
-			}
+			}*/
 					//mail
 
 					$task = array('user_id' => $this->session->userdata("intern")['user_id'], 'topic' => "First Task to do", 'description' => "Contact and register details for 3 schhool. Click above add school to add details.");
