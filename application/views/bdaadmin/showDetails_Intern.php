@@ -120,12 +120,12 @@ if ($row->approved_task == 1) {
               <td style="display: flex;"><i class="btn btn-primary disabled mb-1" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up "></i></i>
                 <?php if ($row->completed) {?>
 
-                <span class="btn task-submit-btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" ><i class="fab fa-readme" class="sr-only" value="<?php echo $row->response; ?>"></i></span> <?php }if ($row->completed == 1) {?><a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a><?php }?></td>
+                <span class="btn task-submit-btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn"  data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme" class="sr-only" value="<?php echo $row->response; ?>"></i></span> <?php }if ($row->completed == 1) {?><a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a> <?php }?></td>
             <?php
 } else {
 			if ($row->completed == 1) {
 				?>
-          <td style="display: flex;"> <?php if ($row->completed == 1) {?><button class="btn btn-primary mb-1 approved-btn" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><?php }if ($row->completed == 1) {?><span class="btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span><?php }if ($row->completed == 1) {?><a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"  ></i></a><?php }?> </td>
+          <td style="display: flex;"> <?php if ($row->completed == 1) {?><button class="btn btn-primary mb-1 approved-btn" title="Approved" id="<?php echo $row->id; ?>"class="approved-btn" ><i class="far fa-thumbs-up"></i></button><?php }if ($row->completed == 1) {?> <span class="btn task-submit-btn" title="<?php echo $row->id; ?> Task submition Description" id="<?php echo $row->response; ?>"class="description-btn" data-toggle="modal" data-target="#descriptionModal"><i class="fab fa-readme"></i></span> <?php }if ($row->completed == 1) {?><a role="button" class="btn ml-1 btn-danger disapproved" title="Disapproved" id="<?php echo $row->id; ?>"><i class="far fa-thumbs-down"></i></a> <?php }?> </td>
 
           <?php
 } else {
@@ -218,12 +218,12 @@ if ($row->approved_task == 1) {
 
 <script>
   $(document).ready(function(){
-    //to deapproved
-    var idi;
+    //to disapproved
+    var idi = '';
     $(document).on('click', '.disapproved', function(){
      // alert($(this).attr('id'));
      idi = $(this).attr('id');
-     $('#suggestion-admin').val(null);
+     $('#suggestion-admin').val('');
       $('#suggestion-task-modal').trigger('click');
     });
     $('#save-changes').click(function(){
@@ -239,7 +239,7 @@ if ($row->approved_task == 1) {
     }
 
     });
-    function myswalfunction(id){
+    function myswalfunction(idi){
       Swal.fire({
   title: 'Are you sure?',
   text: "You won't be able to revert this!",
@@ -253,7 +253,7 @@ if ($row->approved_task == 1) {
     $.post(
          '<?php echo base_url() . bdaadminpath; ?>/Dashboard/disapprovedTask',
          {
-          id:id,
+          id:idi,
           sugg:$('#suggestion-admin').val()
          },
          function(res){
