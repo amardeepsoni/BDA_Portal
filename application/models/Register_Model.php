@@ -24,7 +24,7 @@ class Register_Model extends CI_Model
 
 	public function logincheck($data)
 	{
-		$enc_pass = md5($data['password']);
+		$enc_pass =($data['password']);
 		$condition = "email =" . "'" . $data['username'] . "' AND " . "password =" . "'" . $enc_pass . "'";
 		$this->db->select('*');
 		$this->db->from('intern_register');

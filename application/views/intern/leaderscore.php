@@ -26,7 +26,7 @@
     <ul class="list-group">
         <?php
         foreach ($record as $info) {
-            $per = $info['score'] + 30;
+            $per = $info['score'];
         ?>
 
             <li class="list-group-item list-group-item-action <?php if ($info['user_id'] === $this->session->userdata("intern")['user_id']) {
@@ -53,6 +53,6 @@
 
     myscore.scrollIntoView(true);
     myscore.scrollIntoView({
-        block: 'center',
+        block: 'center'
     });
 </script>

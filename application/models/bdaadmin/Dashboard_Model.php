@@ -33,7 +33,21 @@ class Dashboard_Model extends CI_Model {
 		$sql = $this->db->where('user_id', $task['user_id'])->get('intern_register')->row();
 		$task['domain'] = $sql->domain;
 		if($this->db->insert('intern_task', $task)){
-			return 'success';
+			$slq = $this->db->where('user_id', $task['user_id'])->get('intern_scoreboard')->num_rows();
+			if($slq>0){
+				return 'success';	
+			}
+			else{
+				$sd = array('user_id'=>$task['user_id']);
+				if($this->db->insert('intern_scoreboard', $sd)){
+					return 'success';
+				}
+				else{
+					return 'error';
+				}
+
+			}
+			
 		}
 		else{
 			return 'error';
@@ -65,20 +79,20 @@ class Dashboard_Model extends CI_Model {
 	public function approved_task($id){
 		$ap = 1;
 		$zero = 0;
+/*		$sql = $this->db->where('id', $id)->get('intern_task')->row();
+		$sc = $sql->score;
+		$sc += 1; */
 		$st = array('approved_task'=>$ap, 'disapproved'=>$zero);
 		$this->db->where('id', $id);
 		$this->db->update('intern_task', $st); 
-		return $id; //not used
-	}
-
-	public function scoreboard(){
-		//increase scoreboard of this intern
-			$user = 'EMP3976';
-			$ap = 29;
-			$sco = array('score'=>$ap);      
-		    /*$where = array('user_id' =>$user);*/
-		    $this->db->where('user_id', $ap);
-		    $this->db->update('intern_scoreboard', $sco);
+		$uid = $this->db->where('id', $id)->get('intern_task')->row();
+		$uid1 = $uid->user_id;
+		$rt = $this->db->where('user_id', $uid1)->get('intern_scoreboard')->row();
+		$rt1 = $rt->score;
+		$rt2 = $rt1+1;
+		$sc = array('score'=>$rt2);
+		$this->db->where('user_id', $uid1)->update('intern_scoreboard', $sc);
+		return $id; //not used but compulsory
 	}
 
 	public function disapproved_task($data){
@@ -88,6 +102,15 @@ class Dashboard_Model extends CI_Model {
 		$st = array('approved_task'=>$app, 'complete_time'=>$comp, 'completed'=>$comp, 'suggestion'=>$data['suggestion'], 'disapproved'=>$one, 'history'=>'0', 'seen'=> '0');
 		$this->db->where('id', $data['id']);
 		$this->db->update('intern_task', $st); 
+		$uid = $this->db->where('id', $data['id'])->get('intern_task')->row();
+		$uid1 = $uid->user_id;
+		$rt = $this->db->where('user_id', $uid1)->get('intern_scoreboard')->row();
+		$rt1 = $rt->score;
+		if($rt1!=0){
+		$rt2 = $rt1-1;
+		$sc = array('score'=>$rt2);
+		$this->db->where('user_id', $uid1)->update('intern_scoreboard', $sc);
+	}
 		return $id; //not used
 	}
 
@@ -426,9 +449,10 @@ class Dashboard_Model extends CI_Model {
 
 	//group task assign team
 	public function get_task_project_details($data){
-		$uid = '';
+		/*$uid = '';
 		$no = 1;
-		foreach($data as $dt){
+		$ud = $data;*/
+		/*foreach($data as $dt){
 			if($no==1){
 				$uid .= $dt;
 				$no++;	
@@ -437,17 +461,25 @@ class Dashboard_Model extends CI_Model {
 			$uid.= ' ,'.$dt;
 			$no++;
 		}
-		}
-		$wh = array('user_id'=> $uid);
+		}*/
+		/*$wh = array('user_id'=> $uid);
 		if($no==2){
 			$sql = $this->db->where($wh)->get('intern_register')->result(); 
 			return $sql;	
+		}*/
+		/*else{*/
+			$sql = $this->db->where_in('user_id', $data)->get('intern_register')->result();
+			/*if($this->session->userdata('main_admin_login')){
+			$mql = $this->db->like('user_id', 'EMP')->get('intern_register')->result(); 
+			$obj_merged = (object) array_merge( 
+     	   (array) $sql, (array) $mql); 
+			return $obj_merged;
 		}
 		else{
-			$sql = $this->db->where_in($wh)->get('intern_register')->result(); 
-			return $sql;
-		}
-		
+			return $sql;	
+		}*/
+	/*	}*/
+		return $sql;
 	}
 
 	//insert group task
