@@ -162,7 +162,7 @@ showConfirmButton: false,
                                      </select>
                                  </div>
                                  <div class="form-group">
-                                     <input type="text" class="form-control" placeholder="Mobile Number *" value="" required name="mobile" />
+                                     <input type="text" class="form-control" placeholder="Mobile Number *" value="" required name="mobile" maxlength="10" minlength="10"/>
 
                                  </div>
                                  <div class="form-group">

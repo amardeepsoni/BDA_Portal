@@ -28,6 +28,7 @@ class InternLogin extends CI_Controller {
 
 			$data['username'] = $this->input->post('username');
 			$data['password'] = $this->input->post('password');
+			$data['password'] = md5($data['password']);
 
 			$this->form_validation->set_rules('username', 'Username', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required');

@@ -50,23 +50,23 @@
 <!--   
   <button class="btn btn-danger" id="groupingTaskId">Task Grouping ID</button>
   <button class="btn btn-danger" id="testing"> ID</button> -->
-<div class="collapse fade" id="collapse-filter-new-data">
+<div class="collapse fade search-filter" id="collapse-filter-new-data">
 <form method="post" class="form-inline" action="<?php echo base_url() . bdaadminpath . '/Dashboard/filter_data_intern'; ?>">
-  <label for="typeFilter">Choose Type of Filter: </label>
+  <label for="typeFilter">Choose Type of Filter:  </label>
 
-<select  name="typeFilter">
-  <option value="user_id">Intern_Id</option>
+<select  name="typeFilter" class="select">
+  <option value="user_id" class="option">Intern_Id</option>
   <option value="name">Name</option>
   <option value="domain">Domain</option>
 </select> &nbsp;&nbsp;
 <input type="text" name="FilterData" placeholder="Enter the filter data" id="filter-input" required="">&nbsp;&nbsp;
-<button type="submit" class="btn btn-danger">Search</button>
+<button type="submit" class="btn btn-danger filter">Search</button>
 </form>
 </div>
 
 
   <!-- table -->
-<div class="row mt-2">
+<div class="row mt-2 list-content">
   <div class="col-12">
 
 

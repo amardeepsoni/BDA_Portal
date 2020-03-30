@@ -56,55 +56,63 @@
   </script>
 </head>
 <?php echo $this->session->userdata('username'); ?>
-<div class="container">
+<div class="container-fluid p-5">
   <!--   <div class="row">
      <div class="col-12 text-right">
         <i class="fas fa-bell btn btn-link" title="<?php //echo $notification->num_rows();
 ?>" id="notific" data-toggle="modal" data-target="#myModal" type="button"></i>
       </div>
   </div> -->
-  <br> <br>
-  <h1 align="right"><button type="button" ; class="btn btn-warning"><i class='fas fa-download'>Generate Report</i>
-  </h1></button>
-  <br> <br>
   <div class="container">
+    <h1 class="gen-btn" align="right"><button type="button" ; class="btn btn-warning"><i class='fas fa-download'></i>Generate Report
+    </h1></button>
+  </div>
 
-    <div class="card-columns"><a href="<?php echo base_url() . bdaadminpath ?>/Dashboard/intern_list" class="custom-card">
-        <div class="card bg-info">
+  <div class="container-fluid p-2">
+  <div class="row p-0">
+    <div class="col-md-4 top-cards-1 top-cards">
+      <a href="<?php echo base_url() . bdaadminpath ?>/Dashboard/intern_list" class="custom-card">
+      <div class="card">
           <div class="card-body text-center">
             <p class="card-text">Total Interns</p><span class="h2 font-weight-bold mt-5"><?php echo $row->num_rows(); ?><span class="font-weight-normal ml-3"></span></span>
           </div>
-        </div>
-      </a>
+      </div>
+    </a>
+    </div>
+    <div class="col-md-4 top-cards-2 top-cards">
       <a href="<?php echo base_url() . bdaadminpath; ?>/Dashboard/intern_school" class="custom-card">
-        <div class="card bg-warning">
+        <div class="card">
           <div class="card-body text-center">
             <p class="card-text">Total School Registered</p>
             <span class="h2 font-weight-bold mt-5 text-center"><?php echo $rows->num_rows(); ?></span>
           </div>
         </div>
       </a>
-
-      <?php if ($this->session->userdata('main_admin_login')) {
-	?><a href="<?php echo base_url() . bdaadminpath; ?>/Dashboard/emp_list" class="custom-card">
-
-            <div class="card bg-success">
+    </div>
+    <?php if ($this->session->userdata('main_admin_login')) {
+  ?>
+    <div class="col-md-4 top-cards-3 top-cards">      
+      <a href="<?php echo base_url() . bdaadminpath; ?>/Dashboard/emp_list" class="custom-card">
+        <div class="card">
           <div class="card-body text-center">
-            <p class="card-text"> <?php echo $row_emp->num_rows(); ?> Employees</p>
-          </div>
-        </div> </a>
-          <?php
-}?>
+            <p class="card-text">Employees</p>
+            <span class="h2 font-weight-bold mt-5 text-center"> <?php echo $row_emp->num_rows(); ?> </span>
 
+          </div>
+        </div>
+      </a>
+      <?php
+      }?>
     </div>
   </div>
+    
 
   <br> <br>
 
   <div class="container-fluid">
-    <div class="row">
-      <div class="col" style="background-color:lightyellow;">Space Left for backend developer to place bar graph of the calls made so far (Day,Month,Year,Intern wise view)</div>
-      <div class="col-md-6 border" style="background-color:#fff;">
+    <div class="row section-1">
+      <div class="col-md-5 barGraph">Space Left for backend developer to place bar graph of the calls made so far (Day,Month,Year,Intern wise view)</div>
+      <div class="col-md-6 pieGraph">
       <h3>All Tasks Reports</h3>
         <div id="chartContainer" style="height: 370px; width: 100%;"></div>
       </div>
@@ -113,11 +121,11 @@
 
   <br> <br>
 
-  <div class="container-fluid">
+  <div class="container-fluid px-2">
     <div class="row">
-      <div class="col-sm-4" style="background-color:lavender;">
+      <div class="col-sm-4 section-2-left">
         <div class="container">
-          <h2>On Going Projects</h2>
+          <h2>On Going Projects</h2><br>
           <p>Business Development</p>
           <div class="progress">
             <div class="progress-bar text-center progress-bar-striped progress-bar-animated" style="width:<?php echo $Business_Development; ?>%"><?php echo $Business_Development; ?>%</div>
@@ -150,38 +158,37 @@
         </div>
 
       </div>
-      <div class="col-sm-8" style="background-color:lavenderblush;">
+      <div class="col-sm-8 section-2-right">
         <div class="container"  style="overflow: auto;">
           <h2>Today's Task</h2>
-          <div class="alert alert-warning alert-dismissible fade show">
+          <div class="table-container">
             <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
-            <strong>
               <div class="container">
                 <table class="table text-center table-bordered table-hover">
                   <thead>
                     <tr>
                       <th>
-                        <font color="red">Intern_ID
+                        <font color="#424874">Intern_ID
                       </th>
                       </font>
                       <th>
-                        <font color="red">Topic
+                        <font color="#424874">Topic
                       </th>
                       </font>
                       <th>
-                        <font color="red">Description
+                        <font color="#424874">Description
                       </th>
                       </font>
                       <th>
-                        <font color="red">Response
+                        <font color="#424874">Response
                       </th>
                       </font>
                       <th>
-                        <font color="red">Add&nbsp;Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <font color="#424874">Add&nbsp;Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </th>
                       </font>
                       <th>
-                        <font color="red">Completed&nbsp;Time
+                        <font color="#424874">Completed&nbsp;Time
                       </th>
                       </font>
                     </tr>
@@ -199,7 +206,6 @@
                     </tbody>
                   <?php }?>
                 </table>
-            </strong>
           </div>
           </th>
         </div>

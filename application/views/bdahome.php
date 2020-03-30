@@ -58,11 +58,11 @@
       <div class="modal-body form-group">
         <form method="post" action="<?php echo base_url(); ?>InternLogin/checklogin">
         <div class="form-row">
-            <input type="text" class="form-control" name="username" placeholder="Username">
+            <input type="text" class="form-control" name="username" placeholder="Username" required>
         </div>
        <br>
        <div class="form-row">
-       <input type="password" class="form-control" name="password" placeholder="Password">
+       <input type="password" class="form-control" name="password" placeholder="Password" required>
        </div>
        <br>
        <button class="btn btn-primary">Log In</button>

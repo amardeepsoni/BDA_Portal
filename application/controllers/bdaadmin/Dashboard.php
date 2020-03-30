@@ -34,7 +34,7 @@ class Dashboard extends CI_Controller {
 			$data['Marketing'] = $this->dm->getOnGoingProjectsMarketing();
 			$data['Sales'] = $this->dm->getOnGoingProjectsSales();
 			//
-			$this->load->View('bdaheader', $data);
+			$this->load->View('bdaadminHeader', $data);
 			$this->load->view(bdaadminpath . '/dashboard.php', $this->title);
 			$this->load->View('bdafooter');
 		} else {
@@ -54,14 +54,14 @@ class Dashboard extends CI_Controller {
 			$data['Marketing'] = $this->dm->getOnGoingProjectsMarketing();
 			$data['Sales'] = $this->dm->getOnGoingProjectsSales();
 			//
-			$this->load->View('bdaheader', $data);
+			$this->load->View('bdaadminHeader', $data);
 			$this->load->view(bdaadminpath . '/dashboard.php', $this->title);
 			$this->load->View('bdafooter');
 		}
 
 	}
 	public function taskAssign() {
-		$this->load->view('bdaheader', $this->title);
+		$this->load->view('bdaadminHeader', $this->title);
 		$this->load->view(bdaadminpath . '/task_assign');
 		$this->load->view('bdafooter');
 	}
@@ -90,7 +90,7 @@ class Dashboard extends CI_Controller {
 		$this->pagination->initialize($config);
 
 		$data['fetch_data'] = $this->dm->getData($config['per_page'], $this->uri->segment(4));
-		$this->load->View('bdaheader', $this->title);
+		$this->load->View('bdaadminHeader', $this->title);
 		$this->load->view(bdaadminpath . '/internList.php', $data);
 		$this->load->View('bdafooter');
 	}
@@ -106,7 +106,7 @@ class Dashboard extends CI_Controller {
 		$this->pagination->initialize($config);
 
 		$data['fetch_data'] = $this->dm->getDataEmp($config['per_page'], $this->uri->segment(4));
-		$this->load->View('bdaheader', $this->title);
+		$this->load->View('bdaadminHeader', $this->title);
 		$this->load->view(bdaadminpath . '/internList.php', $data);
 		$this->load->View('bdafooter');
 	}
@@ -122,7 +122,7 @@ class Dashboard extends CI_Controller {
 		$this->pagination->initialize($config);
 
 		$data['fetch_data'] = $this->dm->getDataSchool($config['per_page'], $this->uri->segment(4));
-		$this->load->View('bdaheader', $this->title);
+		$this->load->View('bdaadminHeader', $this->title);
 		$this->load->view(bdaadminpath . '/internSchoolList.php', $data);
 		$this->load->View('bdafooter');
 	}
@@ -165,7 +165,7 @@ class Dashboard extends CI_Controller {
 		$this->pagination->initialize($config);
 		$details['detail'] = $this->dm->getDetails_Intern($this->session->userdata('showDetailsID'), $config['per_page'], $this->uri->segment(4));
 		$details['detail123'] = $this->dm->getTotalTaskDetail($this->session->userdata('showDetailsID'));
-		$this->load->View('bdaheader', $this->title);
+		$this->load->View('bdaadminHeader', $this->title);
 		$this->load->view(bdaadminpath . '/showDetails_Intern.php', $details);
 		$this->load->View('bdafooter');
 	}
@@ -207,7 +207,7 @@ class Dashboard extends CI_Controller {
 		$this->pagination->initialize($config);
 
 		$data['fetch_data'] = $this->dm->getDataFilter($config['per_page'], $this->uri->segment(4), $data);
-		$this->load->View('bdaheader', $this->title);
+		$this->load->View('bdaadminHeader', $this->title);
 		$this->load->view(bdaadminpath . '/intern_list_filter.php', $data);
 		$this->load->View('bdafooter');
 	}
@@ -234,7 +234,7 @@ class Dashboard extends CI_Controller {
 		$this->pagination->initialize($config);
 
 		$data['fetch_data'] = $this->dm->getDataFilterSchool($config['per_page'], $this->uri->segment(4), $data);
-		$this->load->View('bdaheader', $this->title);
+		$this->load->View('bdaadminHeader', $this->title);
 		$this->load->view(bdaadminpath . '/intern_list_filter_school.php', $data);
 		$this->load->View('bdafooter');
 	}
