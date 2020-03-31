@@ -51,7 +51,7 @@ showConfirmButton: false,
 
  <div class="modal" id="myModal">
      <div class="modal-dialog">
-         <div class="modal-content">
+         <div class="modal-content p-2" style="border:none;border-radius:0;">
              <!-- Modal Header -->
              <div class="modal-header">
                  <h4 class="modal-title">Log In</h4>
@@ -59,7 +59,7 @@ showConfirmButton: false,
              </div>
 
              <!-- Modal body -->
-             <div class="modal-body form-group">
+             <div class="modal-body form-group mt-3">
                  <form method="post" action="<?php echo base_url(); ?>InternLogin/checklogin">
                      <div class="form-row">
                          <input type="text" class="form-control" name="username" placeholder="Username">

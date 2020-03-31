@@ -129,7 +129,6 @@ class Register extends CI_Controller {
 							</font></div></table></table></div></div></body></html>';
 					$mail->Body = $message;
 					$mail->AltBody = strip_tags($message);
-
 					if ($mail->send()) {
 
 						$this->session->set_flashdata('register', $cdata);
@@ -142,7 +141,9 @@ class Register extends CI_Controller {
 
 					//whatsapp
 				} catch (Exception $e) {
-					echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+					echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}\n";
+					echo('Username '.$to.'\n');
+					echo('Password '.$intern_pass);
 				}
 			} 
 			else{

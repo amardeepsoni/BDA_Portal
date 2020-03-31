@@ -7,6 +7,7 @@
 
   <title><?php if ($page_title) {echo $page_title;} else {echo "Career";}?></title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900|Rubik:300,400,700&display=swap" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/style_home/forgetpassword.css" rel="stylesheet">
 
   <link rel="shortcut icon" href="<?php echo base_url(); ?>images/favlogo.png" type="image/png" sizes="16x16">
   <!-- Latest compiled and minified CSS -->
@@ -33,7 +34,9 @@
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       padding: 12px 16px;
-      z-index: 1;
+      z-index: -1 !important;
+      top:70%;
+      padding-top:2rem;
     }
 
     .dropdown:hover .dropdown-content {
@@ -43,9 +46,21 @@
       padding: 5px;
 
     }
+    .drop-btn{
+      z-index:10 !important;
+      background-color:#F8F9FA !important;
+      /* background:#fff; */
+
+    }
+    .drop-btn span{
+      background:#F8F9FA !important;
+      color:#93D2DC !important;
+      
+    }
+
 
     body{
-      font-family:'roboto',sans-serif;
+      font-family:'roboto',sans-serif !important;
     }
   </style>
 </head>
@@ -62,6 +77,11 @@
         <li class="nav-item active">
           <a class="nav-link" href="<?php echo base_url(); ?>Career"> Home <span class="sr-only">(current)</span></a>
         </li>
+        <?php if (!$this->session->userdata('intern') && !$this->session->userdata('admin_login') && !$this->session->userdata('main_admin_login')) {?>
+          <li class="nav-item active">
+            <a class="nav-link" href="<?php echo base_url(); ?>/bdaadmin"> Admin <span class="sr-only">(current)</span></a>
+          </li>
+        <?php }?>
         <li class="nav-item active">
           <a class="nav-link" href="<?php echo base_url(); ?>/about"> About Us </a>
         </li>
@@ -70,7 +90,7 @@
       <div class="form-inline my-2 my-lg-0">
         <!-- <a class="btn btn-outline-info nav-link" href="#">Help</a>&nbsp; -->
         <?php if ($this->session->userdata('intern')) {?>
-          <div class="dropdown" style=" margin-right: 90px;">
+          <div class="dropdown drop-btn" style=" margin-right: 90px;">
             <span class="btn btn-outline-info nav-link" style="border-radius: 50px;"><img src="https://cdn.iconscout.com/icon/free/png-512/avatar-380-456332.png" class="rounded-circle" style="width: 30px; height: 30px;"> <?php echo 'Welcome, ' . $this->session->userdata('intern')['name']; ?></span>
 
             <div class="dropdown-content" aria-labelledby="dropdownMenuLink" style="background:#fff;z-index: 9999;">

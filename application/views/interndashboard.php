@@ -46,76 +46,82 @@ $tasks = $all_task['tasks'];
     if ($query_out['0']->upload_status) {
     ?>
         <div class="container-fluid" style="margin: 0;padding: 0;">
-            <div style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);position: absolute;width: 100%;height: 350px;">
+            <div style="background: #9796f0;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #fbc7d4, #9796f0);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #fbc7d4, #9796f0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+;position: absolute;width: 100%;height: 350px;">
                 <div class="">
                     <div class="col-sm-12">
                         <div class="row p-3">
-                            <div class="col-sm-3 p-3" style=" ">
+                            <div class="col-sm-3 p-2" style=" ">
                                 <div class="card" style="background: #eee;height: 200px;">
-                                    <div class="card-body bg-white">
+                                    <div class="card-body bg-white p-3">
 
-                                        <div style="width: 100%;display: flex;justify-content: space-between;">
-                                            <div class="text-secondary font-weight-bold" style="text-transform: capitalize;"><?php echo 'Hi, ' . $this->session->userdata('intern')['name']; ?></div>
-                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-user' style='font-size:24px; color: white;'></i>
+                                        <div style="width: 100%;display: flex;justify-content: space-between;align-items:center;">
+                                            <div class="text-secondary font-weight-bold" style="text-transform: capitalize;color:grey !important;"><?php echo 'Hi, ' . $this->session->userdata('intern')['name']; ?></div>
+                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #9796f0;  background:-webkit-linear-gradient(to right, #fbc7d4, #9796f0);  background:linear-gradient(to right, #fbc7d4, #9796f0); "><i class='fas fa-user' style='font-size:24px; color: white;'></i>
                                             </div>
                                         </div>
-                                        <div class="text-primary" style="width: 100%;">
+                                        <div class="text-primary" style="width: 100%;padding:0.5rem 0;">
 
-                                            <font style="font-size: 1.5em;">Intern ID : <?php echo $this->session->userdata('intern')['user_id']; ?></font><br>
-                                            <font style="font-size: 1em;"><?php echo $this->session->userdata('intern')['domain']; ?></font>,
+                                            <font style="font-size: 0.9em;color:grey;">Intern ID : <span style="color:skyblue;font-size:1rem;"><?php echo $this->session->userdata('intern')['user_id']; ?></span></font><br>
+                                            <font style="font-size: 0.9em;color:grey;">Domain : <span style="color:skyblue;font-size:1rem;"><?php echo $this->session->userdata('intern')['domain']; ?></span></font>
                                         </div>
                                         <div class="" style="width: 100%;">
-                                            <img src="https://img.icons8.com/cute-clipart/64/000000/calendar.png" style="width: 30px; height: 30px;" />Joining Date : <?php echo $this->session->userdata('intern')['register_on']; ?>
+                                            <img src="https://img.icons8.com/cute-clipart/64/000000/calendar.png" style="width: 30px; height: 30px;" /><span style="font-size:0.9rem;color:grey;">Joining Date </span>: <span style="color:skyblue;font-size:1rem;"><?php echo $this->session->userdata('intern')['register_on']; ?></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 p-3" style="">
+                            <div class="col-sm-3 p-2" style="">
                                 <div class="card" style="background: #eee; height: 200px;">
-                                    <a class="card-body  bg-white" style="text-decoration: none;">
-                                        <div style="width: 100%;display: flex;justify-content: space-between;">
+                                    <a class="card-body  bg-white p-3" style="text-decoration: none;">
+                                        <div style="width: 100%;display: flex;justify-content: space-between; align-items:center;">
                                             <div class="text-secondary font-weight-bold">List your registered school!</div>
-                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-list-alt' style='font-size:24px; color: white;'></i></div>
-                                        </div>
-                                        <button type="button" data-toggle="modal" data-target="#schoolModal" class="btn-success">Add School</button>
-                                        <button type="button" onclick="window.location.href='InternDashboard/viewSchool'" class="btn-info">View School</button>
-                                        <div class="p-2" style="width: 100%;">
-                                            Schools: <?php
+                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #9796f0;  background:-webkit-linear-gradient(to right, #fbc7d4, #9796f0);  background:linear-gradient(to right, #fbc7d4, #9796f0); "><i class='fas fa-list-alt' style='font-size:24px; color: white;'></i></div>
+                                        </div>                                      
+                                        <div class="py-3" style="width: 100%; color:grey; font-size:0.9rem;">
+                                            Schools: <span style="color:skyblue;font-size:1rem;"><?php
                                                         $this->load->model('Dashboard_Model', 'dm');
                                                         echo $this->dm->return_school($this->session->userdata('intern')['user_id'])['number'];
                                                         ?>
+                                                        </span>
+                                        </div>
+                                        <div class="d-flex" style="justify-content:space-between;">
+                                            <button type="button" data-toggle="modal" data-target="#schoolModal" class="btn btn-success" style="font-size:0.9rem; padding:0.2rem 1rem !important; margin-top:0.5rem;margin-right:0.5rem;">Add School</button>
+                                            <button type="button" onclick="window.location.href='InternDashboard/viewSchool'" class="btn btn-info" style="font-size:0.9rem;padding:0.2rem 1rem !important; margin-top:0.5rem;margin-right:0.5rem;">View School</button>
                                         </div>
                                     </a>
                                 </div>
                             </div>
 
-                            <div class="col-sm-3 p-3">
+                            <div class="col-sm-3 p-2">
                                 <div class="card" style="background: #eee;height: 200px;">
-                                    <div class="card-body  bg-white">
-                                        <div style="width: 100%;display: flex;justify-content: space-between;">
+                                    <div class="card-body  bg-white p-3">
+                                        <div style="width: 100%;display: flex;justify-content: space-between; align-items:center;">
                                             <div class="text-secondary font-weight-bold">Referral Id</div>
-                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fa fa-share-alt' style='font-size:24px; color: white;'></i></div>
+                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #9796f0;  background:-webkit-linear-gradient(to right, #fbc7d4, #9796f0);  background:linear-gradient(to right, #fbc7d4, #9796f0); "><i class='fa fa-share-alt' style='font-size:24px; color: white;'></i></div>
                                         </div>
                                         <div class="text-primary" style="font-size: 1.5em; width: 100%;">
                                             <?php echo $this->session->userdata('intern')['referral_id']; ?>
                                         </div>
 
                                         <div class="" style="width: 100%;">
-                                            <a class="btn btn-success" href="https://api.whatsapp.com/send?phone=+91<?php echo $this->session->userdata('intern')['mobile_no']; ?>&text=Intellify career referal : <?php echo $this->session->userdata('intern')['referral_id']; ?>" target="_blank"><i class='fab fa-whatsapp' style='font-size:20px'></i></a>
+                                            <a style="font-size:0.9rem; padding:0.2rem 1rem !important; margin-top:0.5rem; margin-right:0.5rem" class="btn btn-success" href="https://api.whatsapp.com/send?phone=+91<?php echo $this->session->userdata('intern')['mobile_no']; ?>&text=Intellify career referal : <?php echo $this->session->userdata('intern')['referral_id']; ?>" target="_blank"><i class='fab fa-whatsapp' style='font-size:20px'></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 p-3" style="">
+                            <div class="col-sm-3 p-2" style="">
                                 <div class="card" style="background: #eee;height: 200px;">
-                                    <div class="card-body  bg-white">
-                                        <div style="width: 100%;display: flex;justify-content: space-between;">
+                                    <div class="card-body  bg-white p-3">
+                                        <div style="width: 100%;display: flex;justify-content: space-between; align-items:center;">
                                             <div class="text-secondary font-weight-bold">Your Signed Doc</div>
-                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #007991;  background: -webkit-linear-gradient(to right, #78ffd6, #007991);  background: linear-gradient(to right, #78ffd6, #007991); "><i class='fas fa-file-pdf' style='font-size:24px;color:white;'></i></i></div>
+                                            <div class="rounded-circle" style="border: 1px solid white;width: 50px; height: 50px; display: flex;justify-content: center;align-items: center;background: #9796f0;  background:-webkit-linear-gradient(to right, #fbc7d4, #9796f0);  background:linear-gradient(to right, #fbc7d4, #9796f0); "><i class='fas fa-file-pdf' style='font-size:24px;color:white;'></i></i></div>
                                         </div>
                                         <div>
 
-                                            <a href="<?php echo $query_out['0']->profile_link; ?>" target="_blank" class="btn btn-success">Check File Once!!</a>
+                                            <a href="<?php echo $query_out['0']->profile_link; ?>" target="_blank" class="btn btn-success" style="font-size:0.9rem; padding:0.2rem 1rem !important; margin-top:0.5rem; margin-right:0.5rem">Check File Once!!</a>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +144,7 @@ $tasks = $all_task['tasks'];
                                 <form action="InternDashboard/uploaded_school" method="POST">
                                     <div class="form-group">
                                         <label for="name">School Name</label>
-                                        <input required type="text" class="form-control" id="name" pattern="[A-Za-z ]{5,20}" name="name" aria-describedby="Help" placeholder="Enter School Name">
+                                        <input required type="text" class="form-control bg-grey" id="name" pattern="[A-Za-z ]{5,20}" name="name" aria-describedby="Help" placeholder="Enter School Name">
                                     </div>
                                     <div class="form-group">
                                         <label for="school address"> School Address</label>
@@ -163,20 +169,20 @@ $tasks = $all_task['tasks'];
                     </div>
                 </div>
                 <!-- school modal ends -->
-                <div class="col-sm-12" style="">
+                <div class="col-sm-12 mt-3" style="">
                     <div class="row p-3">
                         <div class="col-sm-8 p-3" style="">
-                            <div class="card" style="width: 100%; height: 500px; background: #eee;box-shadow: 2px 1px 20px #555">
-                                <div class="card-header list-group-item-info">
+                            <div class="card" style="width: 100%; height: 500px; background: #eee;box-shadow: 2px 1px 20px rgba(0,0,0,0.2)">
+                                <div class="card-header list-group-item-info py-4" style="border:none;font-weight:bold; background:#FBC7D4;">
                                     To do list <?php echo "<b>&nbsp;&nbsp;&nbsp;#</b>" . $all_task['count']; ?>
                                 </div>
-                                <div class="card-body p-0" style="background: #eee; overflow: scroll; overflow-x: hidden;">
+                                <div class="card-body p-0" style="background: #eee; overflow: auto; overflow-x: hidden;">
                                     <div class="list-group-flush list-group" id="list-tab" role="tablist">
                                         <?php if ($tasks) {
                                             foreach ($tasks as $list) {
                                         ?>
-                                                <a class="list-group-item  list-group-item-action list-group-item-info" data-toggle="list" href="#list-<?php echo $list->id ?>" role="tab" aria-controls="<?php echo $list->id ?>">
-                                                    <div class="d-flex w-100 " >
+                                                <a class="list-group-item m-1 list-group-item-action list-group-item-info" data-toggle="list" href="#list-<?php echo $list->id ?>" role="tab" aria-controls="<?php echo $list->id ?>">
+                                                    <div class="d-flex w-100" >
                                                         <div class="" id="list-<?php echo $list->id ?>" style="width:70%;">
                                                             <div id="task_topic<?php echo $list->id ?>" <?php if ($list->completed) {
                                                                                                             echo 'style="text-decoration: line-through; " ';
@@ -195,14 +201,14 @@ $tasks = $all_task['tasks'];
                                                         
                                                         <div class="justify-content-end ml-auto">
                                                             <?php if ($list->approved_task) { ?>
-                                                                <button type="button" class="btn btn-success" disabled>Approved</button>
+                                                                <button type="button" class="btn btn-success mt-3" disabled>Approved</button>
                                                             <?php } else {
                                                             ?>
-                                                                <button type="button" class=" btn btn-info" <?php if ($list->completed) {
+                                                                <button type="button" style="font-size:0.9rem;padding:0.2rem 1rem !important;"class=" btn btn-info mt-3" <?php if ($list->completed) {
                                                                                                                 echo 'disabled';
                                                                                                             }
-                                                                                                            ?> data-toggle="modal" data-target="#modalCenter<?php echo $list->id ?>">
-                                                                    Check here to submit task
+                                                                                                            ?> data-toggle="modal" data-target="#modalCenter"<?php echo $list->id ?>>
+                                                                    Submit task
                                                                 </button>
                                                             <?php } ?>
                                                         </div>
@@ -226,7 +232,7 @@ $tasks = $all_task['tasks'];
                                     </div>
                                 </div>
                                 <div class="card-footer text-right px-4">
-                                    <a href="InternDashboard/taskHistory" class="btn btn-outline-dark"> History</a>
+                                    <a href="<?php echo base_url(); ?>Intern/InternDashboard/taskHistory" class="btn btn-outline-dark"> History</a>
                                 </div>
                             </div>
                         </div>
@@ -255,10 +261,10 @@ $tasks = $all_task['tasks'];
                         <!-- modal closed -->
                         <div class="col-sm-4 p-3" style="">
                             <div class="card list-group-item-info" style="width: 100%; height: 500px; background: #fff;">
-                                <div class="card-header">
+                                <div class="card-header py-4" style="border:none;font-weight:bold; background:white;"> 
                                     Leader Scoreboard <?php echo "<b>#</b>" . $score['count']; ?>
                                 </div>
-                                <div class="card-body p-1" style="overflow: scroll; overflow-x: hidden;">
+                                <div class="card-body p-1" style="overflow: auto; overflow-x: hidden;">
                                     <div><?php $this->load->View('intern/leaderscore', $score); ?>
                                     </div>
                                 </div>

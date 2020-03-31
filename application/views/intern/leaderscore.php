@@ -17,7 +17,7 @@
         background: #b30000;
     }
 </style>
-<div class="container">
+<div class="container" >
     <?php
     $record = $score['scores'];
     $counts = 1;
@@ -31,7 +31,7 @@
 
             <li class="list-group-item list-group-item-action <?php if ($info['user_id'] === $this->session->userdata("intern")['user_id']) {
                                                                     echo 'active" id="myscore';
-                                                                } ?>" style=" background-color: #fff; color:#000;">
+                                                                } ?>" style=" background-color: rgb(243,243,243);margin:0.2rem; color:#000;border:none !important;">
                 <div class="p-2">
                     <?php echo "<b>#</b>" . $counts++ . "   " . $info['user_id']; ?>
                 </div>

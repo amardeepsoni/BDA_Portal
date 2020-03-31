@@ -34,7 +34,8 @@
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       padding: 12px 16px;
-      z-index: 1;
+      z-index: -1;
+      padding-top:2rem;
     }
 
     .dropdown:hover .dropdown-content {
@@ -45,6 +46,15 @@
       padding: 5px;
 
     }
+    .drop-btn{
+      z-index:10 !important;
+      background-color:#F8F9FA !important;
+    }
+    .drop-btn span{
+      background-color:#F8F9FA !important;
+      color:#93D2DC !important;
+    }
+
 
   </style>
 </head>
@@ -67,7 +77,7 @@
         <?php if ($this->session->userdata('admin_login')) {?>
           <li>
         <div class="dropdown" style=" margin-right: 90px;">
-          <a href="<?php echo base_url(); ?>bdaadmin/Dashboard" class="btn btn-outline-info nav-link">
+          <a href="<?php echo base_url(); ?>bdaadmin/Dashboard" class="btn btn-outline-info nav-link mt-3">
           <font style="text-transform: capitalize; padding:0.5rem;"><?php echo 'Hi, ' . $this->session->userdata('admin_login')['name']; ?></font>Admin
           </a>&nbsp;
           <div class="dropdown-content" aria-labelledby="dropdownMenuLink" style="background:#fff;z-index: 9999;">
@@ -81,7 +91,7 @@
 if ($this->session->userdata('main_admin_login')) {?>
   <li>
   <div class="dropdown" style=" margin-right: 90px;">
-          <a href="<?php echo base_url(); ?>bdaadmin/Dashboard" class="btn btn-outline-info nav-link">
+          <a href="<?php echo base_url(); ?>bdaadmin/Dashboard" class="btn btn-outline-info nav-link mt-3">
             <font style="text-transform: capitalize;"> </font><?php echo 'Hi, ' . $this->session->userdata('main_admin_login')['name']; ?> Admin
           </a>&nbsp;
           <div class="dropdown-content" aria-labelledby="dropdownMenuLink" style="background:#fff;z-index: 9999;">

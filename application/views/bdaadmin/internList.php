@@ -153,12 +153,13 @@ if ($fetch_data->num_rows() > 0) {
 
 <form class="container">
         <div class="col-12 ml-2 text-left">
-          <label class="text-primary  font-weight-bold h4">Task Heading</label>
+          <label class="font-weight-bold h5 p-2">Task Heading</label>
           <input type="text" name="" class="form-control" placeholder="Enter the Topic"  required id="topic">
         </div>
+        <br>
         <div class="col-12 ml-2 text-left">
-          <label class="text-primary font-weight-bold h3">Task Description</label>
-          <textarea class="form-control" placeholder="Enter the Description" required id="description"></textarea>
+          <label class="font-weight-bold h5 m-2">Task Description</label>
+          <textarea class="form-control" placeholder="Enter the Description" required id="description" ></textarea>
         </div>
 
       <!-- Modal footer -->

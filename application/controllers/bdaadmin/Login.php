@@ -61,7 +61,6 @@ class Login extends CI_Controller {
 			}
 
 		} else {
-
 			$this->load->view('bdaadmin/bda_admin');
 		}
 	}

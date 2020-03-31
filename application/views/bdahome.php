@@ -38,16 +38,17 @@
 		<div style="width: 350px;z-index: 20; position: absolute;top:50%;left: 50%; transform:translate(-50%,-50%);">
 			<p style="width: 100%;text-align: center;color:white; font-family:sans-serif;font-size: 3em;">Join Us</p>
 			<p style="width: 100%;display: flex;justify-content: space-between;">
-			<a class="btn btn-outline-success px-5" href="<?php echo base_url(); ?>Register">Register</a><a href="#"  data-toggle="modal" data-target="#myModal" class="btn btn-outline-primary px-5 text-primary">Log In</a>
+			<a class="btn btn-outline-light px-5" href="<?php echo base_url(); ?>Register">Register</a>
+			<a href="#"  data-toggle="modal" data-target="#myModal" class="btn btn-outline-primary px-5 ">Log In</a>
 			</p>
 		</div>
 
 </div>
 
 </div>
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<div class="modal" id="myModal" style="border-radius:0 !important;border:none !important">
+  <div class="modal-dialog" style="border-radius:0 !important;border:none !important">
+    <div class="modal-content p-1"style="border-radius:0 !important;border:none !important">
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">Log In</h4>
@@ -55,7 +56,7 @@
       </div>
 
       <!-- Modal body -->
-      <div class="modal-body form-group">
+      <div class="modal-body form-group mt-3">
         <form method="post" action="<?php echo base_url(); ?>InternLogin/checklogin">
         <div class="form-row">
             <input type="text" class="form-control" name="username" placeholder="Username" required>
@@ -65,7 +66,7 @@
        <input type="password" class="form-control" name="password" placeholder="Password" required>
        </div>
        <br>
-       <button class="btn btn-primary">Log In</button>
+       <button class="btn btn-primary" style="float:right;">Log In</button>
        </form>
       </div>
 

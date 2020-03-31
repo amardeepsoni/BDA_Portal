@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>BDA Admin | Intellify</title>
+  <title>BDA Admin | Intellify</title>
+
 	<style type="text/css">
 		@import url('https://fonts.googleapis.com/css?family=Poppins');
 
@@ -301,12 +302,13 @@ input[type=text],input[type=password]:placeholder {
           <option value="local">Local Admin</option>
           <option value="main">Main Admin</option>
         </select> 
-      <input type="submit" class="fadeIn fourth">
+      <input type="submit" class="fadeIn fourth " style="text-align:center;display:block !important;width:90% !important;margin-top:1rem;">
     </form>
 
     <!-- Remind Passowrd -->
-    <div id="formFooter">
+    <div id="formFooter" style="display:flex;justify-content:space-around;align-items:center;">
       <a class="underlineHover" href="#">Are you admin?</a>
+      <a class="underlineHover" href="<?php echo base_url(); ?>/career">Are you Intern ?</a>
     </div>
 
   </div>

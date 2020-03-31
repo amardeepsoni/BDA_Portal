@@ -28,12 +28,13 @@ class InternLogin extends CI_Controller {
 
 			$data['username'] = $this->input->post('username');
 			$data['password'] = $this->input->post('password');
-			$data['password'] = md5($data['password']);
-
+			// $data['password'] = md5($data['password']);
+			// 
 			$this->form_validation->set_rules('username', 'Username', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			if ($this->form_validation->run() == FALSE) {
 				$this->session->set_flashdata('loginnotify', 'Email and Password not Valid.');
+		
 				/*redirect('login');*/
 			} else {
 				$this->load->model('Register_Model');
@@ -42,6 +43,7 @@ class InternLogin extends CI_Controller {
 					$username = $this->input->post('username');
 					$result = $this->Register_Model->studentinfo($username);
 					if ($result != false) {
+						
 						$session_data = array(
 							'name' => $result->name,
 							'email' => $result->email,
@@ -58,6 +60,7 @@ class InternLogin extends CI_Controller {
 							'referral_id' => $result->referral_id,
 						);
 						// Add user data in session
+					
 						$this->session->set_userdata('intern', $session_data);
 
 						redirect('Intern/InternDashboard');
