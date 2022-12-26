@@ -3,4 +3,4 @@ MarkupSafe==1.1.1
 pip==19.1.1
 PyMySQL==0.9.3
 setuptools==41.0.1
-wheel==0.33.4
+wheel==0.38.1
